@@ -12,40 +12,29 @@ string rtrim(const string &);
 vector<string> split(const string &);
 
 /*
- * Complete the 'lonelyinteger' function below.
+ * Complete the 'caesarCipher' function below.
  *
- * The function is expected to return an INTEGER.
- * The function accepts INTEGER_ARRAY a as parameter.
+ * The function is expected to return a STRING.
+ * The function accepts following parameters:
+ *  1. STRING s
+ *  2. INTEGER k
  */
 
-int lonelyinteger(vector<int> a) {
-    int len = a.size()-1;
-    bool flag = true;
-    int pringle = 0;
+string caesarCipher(string s, int k) {
+    string caesar;
+    k = k % 26; 
     
-    while (flag) {
-        pringle = a[len];
-        
-        bool found = false;
-        for (int i = 0; i<a.size(); i++){
-            
-            if (a[i]==pringle && i!=len){
-                found = true;
-                len--;
-                break;
-            } 
-                         
+    for (char c : s) {
+        if (isupper(c)) {
+            caesar += (char)(((c - 'A' + k) % 26) + 'A');
+        } else if (islower(c)) {
+            caesar += (char)(((c - 'a' + k) % 26) + 'a');
+        } else {
+            caesar += c;
         }
-        
-        if (!found){
-            flag = false;
-        }
-        
     }
     
-    std::cout<<pringle<<std::endl;
-
-    return pringle;
+    return caesar;
 }
 
 int main()
@@ -57,24 +46,21 @@ int main()
 
     int n = stoi(ltrim(rtrim(n_temp)));
 
-    string a_temp_temp;
-    getline(cin, a_temp_temp);
+    string s;
+    getline(cin, s);
 
-    vector<string> a_temp = split(rtrim(a_temp_temp));
+    string k_temp;
+    getline(cin, k_temp);
 
-    vector<int> a(n);
+    int k = stoi(ltrim(rtrim(k_temp)));
 
-    for (int i = 0; i < n; i++) {
-        int a_item = stoi(a_temp[i]);
-
-        a[i] = a_item;
-    }
-
-    int result = lonelyinteger(a);
+    string result = caesarCipher(s, k);
 
     //fout << result << "\n";
 
     //fout.close();
+
+    std::cout<<result;
 
     return 0;
 }
