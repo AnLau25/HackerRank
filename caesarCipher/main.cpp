@@ -113,3 +113,30 @@ Input format:
 Result:
 actoqn
 */
+
+/*
+𝗛𝗼𝗺𝗲 𝗺𝗮𝗱𝗲 𝘃𝗲𝗿:
+
+string caesarCipher(string s, int k) {
+    string caesar;
+    k = k%26;
+    
+    for (char c : s){
+        int ascii = c;
+        int num_val = ascii + k;
+        
+        if((num_val)>90 && ascii<=90){
+            num_val = 64 + (num_val-90);
+        }else if ((num_val)>122 && ascii>=97 && ascii<=122) {
+            num_val = 96 + (num_val-122);
+        }else if (ascii<64 || ascii>122 || (ascii>90 && ascii<97)){
+            num_val = ascii;
+        }
+        
+        char translated = static_cast<char>(num_val);
+        caesar += translated;
+    }
+    
+    return caesar;
+}
+*/
