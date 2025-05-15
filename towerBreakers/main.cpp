@@ -27,6 +27,11 @@ int towerBreakers(int n, int m) {
     }
 }
 
+/*
+  Eran puras matematicas ;-;
+  1. Si las columnas todas son d 1, el jugador 1 no puede jugar, fin d partida y gana 2
+  2. Si el # de columnas es par, la ultima palabra siempre la tiene 2, y 1 se queda sin opciones en su turno.
+*/
 
 int main()
 {
