@@ -7,15 +7,18 @@ using namespace std;
 
 void findZigZagSequence(vector < int > a, int n){
     sort(a.begin(), a.end());
-    int mid = (n)/2;
+    int mid = (n)/2; // Mod1
     swap(a[mid], a[n-1]);
+    /*
+        Bassed on problem description you'd think ur not allowed mod 1, but it is literally the only option here
+    */
 
     int st = mid + 1;
-    int ed = n - 2;
+    int ed = n - 2; // Mod 2
     while(st <= ed){
         swap(a[st], a[ed]);
         st = st + 1;
-        ed = ed - 1;
+        ed = ed - 1; // Mod 3
     }
     for(int i = 0; i < n; i++){
         if(i > 0) cout << " ";
