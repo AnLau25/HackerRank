@@ -25,8 +25,8 @@ vector<string> split(const string &);
  * The function accepts STRING s as parameter.
  */
 
- //Checks if palindrome
 /*
+//Checks if palindrome
 bool isPalindrome(string s, int right, int left){
     while (left<right)
     {
@@ -40,6 +40,7 @@ bool isPalindrome(string s, int right, int left){
 
     return true;
 }
+    //Goes in if !equal
     if (isPalindrome(s, left + 1, right)) return left;
     if (isPalindrome(s, left, right - 1)) return right;
 */
