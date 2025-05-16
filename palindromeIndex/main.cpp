@@ -25,10 +25,36 @@ vector<string> split(const string &);
  * The function accepts STRING s as parameter.
  */
 
-int palindromeIndex(string s) {
-    
-    
+bool isPalindrome(string s, int right, int left){
+    while (left<right)
+    {
+        if(s[left] != s[right]){
+            return false;
+        }
 
+        left++;
+        right--;
+    }
+
+    return true;
+}
+
+int palindromeIndex(string s) {
+    int right = s.size()-1;
+    int left = 0;
+
+    while (left<right)
+    {
+        if(s[left] != s[right]){
+            if (isPalindrome(s, left + 1, right)) return left;
+            if (isPalindrome(s, left, right - 1)) return right;
+        }
+
+        left++;
+        right--;
+    }
+
+    return -1;
 }
 
 int main()
@@ -47,6 +73,7 @@ int main()
         int result = palindromeIndex(s);
 
         //fout << result << "\n";
+        std::cout<<result<<std::endl;
     }
 
     //fout.close();
