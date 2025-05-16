@@ -25,6 +25,8 @@ vector<string> split(const string &);
  * The function accepts STRING s as parameter.
  */
 
+ //Checks if palindrome
+/*
 bool isPalindrome(string s, int right, int left){
     while (left<right)
     {
@@ -38,7 +40,11 @@ bool isPalindrome(string s, int right, int left){
 
     return true;
 }
+    if (isPalindrome(s, left + 1, right)) return left;
+    if (isPalindrome(s, left, right - 1)) return right;
+*/
 
+//Checks if remooving one letter makes palindrome
 int palindromeIndex(string s) {
     int right = s.size()-1;
     int left = 0;
@@ -46,8 +52,14 @@ int palindromeIndex(string s) {
     while (left<right)
     {
         if(s[left] != s[right]){
-            if (isPalindrome(s, left + 1, right)) return left;
-            if (isPalindrome(s, left, right - 1)) return right;
+            //If by removeing, it becomes even, solution found
+            if(s[left]==s[right-1]){
+                return right;
+            }
+            if (s[left+1]==s[right])
+            {
+                return left;
+            }
         }
 
         left++;
