@@ -53,7 +53,7 @@ int palindromeIndex(string s) {
     while (left<right)
     {
         if(s[left] != s[right]){
-            //If by removeing, it becomes even, solution found
+            //If by removing, it becomes even, solution found
             if(s[left]==s[right-1]){
                 return right;
             }
