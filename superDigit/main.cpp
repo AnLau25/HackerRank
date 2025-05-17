@@ -12,65 +12,47 @@ string rtrim(const string &);
 vector<string> split(const string &);
 
 /*
- * Complete the 'lonelyinteger' function below.
+ * Complete the 'superDigit' function below.
  *
  * The function is expected to return an INTEGER.
- * The function accepts INTEGER_ARRAY a as parameter.
+ * The function accepts following parameters:
+ *  1. STRING n
+ *  2. INTEGER k
  */
 
-int lonelyinteger(vector<int> a) {
-    int len = a.size()-1;
-    bool flag = true;
-    int pringle = 0;
+int superDigit(string n, int k) {
+    long super = 0;
     
-    while (flag) {
-        pringle = a[len];
-        
-        bool found = false;
-        for (int i = 0; i<a.size(); i++){
-            
-            if (a[i]==pringle && i!=len){
-                found = true;
-                len--;
-                break;
-            } 
-                         
-        }
-        
-        if (!found){
-            flag = false;
-        }
-        
+    for (char c : n){
+        int num = c-'0';
+        super += num; 
     }
     
-    std::cout<<pringle<<std::endl;
-
-    return pringle;
+    super= super * k;
+    
+    if (to_string(super).size()>1){
+        return  superDigit(to_string(super), 1);
+    }else{
+        return super;    
+    }   
 }
 
 int main()
 {
     //ofstream fout(getenv("OUTPUT_PATH"));
 
-    string n_temp;
-    getline(cin, n_temp);
+    string first_multiple_input_temp;
+    getline(cin, first_multiple_input_temp);
 
-    int n = stoi(ltrim(rtrim(n_temp)));
+    vector<string> first_multiple_input = split(rtrim(first_multiple_input_temp));
 
-    string a_temp_temp;
-    getline(cin, a_temp_temp);
+    string n = first_multiple_input[0];
 
-    vector<string> a_temp = split(rtrim(a_temp_temp));
+    int k = stoi(first_multiple_input[1]);
 
-    vector<int> a(n);
+    int result = superDigit(n, k);
 
-    for (int i = 0; i < n; i++) {
-        int a_item = stoi(a_temp[i]);
-
-        a[i] = a_item;
-    }
-
-    int result = lonelyinteger(a);
+    std::cout<<result;
 
     //fout << result << "\n";
 
