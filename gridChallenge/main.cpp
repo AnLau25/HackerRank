@@ -12,67 +12,69 @@ string rtrim(const string &);
 vector<string> split(const string &);
 
 /*
- * Complete the 'lonelyinteger' function below.
+ * Complete the 'gridChallenge' function below.
  *
- * The function is expected to return an INTEGER.
- * The function accepts INTEGER_ARRAY a as parameter.
+ * The function is expected to return a STRING.
+ * The function accepts STRING_ARRAY grid as parameter.
  */
 
-int lonelyinteger(vector<int> a) {
-    int len = a.size()-1;
-    bool flag = true;
-    int pringle = 0;
+string gridChallenge(vector<string> grid) {
+    vector<vector<int>> matrix;
     
-    while (flag) {
-        pringle = a[len];
-        
-        bool found = false;
-        for (int i = 0; i<a.size(); i++){
-            
-            if (a[i]==pringle && i!=len){
-                found = true;
-                len--;
-                break;
-            } 
-                         
+    for (int i = 0; i < grid.size(); i++){
+        vector<int> nuova;
+        for (char c : grid[i]){
+            int num = c;
+            nuova.push_back(num);
         }
-        
-        if (!found){
-            flag = false;
-        }
-        
+        sort(nuova.begin(),nuova.end());
+        matrix.push_back(nuova);
     }
     
-    std::cout<<pringle<<std::endl;
+    for (int i = 0; i < matrix[0].size(); i++){
+        for (int j = 0; j < matrix.size(); j++){
+            if((j+1)<matrix.size()){
+                if(matrix[j][i]>matrix[j+1][i]){
+                    return "NO";
+                }
+            }
+        }
+    }
+    
+    return "YES";
 
-    return pringle;
 }
 
 int main()
 {
     //ofstream fout(getenv("OUTPUT_PATH"));
 
-    string n_temp;
-    getline(cin, n_temp);
+    string t_temp;
+    getline(cin, t_temp);
 
-    int n = stoi(ltrim(rtrim(n_temp)));
+    int t = stoi(ltrim(rtrim(t_temp)));
 
-    string a_temp_temp;
-    getline(cin, a_temp_temp);
+    for (int t_itr = 0; t_itr < t; t_itr++) {
+        string n_temp;
+        getline(cin, n_temp);
 
-    vector<string> a_temp = split(rtrim(a_temp_temp));
+        int n = stoi(ltrim(rtrim(n_temp)));
 
-    vector<int> a(n);
+        vector<string> grid(n);
 
-    for (int i = 0; i < n; i++) {
-        int a_item = stoi(a_temp[i]);
+        for (int i = 0; i < n; i++) {
+            string grid_item;
+            getline(cin, grid_item);
 
-        a[i] = a_item;
+            grid[i] = grid_item;
+        }
+
+        string result = gridChallenge(grid);
+
+        //fout << result << "\n";
+        std::cout<<result;
+
     }
-
-    int result = lonelyinteger(a);
-
-    //fout << result << "\n";
 
     //fout.close();
 
