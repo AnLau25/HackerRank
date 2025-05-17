@@ -121,21 +121,16 @@ vector<string> split(const string &str) {
 }
 
 
-/*
-Aparently XOR is a thing in c++???
-like???????
 
-int lonelyinteger(vector<int> a) {
-    int result = 0;
-    for (int num : a) {
-        result ^= num;
-    }
-    return result;
-}
-*/
 
 /* 
 Input format:
-1. 6 <length of array>
-2. 5 5 6 7 6 5 <space separated array>
+1. 1 <number of tests>
+2. 3 <number of rows>
+3. acdb <rows>
+4. fgeh
+5. ijkl
+
+Result:
+YES <or NO, but yes in this case>
 */
