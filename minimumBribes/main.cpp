@@ -21,13 +21,15 @@ vector<string> split(const string &);
 void minimumBribes(vector<int> q) {
     int bribes = 0;
     for (int i = 0; i < q.size(); i++) {
+        //Checa si i no se saltó más de 2 puestos
         if (q[i] - (i + 1) > 2) {
             cout << "Too chaotic" << endl;
             return;
         }
 
         //max() ensures that we dont get out of range
-        //Calculates how many people have bribed i
+        //Calculates how many people have bribed i (ie cuantos más grandes hay 𝘥𝘦𝘭𝘢𝘯𝘵𝘦 de i)
+        //Incomodo pk el 𝘤𝘩𝘦𝘤𝘬 𝘥𝘦 𝘢𝘳𝘳𝘪𝘷𝘢 𝘮𝘪𝘳𝘢 𝘥𝘦𝘵𝘳𝘢𝘴 𝘥𝘦 𝘪 y esto 𝘮𝘪𝘳𝘢 𝘥𝘦𝘭𝘢𝘯𝘵𝘦 𝘥𝘦 𝘪
         for (int j = max(0, q[i] - 2); j < i; j++) {
             if (q[j] > q[i]) {
                 bribes++;
