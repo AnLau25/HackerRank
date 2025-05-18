@@ -100,22 +100,8 @@ vector<string> split(const string &str) {
     return tokens;
 }
 
-
-/*
-Aparently XOR is a thing in c++???
-like???????
-
-int lonelyinteger(vector<int> a) {
-    int result = 0;
-    for (int num : a) {
-        result ^= num;
-    }
-    return result;
-}
-*/
-
 /* 
 Input format:
-1. 6 <length of array>
-2. 5 5 6 7 6 5 <space separated array>
+1. 13546468465132231464495131313566411231364643 3 <2 space separated int, n and k>
+Where n is the int to find the super digit and 𝘬 the number of repetitions of 𝘯
 */
