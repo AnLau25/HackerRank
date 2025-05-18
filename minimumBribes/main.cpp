@@ -140,6 +140,10 @@ void minimumBribes(vector<int> q) {
 
 /* 
 Input format:
-1. 6 <length of array>
-2. 5 5 6 7 6 5 <space separated array>
+1. 1 <number of tests>
+2. 5 <array length>
+3. 1 3 2 5 4 <space separated array>
+
+Return:
+"2" <in this case or "Too chaotic" in case of 3+ bribes>
 */
