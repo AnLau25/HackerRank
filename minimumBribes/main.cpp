@@ -41,31 +41,32 @@ void minimumBribes(vector<int> q) {
 
 int main()
 {
-    //ofstream fout(getenv("OUTPUT_PATH"));
+    string t_temp;
+    getline(cin, t_temp);
 
-    string n_temp;
-    getline(cin, n_temp);
+    int t = stoi(ltrim(rtrim(t_temp)));
 
-    int n = stoi(ltrim(rtrim(n_temp)));
+    for (int t_itr = 0; t_itr < t; t_itr++) {
+        string n_temp;
+        getline(cin, n_temp);
 
-    string a_temp_temp;
-    getline(cin, a_temp_temp);
+        int n = stoi(ltrim(rtrim(n_temp)));
 
-    vector<string> a_temp = split(rtrim(a_temp_temp));
+        string q_temp_temp;
+        getline(cin, q_temp_temp);
 
-    vector<int> a(n);
+        vector<string> q_temp = split(rtrim(q_temp_temp));
 
-    for (int i = 0; i < n; i++) {
-        int a_item = stoi(a_temp[i]);
+        vector<int> q(n);
 
-        a[i] = a_item;
+        for (int i = 0; i < n; i++) {
+            int q_item = stoi(q_temp[i]);
+
+            q[i] = q_item;
+        }
+
+        minimumBribes(q);
     }
-
-    int result = lonelyinteger(a);
-
-    //fout << result << "\n";
-
-    //fout.close();
 
     return 0;
 }
@@ -111,15 +112,27 @@ vector<string> split(const string &str) {
 
 
 /*
-Aparently XOR is a thing in c++???
-like???????
-
-int lonelyinteger(vector<int> a) {
-    int result = 0;
-    for (int num : a) {
-        result ^= num;
+𝗡𝗼𝗻 𝗼𝗽𝘁𝗶𝗺𝗮𝗹: 𝗟𝗶𝗺𝗶𝘁 𝘁𝗶𝗺𝗲 𝗲𝘅𝗰𝗲𝗱𝗲𝗱
+void minimumBribes(vector<int> q) {
+    int len = q.size();
+    int bribes = 0;
+    
+    for (int i = 0; i<len; i++){
+        int curr_bribe = 0;
+        for(int j = i + 1; j<len; j++){
+           if(q[i]>q[j]){
+                curr_bribe++;
+            }
+            if (curr_bribe>2) {
+                std::cout<<"Too chaotic"<<std::endl;
+                return;
+            }           
+        }    
+        bribes+=curr_bribe;  
     }
-    return result;
+    
+    std::cout<<bribes<<std::endl;
+    return;
 }
 */
 
