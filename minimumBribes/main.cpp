@@ -25,6 +25,9 @@ void minimumBribes(vector<int> q) {
             cout << "Too chaotic" << endl;
             return;
         }
+
+        //max() ensures that we dont get out of range
+        //Calculates how many people have bribed i
         for (int j = max(0, q[i] - 2); j < i; j++) {
             if (q[j] > q[i]) {
                 bribes++;
