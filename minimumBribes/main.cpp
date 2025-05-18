@@ -17,27 +17,24 @@ vector<string> split(const string &);
  * The function accepts INTEGER_ARRAY q as parameter.
  */
 
+ //O(n) version
 void minimumBribes(vector<int> q) {
-    int len = q.size();
     int bribes = 0;
-    
-    for (int i = 0; i<len; i++){
-        int curr_bribe = 0;
-        for(int j = i + 1; j<len; j++){
-           if(q[i]>q[j]){
-                curr_bribe++;
+    for (int i = 0; i < q.size(); i++) {
+        if (q[i] - (i + 1) > 2) {
+            cout << "Too chaotic" << endl;
+            return;
+        }
+        for (int j = max(0, q[i] - 2); j < i; j++) {
+            if (q[j] > q[i]) {
+                bribes++;
             }
-            if (curr_bribe>2) {
-                std::cout<<"Too chaotic"<<std::endl;
-                return;
-            }           
-        }    
-        bribes+=curr_bribe;  
+        }
     }
-    
-    std::cout<<bribes<<std::endl;
-    return;
+
+    cout << bribes << endl;
 }
+
 
 int main()
 {
@@ -112,7 +109,7 @@ vector<string> split(const string &str) {
 
 
 /*
-𝗡𝗼𝗻 𝗼𝗽𝘁𝗶𝗺𝗮𝗹: 𝗟𝗶𝗺𝗶𝘁 𝘁𝗶𝗺𝗲 𝗲𝘅𝗰𝗲𝗱𝗲𝗱
+𝗡𝗼𝗻 𝗼𝗽𝘁𝗶𝗺𝗮𝗹: 𝗟𝗶𝗺𝗶𝘁 𝘁𝗶𝗺𝗲 𝗲𝘅𝗰𝗲𝗱𝗲𝗱 O(n^2)
 void minimumBribes(vector<int> q) {
     int len = q.size();
     int bribes = 0;
