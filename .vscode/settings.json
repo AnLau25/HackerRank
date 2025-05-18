@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "compare": "cpp",
-        "xstring": "cpp"
+        "xstring": "cpp",
+        "vector": "cpp"
     }
 }
