@@ -102,6 +102,6 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. 13546468465132231464495131313566411231364643 3 <2 space separated int, n and k>
+1. 135464684651322314644951313135664112313646443 3 <2 space separated int, n and k>
 Where n is the int to find the super digit and 𝘬 the number of repetitions of 𝘯
 */
