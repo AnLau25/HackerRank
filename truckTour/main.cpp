@@ -24,24 +24,18 @@ int truckTour(vector<vector<int>> petrolpumps) {
     long current = 0;
     
     int truck = 0;  
-    while (current==end){
+    while (current!=end){
         truck += petrolpumps[current][0] - petrolpumps[current][1];
 
-        if (truck<=0){
-            
-            try{
-                start = current + 1;
-                end = start - 1;
-            }catch(const std::exception& e){
-                return -1;
-            }
-
-            truck = 0;
+        current++;
+        if (current==petrolpumps.size()){
+            current = 0;
         }
 
-        current++;
-        if (current>petrolpumps.size()){
-            current = 0;
+        if (truck<=0){
+            start = current;
+            end = start - 1;
+            truck = 0;
         }
     }
     
