@@ -20,14 +20,29 @@ vector<string> split(const string &);
 
 int truckTour(vector<vector<int>> petrolpumps) {
     long start = 0;
+    long end = petrolpumps.size() - 1;
+    long current = 0;
     
-    for (long i = 1; i<petrolpumps.size(); i++){
-      
-        long runable = petrolpumps[i][0] - petrolpumps[i][1];
-        long current = petrolpumps[start][0] - petrolpumps[start][1];
-        if (runable>current && petrolpumps[i][0]>petrolpumps[start][0]){
-            start = i;
-        }        
+    int truck = 0;  
+    while (current==end){
+        truck += petrolpumps[current][0] - petrolpumps[current][1];
+
+        if (truck<=0){
+            
+            try{
+                start = current + 1;
+                end = start - 1;
+            }catch(const std::exception& e){
+                return -1;
+            }
+
+            truck = 0;
+        }
+
+        current++;
+        if (current>petrolpumps.size()){
+            current = 0;
+        }
     }
     
     return start;
@@ -35,7 +50,7 @@ int truckTour(vector<vector<int>> petrolpumps) {
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
     string n_temp;
     getline(cin, n_temp);
