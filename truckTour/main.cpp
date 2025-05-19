@@ -116,22 +116,14 @@ vector<string> split(const string &str) {
     return tokens;
 }
 
-
-/*
-Aparently XOR is a thing in c++???
-like???????
-
-int lonelyinteger(vector<int> a) {
-    int result = 0;
-    for (int num : a) {
-        result ^= num;
-    }
-    return result;
-}
-*/
-
 /* 
 Input format:
-1. 6 <length of array>
-2. 5 5 6 7 6 5 <space separated array>
+1. 4 <number for fuel pumps>
+2. 6 4 <space separated array representing <fuel distance to next pump>>
+3. 3 6
+4. 7 3
+5. 4 5
+
+Output:
+2 <pump from wich to start to do the full round>
 */
