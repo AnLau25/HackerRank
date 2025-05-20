@@ -1,11 +1,59 @@
 #include <iostream>
-#include <vector>
-#include <string>
-#include <algorithm>  // for ltrim, rtrim
-#include <sstream>    // for split
-#include <compare>    // for spaceship operator (C++20)
-#include <iomanip> 
+#include <limits>
 using namespace std;
+
+struct SinglyLinkedListNode {
+    int data;
+    SinglyLinkedListNode* next;
+
+    SinglyLinkedListNode(int node_data) {
+        this->data = node_data;
+        this->next = nullptr;
+    }
+};
+
+class SinglyLinkedList {
+public:
+    SinglyLinkedListNode* head;
+    SinglyLinkedListNode* tail;
+
+    SinglyLinkedList() {
+        this->head = nullptr;
+        this->tail = nullptr;
+    }
+
+    void insert_node(int node_data) {
+        SinglyLinkedListNode* node = new SinglyLinkedListNode(node_data);
+
+        if (!this->head) {
+            this->head = node;
+        } else {
+            this->tail->next = node;
+        }
+
+        this->tail = node;
+    }
+};
+
+void print_singly_linked_list(SinglyLinkedListNode* node, string sep, ostream& out) {
+    while (node) {
+        out << node->data;
+
+        node = node->next;
+
+        if (node) {
+            out << sep;
+        }
+    }
+}
+
+void free_singly_linked_list(SinglyLinkedListNode* node) {
+    while (node) {
+        SinglyLinkedListNode* temp = node;
+        node = node->next;
+        delete temp;
+    }
+}
 
 // Complete the mergeLists function below.
 
@@ -53,10 +101,7 @@ SinglyLinkedListNode* mergeLists(SinglyLinkedListNode* head1, SinglyLinkedListNo
     return result->head;
 }
 
-int main()
-{
-    ofstream fout(getenv("OUTPUT_PATH"));
-
+int main() {
     int tests;
     cin >> tests;
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -75,8 +120,8 @@ int main()
 
             llist1->insert_node(llist1_item);
         }
-      
-      	SinglyLinkedList* llist2 = new SinglyLinkedList();
+
+        SinglyLinkedList* llist2 = new SinglyLinkedList();
 
         int llist2_count;
         cin >> llist2_count;
@@ -92,13 +137,13 @@ int main()
 
         SinglyLinkedListNode* llist3 = mergeLists(llist1->head, llist2->head);
 
-        print_singly_linked_list(llist3, " ", fout);
-        fout << "\n";
+        print_singly_linked_list(llist3, " ", cout);
+        cout << "\n";
 
         free_singly_linked_list(llist3);
+        delete llist1;
+        delete llist2;
     }
-
-    fout.close();
 
     return 0;
 }
