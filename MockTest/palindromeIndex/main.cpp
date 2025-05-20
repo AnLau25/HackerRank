@@ -54,7 +54,7 @@ int palindromeIndex(string s) {
 //Checks if remooving one letter makes palindrome
 
 /*
-Yes, but it should verify if palindrome after change too
+Yes, but it should verify if palindrome (𝘰𝘳 𝘯𝘰𝘵) after change too
 int palindromeIndex(string s) {
     int right = s.size()-1;
     int left = 0;
