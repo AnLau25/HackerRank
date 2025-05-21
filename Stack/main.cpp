@@ -41,15 +41,18 @@ public:
     }
 
     void dequeue (){
-        if(this->head){
+        if(this->head->next){
             this->head = this->head->next;
+        }else{
+            this->head = nullptr;
         }
     }
 
     void print (){
-        std::cout<<this->head->value<<std::endl;
+        if(this->head){
+            std::cout<<this->head->value<<std::endl;
+        }
     }
-    
 };
 
 int main() {
