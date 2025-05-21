@@ -67,7 +67,7 @@ int main() {
     
 
 
-    for(int i = 0; i<counter; i++)
+    for(int i = 0; i<counter-1; i++)
     {   
         std::string line;
         std::getline(std::cin, line);
