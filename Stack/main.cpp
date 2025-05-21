@@ -61,26 +61,24 @@ int main() {
 
     Stack* stacked = new Stack();
     
-    int counter=0;
     vector<vector<int>> cmds;
-    std::cin>>counter;
     
+    int counter = 0;
+    std::cin >> counter;
+    std::cin.ignore(); 
 
-
-    for(int i = 0; i<counter; i++)
+    while(counter-->0)
     {   
         std::string line;
         std::getline(std::cin, line);
         std::istringstream iss(line);
 
-        vector<int> com(2);
+        vector<int> com;
         int val;
 
         while (iss>>val){
             com.push_back(val);
         }
-        
-        std::cin>>com[0]>>com[1];
 
         cmds.push_back(com);
     }
