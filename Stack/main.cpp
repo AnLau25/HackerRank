@@ -50,7 +50,8 @@ public:
 
     void print (){
         if(this->head){
-            std::cout<<this->head->value<<std::endl;
+            int num = this->head->value;
+            std::cout<<num<<std::endl;
         }
     }
 };
