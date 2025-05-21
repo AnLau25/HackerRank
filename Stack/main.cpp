@@ -101,15 +101,12 @@ int main() {
 
 /* 
 Input format:
-1. 1 <number of test cases>
-2. 3 <numbers of elements in list 1>
-3. 1 <enter-separated elements of list 1>
-4. 2
-5. 3
-6. 2 <numbers of elements in list 2>
-7. 1 <enter-separated elements of list 2>
-8. 2
+1. 4 <number of commands>
+2. 1 2 <1 = enqueue number>
+3. 2 <2 = deuque from head>
+4. 1 5
+5. 3 <3 = print head>
 
 Output:
-1 1 2 2 3 4 5
+5 <only print shows smt in terminal>
 */
