@@ -65,25 +65,25 @@ int main() {
     
     int counter = 0;
     std::cin >> counter;
-    std::cin.ignore(); 
+    std::cin.ignore();//Makes sure cin ignores next line (since it's getline) 
 
     while(counter-->0)
     {   
         std::string line;
-        std::getline(std::cin, line);
+        std::getline(std::cin, line); //Takes a full line of code
         std::istringstream iss(line);
 
         vector<int> com;
         int val;
 
-        while (iss>>val){
+        while (iss>>val){//Pushes the input into command
             com.push_back(val);
         }
 
-        cmds.push_back(com);
+        cmds.push_back(com);//Com to commands
     }
 
-    for(vector<int> com : cmds)
+    for(vector<int> com : cmds)//Exhecutes the commands
     {
         if (com[0]==1){
             stacked->enqueue(com[1]);
