@@ -1,4 +1,5 @@
 #include <cmath>
+#include <sstream>
 #include <cstdio>
 #include <vector>
 #include <iostream>
@@ -40,7 +41,7 @@ public:
     }
 
     void dequeue (){
-        if(!this->head){
+        if(this->head){
             this->head = this->head->next;
         }
     }
@@ -53,23 +54,42 @@ public:
 
 int main() {
     /* Enter your code here. Read input from STDIN. Print output to STDOUT */
-    int counter=0;
-    vector<int> cmds;
-    std::cin>>counter;
+
     Stack* stacked = new Stack();
+    
+    int counter=0;
+    vector<vector<int>> cmds;
+    std::cin>>counter;
+    
+
 
     for(int i = 0; i<counter; i++)
     {   
-        int com = 0;
+        std::string line;
+        std::getline(std::cin, line);
+        std::istringstream iss(line);
 
-        std::cin>>com;
+        vector<int> com(2);
+        int val;
+
+        while (iss>>val){
+            com.push_back(val);
+        }
+        
+        std::cin>>com[0]>>com[1];
 
         cmds.push_back(com);
     }
 
-    while (counter!=0)
+    for(vector<int> com : cmds)
     {
-        
+        if (com[0]==1){
+            stacked->enqueue(com[1]);
+        }else if (com[0]==2){
+            stacked->dequeue();
+        }else if (com[0]==3){
+            stacked->print();
+        }   
     }
     
     
