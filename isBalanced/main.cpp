@@ -12,67 +12,108 @@ string rtrim(const string &);
 vector<string> split(const string &);
 
 /*
- * Complete the 'lonelyinteger' function below.
+ * Complete the 'isBalanced' function below.
  *
- * The function is expected to return an INTEGER.
- * The function accepts INTEGER_ARRAY a as parameter.
+ * The function is expected to return a STRING.
+ * The function accepts STRING s as parameter.
  */
+template <typename T>
+struct StackNode {
+    T value;
+    StackNode<T>* next;
 
-int lonelyinteger(vector<int> a) {
-    int len = a.size()-1;
-    bool flag = true;
-    int pringle = 0;
+    StackNode(T node_value) {
+        this->value = node_value;
+        this->next = nullptr;
+    }
+};
+
+template<typename  T>
+class Stack {
+private:
+    StackNode<T>* head;
     
-    while (flag) {
-        pringle = a[len];
-        
-        bool found = false;
-        for (int i = 0; i<a.size(); i++){
-            
-            if (a[i]==pringle && i!=len){
-                found = true;
-                len--;
-                break;
-            } 
-                         
-        }
-        
-        if (!found){
-            flag = false;
-        }
-        
+public:  
+    
+    Stack(){
+        this->head = nullptr;
     }
     
-    std::cout<<pringle<<std::endl;
+    void push (T node_value){
+        StackNode<T>* node = new StackNode<T>(node_value);
+        
+        if (!head) {
+            head = node;
+        }else{
+            node->next = head;
+            head = node;
+        }        
+    }
 
-    return pringle;
+    T pop (){ 
+        if (!head) {
+            throw std::runtime_error("Stack underflow");
+        }
+               
+        StackNode<T>* dummy = head;
+        T value = dummy->value;
+        head = head->next;
+        
+        delete dummy;
+        return value;
+    }
+
+    void print (){
+        if(this->head){
+            T num = this->head->value;
+            std::cout<<num<<std::endl;
+        }
+    }
+    
+    bool isEmpty(){
+        return head==nullptr;
+    }
+};
+
+std::string isBalanced(const std::string& s) {
+    std::stack<char> balance;
+
+    for (char c : s) {
+        if (c == '{' || c == '[' || c == '(') {
+            balance.push(c);
+        } else if (c == '}' || c == ']' || c == ')') {
+            if (balance.empty()) return "NO";
+
+            char top = balance.top();
+            balance.pop();
+
+            std::string pair = std::string(1, top) + c;
+            if (!(pair == "{}" || pair == "[]" || pair == "()")) {
+                return "NO";
+            }
+        }
+    }
+
+    return balance.empty() ? "YES" : "NO";
 }
 
 int main()
 {
     //ofstream fout(getenv("OUTPUT_PATH"));
 
-    string n_temp;
-    getline(cin, n_temp);
+    string t_temp;
+    getline(cin, t_temp);
 
-    int n = stoi(ltrim(rtrim(n_temp)));
+    int t = stoi(ltrim(rtrim(t_temp)));
 
-    string a_temp_temp;
-    getline(cin, a_temp_temp);
+    for (int t_itr = 0; t_itr < t; t_itr++) {
+        string s;
+        getline(cin, s);
 
-    vector<string> a_temp = split(rtrim(a_temp_temp));
+        std::cout<<isBalanced(s)<<std::endl;
 
-    vector<int> a(n);
-
-    for (int i = 0; i < n; i++) {
-        int a_item = stoi(a_temp[i]);
-
-        a[i] = a_item;
+        //fout << result << "\n";
     }
-
-    int result = lonelyinteger(a);
-
-    //fout << result << "\n";
 
     //fout.close();
 
