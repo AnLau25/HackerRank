@@ -75,26 +75,30 @@ public:
     }
 };
 
-std::string isBalanced(const std::string& s) {
-    std::stack<char> balance;
-
-    for (char c : s) {
-        if (c == '{' || c == '[' || c == '(') {
+string isBalanced(string s) {
+    Stack<char> balance;
+    
+    for (char c : s){
+        
+        if (c=='{' || c=='[' || c=='('){
             balance.push(c);
-        } else if (c == '}' || c == ']' || c == ')') {
-            if (balance.empty()) return "NO";
-
-            char top = balance.top();
-            balance.pop();
-
-            std::string pair = std::string(1, top) + c;
-            if (!(pair == "{}" || pair == "[]" || pair == "()")) {
-                return "NO";
+        }else if (c=='}' || c==']' || c==')'){
+            if (balance.isEmpty()) return "NO";
+            
+            char top = balance.pop();
+            std::string test = std::string(1, top) + c;
+             
+            if (!(test=="{}" || test=="[]" || test=="()")){
+               return "NO";
             }
         }
     }
-
-    return balance.empty() ? "YES" : "NO";
+    
+    if (!(balance.isEmpty())){
+        return "NO";
+    }
+    
+    return "YES";
 }
 
 int main()
