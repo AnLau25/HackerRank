@@ -45,8 +45,8 @@ public:
         if (!head) {
             head = node;
         }else{
-            node->next = head;
-            head = node;
+            node->next = head; //Current head becomes the next to node
+            head = node;//Node becomes new current head
         }        
     }
 
@@ -55,12 +55,12 @@ public:
             throw std::runtime_error("Stack underflow");
         }
                
-        StackNode<T>* dummy = head;
+        StackNode<T>* dummy = head; //Store ref to head
         T value = dummy->value;
-        head = head->next;
+        head = head->next; //break head from stack by making next the new head
         
-        delete dummy;
-        return value;
+        delete dummy; //delete the ref to old head
+        return value; //return value
     }
 
     void print (){
@@ -85,7 +85,7 @@ string isBalanced(string s) {
         }else if (c=='}' || c==']' || c==')'){
             if (balance.isEmpty()) return "NO";
             
-            char top = balance.pop();
+            char top = balance.pop();//Cannot simply return it, you gotta make it into char 
             std::string test = std::string(1, top) + c;
              
             if (!(test=="{}" || test=="[]" || test=="()")){
