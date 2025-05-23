@@ -88,7 +88,7 @@ int main()
         arr[i] = arr_item;
     }
 
-    int result = pairs(k, arr);
+    std::cout<<pairs(k, arr)<<std::endl;
 
     //fout << result << "\n";
 
@@ -138,6 +138,9 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. 6 <length of array>
-2. 5 5 6 7 6 5 <space separated array>
+1. 6 2 <length of array and value of k>
+2. 1 2 3 4 5 6 <space separated array>
+
+Output:
+4 <total of pair where the difference is k, k=2 in this case>
 */
