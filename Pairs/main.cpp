@@ -20,6 +20,31 @@ vector<string> split(const string &);
  *  2. INTEGER_ARRAY arr
  */
 
+//Ussing double pointer technique, for 𝘖(𝘯) 𝘤𝘰𝘮𝘱𝘭𝘦𝘹𝘪𝘵𝘺 
+int pairs(int k, vector<int> arr) {
+    int count = 0;
+    int i = 0, j = 1; 
+    std::sort(arr.begin(), arr.end());
+    
+    while (j<arr.size()) {
+        int diff = arr[j] - arr[i];
+
+        if (diff == k) {//found pair, check next highest number
+            count++;
+            j++;
+        } else if (diff < k) {//diff<k so next highest number could still give k
+            j++;
+        } else {//diff>k check next smallest number after i 
+            i++;
+            if (i == j) j++;
+        }
+    
+    }
+    return count;   
+}
+
+/*
+functional, but obvious runtime error for large inputs
 int pairs(int k, vector<int> arr) {
     int count = 0;
     std::sort(arr.begin(), arr.end());
@@ -35,6 +60,7 @@ int pairs(int k, vector<int> arr) {
     
     return count;   
 }
+*/
 
 int main()
 {
