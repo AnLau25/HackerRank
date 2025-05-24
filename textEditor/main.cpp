@@ -33,7 +33,6 @@ void erase(int a, vector<string>* arr){
         arr->pop_back();
     }
     
-    
     hist =  did;
 }
 
@@ -42,7 +41,17 @@ void print(int a, vector<string>* arr){
     
 }
 
-void undo(vector<string>* last, vector<string>* arr){
+void undo(vector<string>* arr){
+    switch (std::stoi(hist[0]))
+    {
+    case 1:
+        append(hist[1], arr);
+        break;
+    case 2:
+        erase(std::stoi(hist[1]), arr);
+    default:
+        break;
+    }
     
 }
 
