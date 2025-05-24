@@ -15,7 +15,7 @@ vector<string> append(string a, vector<string>* arr){
     for(char c : a){
         string str1 = {c};
         arr->push_back(str1);
-        std::stoi(did[1])++;
+        did[1] = std::to_string(std::stoi(did[1]) + 1);
     }
     
     return did;
