@@ -7,21 +7,30 @@
 using namespace std;
 
 
-void append(string a, vector<string>*){
+vector<string> append(string a, vector<string>* arr){
+    vector<string> did(2);
+    did[0] = "2";
+    did[1] = "0";
+
+    for(char c : a){
+        string str1 = {c};
+        arr->push_back(str1);
+        std::stoi(did[1])++;
+    }
+    
+    return did;
+}
+
+void erase(string a, vector<string>* arr){
     
     
 }
 
-void erase(string a, vector<string>*){
-    
-    
-}
-
-void print(int a, vector<string>*){
+void print(int a, vector<string>* arr){
     
 }
 
-void undo(int a, vector<string>*){
+void undo(vector<string>* last, vector<string>* arr){
     
 }
 
@@ -29,15 +38,14 @@ int main() {
     /* Enter your code here. Read input from STDIN. Print output to STDOUT */
     
     vector<vector<std::string>> cmds;
-    vector<char> txt;
     vector<string> hist(2);
+    vector<string> txt;
     
     int counter = 0;
     std::cin>>counter;
     std::cin.ignore();
     
-        while(counter-->0)
-    {   
+    while(counter-->0){   
         std::string line;
         std::getline(std::cin, line); 
         std::istringstream iss(line);
@@ -50,7 +58,30 @@ int main() {
         }
 
         cmds.push_back(cmd);
-        
+    }
+    
+    for(vector<std::string>cmd : cmds){
+
+        switch (std::stoi(cmd[0]))
+        {
+        case 1:
+            hist = append(cmd[1], &txt);
+            break;
+        case 2:
+            /* code */
+            break;
+        case 3:
+            /* code */
+            break;
+        case 4:
+            /* code */
+            break;
+        default:
+            std::cout<<cmd[0]<<"not a command"<<std::endl;
+            break;
+        }
+
+    }
         
        
     return 0;
