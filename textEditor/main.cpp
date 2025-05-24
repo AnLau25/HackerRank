@@ -21,9 +21,19 @@ vector<string> append(string a, vector<string>* arr){
     return did;
 }
 
-void erase(string a, vector<string>* arr){
+vector<string> erase(int a, vector<string>* arr){
+    vector<string> did(2);
+    did[0] = "1";
+    did[1] = "";
+
+    while (a-->0)
+    {
+        did[1] += arr->back();
+        arr->pop_back();
+    }
     
     
+    return did;
 }
 
 void print(int a, vector<string>* arr){
@@ -68,13 +78,14 @@ int main() {
             hist = append(cmd[1], &txt);
             break;
         case 2:
-            /* code */
+            hist = erase(std::stoi(cmd[1]), &txt);
             break;
         case 3:
-            /* code */
+            print(std::stoi(cmd[1]), &txt);
             break;
         case 4:
-            /* code */
+            hist = {0, 0};
+            
             break;
         default:
             std::cout<<cmd[0]<<"not a command"<<std::endl;
