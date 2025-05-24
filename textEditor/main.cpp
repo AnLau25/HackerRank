@@ -6,8 +6,9 @@
 #include <algorithm>
 using namespace std;
 
+vector<string> hist(2);
 
-vector<string> append(string a, vector<string>* arr){
+void append(string a, vector<string>* arr){
     vector<string> did(2);
     did[0] = "2";
     did[1] = "0";
@@ -18,10 +19,10 @@ vector<string> append(string a, vector<string>* arr){
         did[1] = std::to_string(std::stoi(did[1]) + 1);
     }
     
-    return did;
+    hist =  did;
 }
 
-vector<string> erase(int a, vector<string>* arr){
+void erase(int a, vector<string>* arr){
     vector<string> did(2);
     did[0] = "1";
     did[1] = "";
@@ -33,10 +34,11 @@ vector<string> erase(int a, vector<string>* arr){
     }
     
     
-    return did;
+    hist =  did;
 }
 
 void print(int a, vector<string>* arr){
+    std::cout<<(*arr)[a]<<std::endl;
     
 }
 
@@ -46,9 +48,7 @@ void undo(vector<string>* last, vector<string>* arr){
 
 int main() {
     /* Enter your code here. Read input from STDIN. Print output to STDOUT */
-    
     vector<vector<std::string>> cmds;
-    vector<string> hist(2);
     vector<string> txt;
     
     int counter = 0;
@@ -75,17 +75,16 @@ int main() {
         switch (std::stoi(cmd[0]))
         {
         case 1:
-            hist = append(cmd[1], &txt);
+            append(cmd[1], &txt);
             break;
         case 2:
-            hist = erase(std::stoi(cmd[1]), &txt);
+            erase(std::stoi(cmd[1]), &txt);
             break;
         case 3:
             print(std::stoi(cmd[1]), &txt);
             break;
         case 4:
-            hist = {0, 0};
-            
+            //undo();
             break;
         default:
             std::cout<<cmd[0]<<"not a command"<<std::endl;
