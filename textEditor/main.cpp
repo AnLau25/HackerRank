@@ -6,7 +6,7 @@
 #include <algorithm>
 using namespace std;
 
-vector<string> hist(2);
+vector<vector<string>> hist;
 
 void append(string a, vector<string>* arr){
     vector<string> did(2);
@@ -19,10 +19,9 @@ void append(string a, vector<string>* arr){
         did[1] = std::to_string(std::stoi(did[1]) + 1);
     }
     
-    hist =  did;
 }
 
-void erase(int a, vector<string>* arr){
+void remove(int a, vector<string>* arr){
     vector<string> did(2);
     did[0] = "1";
     did[1] = "";
@@ -33,7 +32,7 @@ void erase(int a, vector<string>* arr){
         arr->pop_back();
     }
     
-    hist =  did;
+    hist.push_back(did);
 }
 
 void print(int a, vector<string>* arr){
@@ -42,15 +41,19 @@ void print(int a, vector<string>* arr){
 }
 
 void undo(vector<string>* arr){
-    switch (std::stoi(hist[0]))
+    switch (std::stoi(hist[0][0]))
     {
     case 1:
-        append(hist[1], arr);
+        append(hist[0][1], arr);
         break;
     case 2:
-        erase(std::stoi(hist[1]), arr);
+        remove(std::stoi(hist[0][1]), arr);
     default:
         break;
+    }
+
+    if (!hist.empty()) {
+        hist.erase(hist.begin());
     }
     
 }
@@ -87,7 +90,7 @@ int main() {
             append(cmd[1], &txt);
             break;
         case 2:
-            erase(std::stoi(cmd[1]), &txt);
+            remove(std::stoi(cmd[1]), &txt);
             break;
         case 3:
             print(std::stoi(cmd[1]), &txt);
