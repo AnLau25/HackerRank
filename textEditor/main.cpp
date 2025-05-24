@@ -37,7 +37,7 @@ void erase(int a, vector<string>* arr){
 }
 
 void print(int a, vector<string>* arr){
-    std::cout<<(*arr)[a]<<std::endl;
+    std::cout<<(*arr)[a-1]<<std::endl;
     
 }
 
@@ -108,14 +108,14 @@ int main() {
 
 /* 
 Input format:
-1. 4 <number of commands>
-2. 1 2 <1 = enqueue number>
-3. 2 <2 = deuque from head>
-4. 1 5
-5. 3 <3 = print head>
+1. 6 <number of commands>
+2. 1 abcd <append string "abcd">
+3. 2 2 <remove the 2 last elements>
+4. 3 2 <print the 2nd element>
+5. 4 <undo latest mod>
+6. 3 4 <print the 4th element>
 
-Output:
-𝘛𝘩𝘦 𝘴𝘶𝘥𝘥𝘦𝘯 𝘳𝘦𝘢𝘭𝘪𝘻𝘢𝘵𝘪𝘰𝘯 𝘵𝘩𝘢𝘵 𝘵𝘩𝘦 𝘦𝘯𝘲𝘶𝘦𝘶𝘦 𝘪𝘴 𝘢𝘭𝘭 𝘸𝘳𝘰𝘯𝘨 𝘢𝘯𝘥 𝘵𝘩𝘢𝘵 𝘵𝘩𝘪𝘴 𝘱𝘢𝘴𝘴𝘦𝘥 𝘵𝘩𝘦 𝘵𝘦𝘴𝘵𝘴 𝘣𝘺 𝘤𝘩𝘦𝘦𝘳 𝘮𝘪𝘳𝘢𝘤𝘭𝘦. Ɛ( · — ·)3
-5 <only print shows smt in terminal>
-
+Output: Ɛ( · — ·)3
+b <only print shows smt in terminal>
+d
 */
