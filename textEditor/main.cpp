@@ -104,21 +104,6 @@ int main() {
             std::cout<<cmd[0]<<"not a command"<<std::endl;
             break;
         }
-
-        for(vector<string> did : hist)
-            for (const auto& word : did) {
-                std::cout << word << " ";
-        }
-        
-        std::cout <<" ";
-
-        for (const auto& word : txt) {
-            std::cout << word << " ";
-        }
-
-        
-        std::cout << std::endl;
-
     }
         
        
