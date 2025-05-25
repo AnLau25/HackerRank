@@ -17,8 +17,9 @@ void append(string a, vector<string>* arr){
         string str1 = {c};
         arr->push_back(str1);
         did[1] = std::to_string(std::stoi(did[1]) + 1);
-    }
+    }  
     
+    hist.push_back(did);
 }
 
 void remove(int a, vector<string>* arr){
@@ -28,10 +29,10 @@ void remove(int a, vector<string>* arr){
 
     while (a-->0)
     {
-        did[1] += arr->back();
+        did[1] = arr->back() + did[1];
         arr->pop_back();
     }
-    
+
     hist.push_back(did);
 }
 
@@ -41,21 +42,22 @@ void print(int a, vector<string>* arr){
 }
 
 void undo(vector<string>* arr){
-    switch (std::stoi(hist[0][0]))
+    if (hist.empty()) return;
+    vector<string> did = hist.back();
+    hist.pop_back();
+
+    switch (std::stoi(did[0]))
     {
     case 1:
-        append(hist[0][1], arr);
+        append(did[1], arr);
+        hist.pop_back();
         break;
     case 2:
-        remove(std::stoi(hist[0][1]), arr);
+        remove(std::stoi(did[1]), arr);
+        hist.pop_back();
     default:
         break;
     }
-
-    if (!hist.empty()) {
-        hist.erase(hist.begin());
-    }
-    
 }
 
 int main() {
@@ -96,12 +98,26 @@ int main() {
             print(std::stoi(cmd[1]), &txt);
             break;
         case 4:
-            //undo();
+            undo(&txt);
             break;
         default:
             std::cout<<cmd[0]<<"not a command"<<std::endl;
             break;
         }
+
+        for(vector<string> did : hist)
+            for (const auto& word : did) {
+                std::cout << word << " ";
+        }
+        
+        std::cout <<" ";
+
+        for (const auto& word : txt) {
+            std::cout << word << " ";
+        }
+
+        
+        std::cout << std::endl;
 
     }
         
