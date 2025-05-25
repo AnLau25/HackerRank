@@ -12,40 +12,50 @@ string rtrim(const string &);
 vector<string> split(const string &);
 
 /*
- * Complete the 'lonelyinteger' function below.
+ * Complete the 'legoBlocks' function below.
  *
  * The function is expected to return an INTEGER.
- * The function accepts INTEGER_ARRAY a as parameter.
+ * The function accepts following parameters:
+ *  1. INTEGER n
+ *  2. INTEGER m
  */
 
-int lonelyinteger(vector<int> a) {
-    int len = a.size()-1;
-    bool flag = true;
-    int pringle = 0;
+int legoBlocks(int n, int m) {
+    int valid = 0;
     
-    while (flag) {
-        pringle = a[len];
-        
-        bool found = false;
-        for (int i = 0; i<a.size(); i++){
-            
-            if (a[i]==pringle && i!=len){
-                found = true;
-                len--;
-                break;
-            } 
-                         
-        }
-        
-        if (!found){
-            flag = false;
-        }
-        
-    }
     
-    std::cout<<pringle<<std::endl;
+    
+    return valid % 1000000007;
 
-    return pringle;
+}
+
+int main()
+{
+    //ofstream fout(getenv("OUTPUT_PATH"));
+
+    string t_temp;
+    getline(cin, t_temp);
+
+    int t = stoi(ltrim(rtrim(t_temp)));
+
+    for (int t_itr = 0; t_itr < t; t_itr++) {
+        string first_multiple_input_temp;
+        getline(cin, first_multiple_input_temp);
+
+        vector<string> first_multiple_input = split(rtrim(first_multiple_input_temp));
+
+        int n = stoi(first_multiple_input[0]);
+
+        int m = stoi(first_multiple_input[1]);
+
+        std::cout<<legoBlocks(n, m)<<std::endl;
+
+        //fout << result << "\n";
+    }
+
+    //fout.close();
+
+    return 0;
 }
 
 int main()
