@@ -40,6 +40,10 @@ int cookies(int k, vector<int> A) {
             return mix;
         }
     }
+
+     if(minHeap.top()>k){
+        return mix;
+    }
     
     return -1;
 }
