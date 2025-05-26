@@ -162,22 +162,12 @@ vector<string> split(const string &str) {
     return tokens;
 }
 
-
-/*
-Aparently XOR is a thing in c++???
-like???????
-
-int lonelyinteger(vector<int> a) {
-    int result = 0;
-    for (int num : a) {
-        result ^= num;
-    }
-    return result;
-}
-*/
-
 /* 
 Input format:
-1. 6 <length of array>
-2. 5 5 6 7 6 5 <space separated array>
+1. 5 7 <array length = 5, k = 7>
+2. 1 2 3 4 5 <space separated array>
+
+Output:
+
+
 */
