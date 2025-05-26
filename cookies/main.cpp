@@ -5,6 +5,7 @@
 #include <sstream>    // for split
 #include <compare>    // for spaceship operator (C++20)
 #include <iomanip> 
+#include <queue>
 using namespace std;
 
 string ltrim(const string &);
@@ -21,14 +22,26 @@ vector<string> split(const string &);
  */
 
 int cookies(int k, vector<int> A) {
-    if((A.size()==1 && A[0]<k) || A.empty()){
-        return -1;
-    }
-    
-    bool small = true;
+    std::priority_queue<int, std::vector<int>, std::greater<int>> minHeap(A.begin(), A.end());
     int mix = 0;
     
-    return mix;
+    while (minHeap.size()>=2 && minHeap.top()<k) {
+        int cookie1 = minHeap.top();
+        minHeap.pop();
+        int cookie2 = minHeap.top();
+        minHeap.pop();
+        
+        int neoCookie = cookie1 + 2*cookie2;
+        minHeap.push(neoCookie);
+        
+        mix++;
+        
+        if (minHeap.top()>=k) {
+            return mix;
+        }
+    }
+    
+    return -1;
 }
 
 
