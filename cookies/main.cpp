@@ -20,6 +20,18 @@ vector<string> split(const string &);
  *  2. INTEGER_ARRAY A
  */
 
+int cookies(int k, vector<int> A) {
+    if((A.size()==1 && A[0]<k) || A.empty()){
+        return -1;
+    }
+    
+    bool small = true;
+    int mix = 0;
+    
+    return mix;
+}
+
+
 /*
 Fancy, but causes run time error.
 int cookies(int k, vector<int> A) {
