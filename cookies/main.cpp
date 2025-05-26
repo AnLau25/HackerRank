@@ -20,6 +20,8 @@ vector<string> split(const string &);
  *  2. INTEGER_ARRAY A
  */
 
+/*
+Fancy, but causes run time error.
 int cookies(int k, vector<int> A) {
     if((A.size()==1 && A[0]<k) || A.empty()){
         return -1;
@@ -47,19 +49,15 @@ int cookies(int k, vector<int> A) {
             A.push_back(neoCookie);
 
             mix++;
-        }
-        
-        
-        
-        
+        }        
     }
-    
     return mix;
 }
+*/
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
     string first_multiple_input_temp;
     getline(cin, first_multiple_input_temp);
@@ -83,11 +81,11 @@ int main()
         A[i] = A_item;
     }
 
-    int result = cookies(k, A);
+    std::cout<<cookies(k, A)<<std::endl;
 
-    fout << result << "\n";
+    //fout << result << "\n";
 
-    fout.close();
+    //fout.close();
 
     return 0;
 }
