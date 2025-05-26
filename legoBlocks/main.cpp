@@ -19,14 +19,48 @@ vector<string> split(const string &);
  *  1. INTEGER n
  *  2. INTEGER m
  */
+const int MOD = 1000000007;
+
+int mod_pow(int base, int exp, int mod) {
+    long long result = 1, b = base;
+    while (exp > 0) {
+        if (exp % 2 == 1)
+            result = (result * b) % mod;
+        b = (b * b) % mod;
+        exp /= 2;
+    }
+    return result;
+}
 
 int legoBlocks(int n, int m) {
-    int valid = 0;
-    
-    
-    
-    return valid % 1000000007;
+    vector<int> row_ways(m + 1, 0);
+    row_ways[0] = 1;
 
+    // Count ways to build one row of width w
+    for (int width = 1; width <= m; ++width) {
+        for (int block = 1; block <= 4; ++block) {
+            if (width - block >= 0)
+                row_ways[width] = (row_ways[width] + row_ways[width - block]) % MOD;
+        }
+    }
+
+    // Total combinations: raise row_ways[w] to power n
+    vector<int> total_ways(m + 1, 0);
+    for (int i = 1; i <= m; ++i)
+        total_ways[i] = mod_pow(row_ways[i], n, MOD);
+
+    // Compute solid walls (no vertical cracks)
+    vector<int> solid_ways(m + 1, 0);
+    solid_ways[0] = 1;
+    for (int i = 1; i <= m; ++i) {
+        solid_ways[i] = total_ways[i];
+        for (int j = 1; j < i; ++j) {
+            long long sub = ((long long)solid_ways[j] * total_ways[i - j]) % MOD;
+            solid_ways[i] = (solid_ways[i] - sub + MOD) % MOD;
+        }
+    }
+
+    return solid_ways[m];
 }
 
 int main()
@@ -52,37 +86,6 @@ int main()
 
         //fout << result << "\n";
     }
-
-    //fout.close();
-
-    return 0;
-}
-
-int main()
-{
-    //ofstream fout(getenv("OUTPUT_PATH"));
-
-    string n_temp;
-    getline(cin, n_temp);
-
-    int n = stoi(ltrim(rtrim(n_temp)));
-
-    string a_temp_temp;
-    getline(cin, a_temp_temp);
-
-    vector<string> a_temp = split(rtrim(a_temp_temp));
-
-    vector<int> a(n);
-
-    for (int i = 0; i < n; i++) {
-        int a_item = stoi(a_temp[i]);
-
-        a[i] = a_item;
-    }
-
-    int result = lonelyinteger(a);
-
-    //fout << result << "\n";
 
     //fout.close();
 
@@ -129,18 +132,7 @@ vector<string> split(const string &str) {
 }
 
 
-/*
-Aparently XOR is a thing in c++???
-like???????
 
-int lonelyinteger(vector<int> a) {
-    int result = 0;
-    for (int num : a) {
-        result ^= num;
-    }
-    return result;
-}
-*/
 
 /* 
 Input format:
