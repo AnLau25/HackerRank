@@ -168,6 +168,6 @@ Input format:
 2. 1 2 3 4 5 <space separated array>
 
 Output:
-
+3 <number of iterations so, Ɐ n in array A n>=k>
 
 */
