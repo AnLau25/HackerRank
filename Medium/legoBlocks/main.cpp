@@ -140,5 +140,5 @@ Input format:
 2. 2 3 <height width, n=2 m=3>
 
 Output:
-
+9 <block combinations>
 */
