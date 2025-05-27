@@ -24,26 +24,38 @@ vector<string> split(const string &);
  */
 
 vector<int> bfs(int n, int m, vector<vector<int>> edges, int s) {
-    vector<int> paths(n,0);
-    vector<vector<int>> visited(n);
-    
-    for(vector<int> edge : edges){
-        if (edge[0]==s){
-            paths[edge[1]-1]+=6;
-            visited.push_back(edge);
-        } else {
-            for (vector<int> seen : visited){
-                if(seen[1]==edge[0]){
-                    paths[edge[1]-1]+=6;
-                    visited.push_back(edge);
-                }
+    vector<vector<int>> adj(n+1);
+
+    for (auto& edge : edges){
+        adj[edge[0]].push_back(edge[1]);
+        adj[edge[1]].push_back(edge[0]);
+    }
+
+    vector<int> distance(n + 1, -1);
+    vector<bool> visited(n + 1, false);
+    queue<int> q;
+
+    visited[s] = true;
+    distance[s] = 0;
+    q.push(s);
+
+    while (!q.empty()){
+        int node = q.front();
+        q.pop();
+
+        for (int neighbor : adj[node]){
+            if (!visited[neighbor]){
+                visited[neighbor] = true;
+                distance[neighbor] = distance[node] + 6;
+                q.push(neighbor);
             }
         }
     }
 
-    for (int node : paths){
-        if (node==0){
-            node=-1;
+    vector<int> paths;
+    for (int i = 1; i<= n; i++){
+        if (i!=s){
+            paths.push_back(distance[i]);
         }
     }
     
