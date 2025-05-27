@@ -23,7 +23,17 @@ vector<string> split(const string &);
  */
 
 vector<int> bfs(int n, int m, vector<vector<int>> edges, int s) {
-
+    vector<int> paths(n,0);
+    vector<vector<int>> visited(n);
+    
+    for(vector<int> edge : edges){
+        if (edge[0]==s){
+            paths[edge[1]-1]+=6;
+        }
+        
+    }
+    
+    return  paths;
 }
 
 int main()
