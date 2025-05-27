@@ -25,36 +25,39 @@ vector<string> split(const string &);
 
 vector<int> bfs(int n, int m, vector<vector<int>> edges, int s) {
     vector<vector<int>> adj(n+1);
-
+    //Create the graph by tracking the links a node has 
     for (auto& edge : edges){
         adj[edge[0]].push_back(edge[1]);
         adj[edge[1]].push_back(edge[0]);
     }
 
+    //Track distances, initialize all to -1 (default for unlinked nodes)
     vector<int> distance(n + 1, -1);
+    //Track what nodes have been visited, init to false since none visited
     vector<bool> visited(n + 1, false);
+    //Initialize queue (FIFO), would use stack for DFS (LIFO)
     queue<int> q;
 
-    visited[s] = true;
-    distance[s] = 0;
-    q.push(s);
+    visited[s] = true; //First node already visited
+    distance[s] = 0; //Distance from first-first is 0
+    q.push(s); //Init the queue with the statrt point
 
-    while (!q.empty()){
+    while (!q.empty()){ 
         int node = q.front();
         q.pop();
 
-        for (int neighbor : adj[node]){
-            if (!visited[neighbor]){
-                visited[neighbor] = true;
-                distance[neighbor] = distance[node] + 6;
-                q.push(neighbor);
+        for (int neighbor : adj[node]){ //Visit all the neighbors of the current node (BFS)
+            if (!visited[neighbor]){ //If the neighbor has not been visited
+                visited[neighbor] = true; //Mark it as visited
+                distance[neighbor] = distance[node] + 6; // Mark it's distance from the start node [current node distance + 6]
+                q.push(neighbor); //Push it in the queue so we can look or its neighbors
             }
         }
     }
 
     vector<int> paths;
     for (int i = 1; i<= n; i++){
-        if (i!=s){
+        if (i!=s){ //Puch all, except start node s
             paths.push_back(distance[i]);
         }
     }
@@ -162,6 +165,12 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. 6 <length of array>
-2. 5 5 6 7 6 5 <space separated array>
+1. 1 <number of tests>
+2. 4 2 <n number of nodes, m number of edges; n=4 m=2>
+3. 1 2 <edge [1, 2]>
+4. 1 3 <edge [1, 3]>
+5. 1 <s starting node>
+
+Output:
+6 6 -1 <-1 for node 4 since there is no edge to 4>
 */
