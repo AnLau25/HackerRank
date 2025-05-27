@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <queue>
 #include <string>
 #include <algorithm>  // for ltrim, rtrim
 #include <sstream>    // for split
@@ -29,8 +30,21 @@ vector<int> bfs(int n, int m, vector<vector<int>> edges, int s) {
     for(vector<int> edge : edges){
         if (edge[0]==s){
             paths[edge[1]-1]+=6;
+            visited.push_back(edge);
+        } else {
+            for (vector<int> seen : visited){
+                if(seen[1]==edge[0]){
+                    paths[edge[1]-1]+=6;
+                    visited.push_back(edge);
+                }
+            }
         }
-        
+    }
+
+    for (int node : paths){
+        if (node==0){
+            node=-1;
+        }
     }
     
     return  paths;
