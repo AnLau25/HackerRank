@@ -22,7 +22,7 @@ vector<string> split(const string &);
  */
 
 int cookies(int k, vector<int> A) {
-    //std::priodity_queue ussualy inits with 𝘴𝘵𝘥::𝘱𝘳𝘪𝘰𝘳𝘪𝘵𝘺_𝘲𝘶𝘦𝘶𝘦<𝘪𝘯𝘵> 𝘱𝘲; as a 𝘔𝘢𝘹𝘏𝘦𝘢𝘱
+    //std::priority_queue ussualy inits with 𝘴𝘵𝘥::𝘱𝘳𝘪𝘰𝘳𝘪𝘵𝘺_𝘲𝘶𝘦𝘶𝘦<𝘪𝘯𝘵> 𝘱𝘲; as a 𝘔𝘢𝘹𝘏𝘦𝘢𝘱
     //By default it uses 𝘴𝘵𝘥::𝘭𝘦𝘴𝘴<𝘛> internaly, meaning MaxHeap cause 𝘮𝘢𝘹 𝘯𝘶𝘮𝘣𝘦𝘳 𝘪𝘴 𝘬𝘦𝘱𝘵 𝘰𝘯 𝘵𝘰𝘱
     //Init like this for 𝘔𝘪𝘯𝘏𝘦𝘢𝘱, where we use 𝘴𝘵𝘥::𝘨𝘳𝘦𝘢𝘵𝘦𝘳<𝘪𝘯𝘵> as custom comparator
     //𝘴𝘵𝘥::𝘷𝘦𝘤𝘵𝘰𝘳<𝘪𝘯𝘵> temporarely holds .𝘱𝘶𝘴𝘩(𝘯𝘦𝘸_𝘷𝘢𝘭𝘶𝘦) so it can be sorted
