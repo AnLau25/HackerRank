@@ -60,7 +60,7 @@ int main() {
     Solution biTree;
     Node* root = nullptr;
 
-    vector<int> values = {5, 5, 6, 7, 6, 5};
+    vector<int> values = {1, 2, 5, 3, 6, 4};
     for (int val : values) {
         root = biTree.insert(root, val);
     }
@@ -75,5 +75,5 @@ Input format (In hackerank):
 2. 1 2 3 5 6 4 <space separated array>
 
 Output:
-1 2 6 3 4 6 <space separated array of pre-order read tree>
+1 2 5 3 4 6 <space separated array of pre-order read tree>
 */
