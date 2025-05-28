@@ -70,7 +70,10 @@ int main() {
 }
 
 /* 
-Input format:
+Input format (In hackerank):
 1. 6 <length of array>
-2. 5 5 6 7 6 5 <space separated array>
+2. 1 2 3 5 6 4 <space separated array>
+
+Output:
+1 2 6 3 4 6 <space separated array of pre-order read tree>
 */
