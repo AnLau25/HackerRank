@@ -38,22 +38,7 @@ class Solution {
            }
         }
 
-/* you only have to complete the function given below.  
-Node is defined as  
-
-class Node {
-    public:
-        int data;
-        Node *left;
-        Node *right;
-        Node(int d) {
-            data = d;
-            left = NULL;
-            right = NULL;
-        }
-};
-
-*/
+/* you only have to complete the function given below.*/
 
 
     void preOrder(Node *root) {
@@ -61,30 +46,16 @@ class Node {
         if (root == nullptr){
                 return;
         }
-            
+
         std::cout << root->data << " ";
         preOrder(root->left);
-        preOrder(root->right);
-              
+        preOrder(root->right);     
     }
     
     
 
 }; //End of Solution
 
-
-/*
-Aparently XOR is a thing in c++???
-like???????
-
-int lonelyinteger(vector<int> a) {
-    int result = 0;
-    for (int num : a) {
-        result ^= num;
-    }
-    return result;
-}
-*/
 
 /* 
 Input format:
