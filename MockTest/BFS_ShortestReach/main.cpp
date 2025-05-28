@@ -57,7 +57,7 @@ vector<int> bfs(int n, int m, vector<vector<int>> edges, int s) {
 
     vector<int> paths;
     for (int i = 1; i<= n; i++){
-        if (i!=s){ //Puch all, except start node s
+        if (i!=s){ //Push all, except start node s
             paths.push_back(distance[i]);
         }
     }
