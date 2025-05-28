@@ -56,6 +56,18 @@ class Solution {
 
 }; //End of Solution
 
+int main() {
+    Solution biTree;
+    Node* root = nullptr;
+
+    vector<int> values = {5, 5, 6, 7, 6, 5};
+    for (int val : values) {
+        root = biTree.insert(root, val);
+    }
+
+    biTree.preOrder(root);
+    return 0;
+}
 
 /* 
 Input format:
