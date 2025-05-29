@@ -154,6 +154,10 @@ int main() {
 Input format:
 1. ABACA <array, all caps for simplicity>
 
+- U can go for lower case too
+- And symbols
+- It does not consider the space when taking the array input, so the stuff after a space is lost
+
 Output:
 ABACA <cause it builds the tree and encodes the array for us, our job is to decode>
       <makes it easier to check if u got it right>
