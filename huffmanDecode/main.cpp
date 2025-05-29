@@ -94,17 +94,34 @@ typedef struct node
 }node;
 
 */
+void iter(node * root, std::string key, std::map<std::string, std::string> &dictionary){
+
+    if(root->data != '\0') {
+        dictionary[key] = root->data;
+    }
+
+    iter(root->left, key+"0", dictionary);
+    iter(root->left, key+"1", dictionary);
+
+
+}
 
 void decode_huff(node * root, string s) {
-    std:map<std::string, std::string> dictionary;   
+    std::map<std::string, std::string> dictionary;   
+    std::string binary = "";
+    node* current = root;
 
     
+    iter(root, binary, dictionary);
+    
     for (char c : s){
+        std::string str{c};
+        binary+=str;
 
-
-        if (dictionary.find('a') != myMap.end()) {
-            std::cout << "'a' exists!\n";}
-
+        if (dictionary.find(str) != dictionary.end()) {
+            std::cout <<dictionary[str];
+            str="";
+        }
     }
 }
 
