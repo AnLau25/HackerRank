@@ -95,6 +95,10 @@ typedef struct node
 
 */
 void iter(node * root, std::string key, std::map<std::string, std::string> &dictionary){
+    
+    if(root == NULL){
+        return;
+    }
 
     if(root->data != '\0') {
         dictionary[key] = root->data;
@@ -102,8 +106,6 @@ void iter(node * root, std::string key, std::map<std::string, std::string> &dict
 
     iter(root->left, key+"0", dictionary);
     iter(root->left, key+"1", dictionary);
-
-
 }
 
 void decode_huff(node * root, string s) {
