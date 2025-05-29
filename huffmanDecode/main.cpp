@@ -116,13 +116,14 @@ void decode_huff(node * root, string s) {
     iter(root, binary, dictionary);
     
     binary="";
+
     for (char c : s){
         std::string str{c};
-        binary+=str;
+        binary = binary+str;
 
         if (dictionary.find(str) != dictionary.end()) {
             std::cout <<dictionary[str];
-            str="";
+            binary="";
         }
     }
 }
