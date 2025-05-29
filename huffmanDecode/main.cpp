@@ -110,10 +110,10 @@ void decode_huff(node * root, string s) {
     std::map<std::string, std::string> dictionary;   
     std::string binary = "";
     node* current = root;
-
     
     iter(root, binary, dictionary);
     
+    binary="";
     for (char c : s){
         std::string str{c};
         binary+=str;
