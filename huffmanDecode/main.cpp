@@ -112,7 +112,6 @@ void iter(node * root, std::string key, std::map<std::string, std::string> &dict
 void decode_huff(node * root, string s) {
     std::map<std::string, std::string> dictionary;   
     std::string binary = "";
-    node* current = root;
     
     iter(root, binary, dictionary);
     
@@ -153,6 +152,9 @@ int main() {
 
 /* 
 Input format:
-1. 6 <length of array>
-2. 5 5 6 7 6 5 <space separated array>
+1. ABACA <array, all caps for simplicity>
+
+Output:
+ABACA <cause it builds the tree and encodes the array for us, our job is to decode>
+      <makes it easier to check if u got it right>
 */
