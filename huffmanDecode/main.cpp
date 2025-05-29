@@ -101,11 +101,12 @@ void iter(node * root, std::string key, std::map<std::string, std::string> &dict
     }
 
     if(root->data != '\0') {
-        dictionary[key] = root->data;
+        std::string s{root->data};
+        dictionary[key] = s;
     }
 
     iter(root->left, key+"0", dictionary);
-    iter(root->left, key+"1", dictionary);
+    iter(root->right, key+"1", dictionary);
 }
 
 void decode_huff(node * root, string s) {
@@ -121,8 +122,8 @@ void decode_huff(node * root, string s) {
         std::string str{c};
         binary = binary+str;
 
-        if (dictionary.find(str) != dictionary.end()) {
-            std::cout <<dictionary[str];
+        if (dictionary.find(binary) != dictionary.end()) {
+            std::cout <<dictionary[binary];
             binary="";
         }
     }
