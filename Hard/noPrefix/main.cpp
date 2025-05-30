@@ -33,7 +33,8 @@ bool insert(TrieNode* root, const std::string& word) {
 
     for (char c : word) {
         if (current->isEnd) {
-            return true; // An existing word ends here, making it a prefix of the current word
+            return true; 
+            // An existing word ends here, making it a prefix of the current word
         }
         if (!current->children.count(c)) {
             current->children[c] = new TrieNode(); // Create new node if character path doesn't exist
@@ -42,6 +43,8 @@ bool insert(TrieNode* root, const std::string& word) {
     }
 
     // If word already exists or this word is a prefix of another existing word
+    //or if the end of current has smt after
+    //Like if it has been found that smnt comes after, meaning that it is part of another word 
     if (current->isEnd || !current->children.empty()) {
         return true;
     }
