@@ -17,32 +17,37 @@ vector<string> split(const string &);
  *
  * The function accepts STRING_ARRAY words as parameter.
  */
+
+// Definition of a Trie node
 struct TrieNode {
-    bool isEnd;
-    std::unordered_map<char, TrieNode*> children;
-    
-    TrieNode() : isEnd(false) {}
+    bool isEnd; // Indicates if a word ends at this node
+    std::unordered_map<char, TrieNode*> children; // Map of child nodes for each character
+
+    TrieNode() : isEnd(false) {} // Constructor initializes isEnd to false
 };
 
+// Inserts a word into the Trie
+// Returns true if there's a prefix conflict (either this word is a prefix of another or vice versa)
 bool insert(TrieNode* root, const std::string& word) {
     TrieNode* current = root;
 
     for (char c : word) {
         if (current->isEnd) {
-            return true; // existing word is a prefix of this one
+            return true; // An existing word ends here, making it a prefix of the current word
         }
         if (!current->children.count(c)) {
-            current->children[c] = new TrieNode();
+            current->children[c] = new TrieNode(); // Create new node if character path doesn't exist
         }
-        current = current->children[c];
+        current = current->children[c]; // Move to the next node in the path
     }
 
+    // If word already exists or this word is a prefix of another existing word
     if (current->isEnd || !current->children.empty()) {
-        return true; // duplicate word or prefix conflict
+        return true;
     }
 
-    current->isEnd = true;
-    return false;
+    current->isEnd = true; // Mark the end of the word
+    return false; // No prefix conflict
 }
 
 
@@ -121,7 +126,7 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. 6 <number or strings>
+1. 4 <number or strings>
 2. ab <space separated array>
 3. ac
 4. acdc
