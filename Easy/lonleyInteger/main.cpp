@@ -18,6 +18,7 @@ vector<string> split(const string &);
  * The function accepts INTEGER_ARRAY a as parameter.
  */
 
+/*
 int lonelyinteger(vector<int> a) {
     int len = a.size()-1;
     bool flag = true;
@@ -33,19 +34,33 @@ int lonelyinteger(vector<int> a) {
                 found = true;
                 len--;
                 break;
-            } 
-                         
+            }   
         }
         
         if (!found){
             flag = false;
         }
-        
     }
     
     std::cout<<pringle<<std::endl;
 
     return pringle;
+}
+*/
+
+//Improved... but adieu single 𝘱𝘳𝘪𝘯𝘨𝘭𝘦
+int lonelyinteger(vector<int> a) {
+    if (a.size() == 1) return a[0];
+    
+    std::sort(a.begin(), a.end());
+    
+    for (int i = 0; i < a.size() - 1; i += 2) {
+        if (a[i] != a[i + 1]) {
+            return a[i];
+        }
+    }
+    
+    return a[a.size() - 1];
 }
 
 int main()
