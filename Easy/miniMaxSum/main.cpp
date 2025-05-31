@@ -23,6 +23,7 @@ vector<string> split(const string &);
  * The function accepts INTEGER_ARRAY arr as parameter.
  */
 
+/*
 void miniMaxSum(vector<int> arr) {
     int len = arr.size();
     int min = 0; 
@@ -30,27 +31,48 @@ void miniMaxSum(vector<int> arr) {
     long min_sum = 0; 
     long max_sum = 0;
      
-     for (int i = 0; i<len; i++){
-        if (arr[i]<arr[min]){
-            min = i;
-        }
+    for (int i = 0; i<len; i++){
+       if (arr[i]<arr[min]){
+           min = i;
+       }
         
-        if (arr[i]>arr[max]){
-            max = i;
-        }
-     }
+       if (arr[i]>arr[max]){
+           max = i;
+       }
+    }
      
-     for (int i = 0; i<len; i++){        
+    for (int i = 0; i<len; i++){        
         if (i!=max){
             min_sum += arr[i];
         }
         if (i!=min){
             max_sum += arr[i];
         }
-     }
+    }
      
-     std::cout<<min_sum<<" "<<max_sum<<std::endl;
+    std::cout<<min_sum<<" "<<max_sum<<std::endl;
 
+}
+*/
+
+// Improved
+void miniMaxSum(vector<int> arr) {
+    std::sort(arr.begin(),arr.end());
+    long len = arr.size();
+    long min_sum = 0; 
+    long max_sum = 0;
+    
+    for (int i = 0; i< len; i++){        
+        if (i!=(len-1)){
+            min_sum += arr[i];
+        }
+        if (i!=0){
+            max_sum += arr[i];
+        }
+    }
+     
+    std::cout<<min_sum<<" "<<max_sum<<std::endl;
+    
 }
 
 int main()
