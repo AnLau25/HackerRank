@@ -120,13 +120,19 @@ string rtrim(const string &str) {
 
 /* 
 Input format:
-1. ABACA <array, all caps for simplicity>
-
-- U can go for lower case too
-- And symbols
-- It does not consider the space when taking the array input, so the stuff after a space is lost
+ 1. 5  <number or arrays to query>
+ 2. ab
+ 3. cd
+ 4. ef
+ 5. ab
+ 6. ab
+ 7. 3  <number of query arrays>
+ 8. ab
+ 9. ef
+10. gh
 
 Output:
-ABACA <cause it builds the tree and encodes the array for us, our job is to decode>
-      <makes it easier to check if u got it right>
+11. 3 <Aparitions of ab>
+12. 1 <Aparitions of ef>
+13. 0 <Aparitions of gh>
 */
