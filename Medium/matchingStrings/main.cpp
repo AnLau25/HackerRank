@@ -23,7 +23,7 @@ string rtrim(const string &);
  */
 
 //No creí que esta mierda fuera a funcionar.jpg
-//En otras condiciones esto era un _runTime error_ pero, fijo
+//En otras condiciones esto era un 𝘳𝘶𝘯𝘛𝘪𝘮𝘦 𝘦𝘳𝘳𝘰𝘳 pero, fijo
 //Puedo hacerlo mejor? Si. Pero me dejaron pasar la webada, así k ahí c ven
 vector<int> matchingStrings(vector<string> strings, vector<string> queries) {
     std::unordered_map<std::string, int> strMap;
