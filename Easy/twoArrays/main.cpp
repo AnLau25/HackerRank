@@ -21,6 +21,7 @@ vector<string> split(const string &);
  *  3. INTEGER_ARRAY B
  */
 
+ //... This shoulve been a runtime err... but oh well.
 string twoArrays(int k, vector<int> A, vector<int> B) {
     int b = B.size()-1;
     std::sort(A.begin(),A.end());
