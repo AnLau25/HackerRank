@@ -60,19 +60,8 @@ int main()
 
 /* 
 Input format:
- 1. 5  <number or arrays to query>
- 2. ab
- 3. cd
- 4. ef
- 5. ab
- 6. ab
- 7. 3  <number of query arrays>
- 8. ab
- 9. ef
-10. gh
+ 1. We promptly jusged antique ivory buckles for the next prize <string to evalueate>
 
 Output:
-11. 3 <Aparitions of ab>
-12. 1 <Aparitions of ef>
-13. 0 <Aparitions of gh>
+2. panagram <or not panagram, test by taking out "next">
 */
