@@ -12,82 +12,95 @@ string rtrim(const string &);
 vector<string> split(const string &);
 
 /*
- * Complete the 'lonelyinteger' function below.
+ * Complete the 'twoArrays' function below.
  *
- * The function is expected to return an INTEGER.
- * The function accepts INTEGER_ARRAY a as parameter.
+ * The function is expected to return a STRING.
+ * The function accepts following parameters:
+ *  1. INTEGER k
+ *  2. INTEGER_ARRAY A
+ *  3. INTEGER_ARRAY B
  */
 
-/*
-int lonelyinteger(vector<int> a) {
-    int len = a.size()-1;
-    bool flag = true;
-    int pringle = 0;
+string twoArrays(int k, vector<int> A, vector<int> B) {
+    int b = B.size()-1;
+    std::sort(A.begin(),A.end());
+    std::sort(B.begin(),B.end());
     
-    while (flag) {
-        pringle = a[len];
+    while(A.size()>1 && B.size()>1){
         
-        bool found = false;
-        for (int i = 0; i<a.size(); i++){
-            
-            if (a[i]==pringle && i!=len){
-                found = true;
-                len--;
-                break;
-            }   
+        if(A[0]+B[b]>=k){
+            A.erase(A.begin());
+            B.erase(B.begin()+b);
+            b = B.size()-1;
+        }else{
+            b--;
         }
         
-        if (!found){
-            flag = false;
+        if(b==-1){
+            return "NO";
         }
     }
     
-    std::cout<<pringle<<std::endl;
-
-    return pringle;
-}
-*/
-
-//Improved... but adieu single 𝘱𝘳𝘪𝘯𝘨𝘭𝘦
-int lonelyinteger(vector<int> a) {
-    if (a.size() == 1) return a[0];
-    
-    std::sort(a.begin(), a.end());
-    
-    for (int i = 0; i < a.size() - 1; i += 2) {
-        if (a[i] != a[i + 1]) {
-            return a[i];
-        }
+    if(A.size()!=B.size()){
+        return "NO";
     }
     
-    return a[a.size() - 1];
+    if(!(A[0]+B[0]>=k)){
+        return "NO";
+    }
+    
+    return "YES";
 }
 
 int main()
 {
     //ofstream fout(getenv("OUTPUT_PATH"));
 
-    string n_temp;
-    getline(cin, n_temp);
+    string q_temp;
+    getline(cin, q_temp);
 
-    int n = stoi(ltrim(rtrim(n_temp)));
+    int q = stoi(ltrim(rtrim(q_temp)));
 
-    string a_temp_temp;
-    getline(cin, a_temp_temp);
+    for (int q_itr = 0; q_itr < q; q_itr++) {
+        string first_multiple_input_temp;
+        getline(cin, first_multiple_input_temp);
 
-    vector<string> a_temp = split(rtrim(a_temp_temp));
+        vector<string> first_multiple_input = split(rtrim(first_multiple_input_temp));
 
-    vector<int> a(n);
+        int n = stoi(first_multiple_input[0]);
 
-    for (int i = 0; i < n; i++) {
-        int a_item = stoi(a_temp[i]);
+        int k = stoi(first_multiple_input[1]);
 
-        a[i] = a_item;
+        string A_temp_temp;
+        getline(cin, A_temp_temp);
+
+        vector<string> A_temp = split(rtrim(A_temp_temp));
+
+        vector<int> A(n);
+
+        for (int i = 0; i < n; i++) {
+            int A_item = stoi(A_temp[i]);
+
+            A[i] = A_item;
+        }
+
+        string B_temp_temp;
+        getline(cin, B_temp_temp);
+
+        vector<string> B_temp = split(rtrim(B_temp_temp));
+
+        vector<int> B(n);
+
+        for (int i = 0; i < n; i++) {
+            int B_item = stoi(B_temp[i]);
+
+            B[i] = B_item;
+        }
+
+        std::cout<<twoArrays(k, A, B)<<std::endl;
+
+        //fout << result << "\n";
     }
-
-    int result = lonelyinteger(a);
-
-    //fout << result << "\n";
 
     //fout.close();
 
@@ -133,19 +146,6 @@ vector<string> split(const string &str) {
     return tokens;
 }
 
-
-/*
-Aparently XOR is a thing in c++???
-like???????
-
-int lonelyinteger(vector<int> a) {
-    int result = 0;
-    for (int num : a) {
-        result ^= num;
-    }
-    return result;
-}
-*/
 
 /* 
 Input format:
