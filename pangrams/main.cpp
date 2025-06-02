@@ -10,113 +10,53 @@
 #include <map>
 using namespace std;
 
-string ltrim(const string &);
-string rtrim(const string &);
-
 /*
- * Complete the 'matchingStrings' function below.
+ * Complete the 'pangrams' function below.
  *
- * The function is expected to return an INTEGER_ARRAY.
- * The function accepts following parameters:
- *  1. STRING_ARRAY strings
- *  2. STRING_ARRAY queries
+ * The function is expected to return a STRING.
+ * The function accepts STRING s as parameter.
  */
 
-//No creí que esta mierda fuera a funcionar.jpg
-//En otras condiciones esto era un 𝘳𝘶𝘯𝘛𝘪𝘮𝘦 𝘦𝘳𝘳𝘰𝘳 pero, fijo
-//Puedo hacerlo mejor? Si. Pero me dejaron pasar la webada, así k ahí c ven
-vector<int> matchingStrings(vector<string> strings, vector<string> queries) {
-    std::unordered_map<std::string, int> strMap;
-    std::vector<int> found(queries.size());
+string pangrams(string s) {
+    map<char,int> found;
     
-    for (std::string i : queries){
-        strMap.insert({i, 0});
-    }
-    
-    for (std::string i : strings){
+    for (char c : s){
         
-        if (strMap.find(i)!=strMap.end()){
-            strMap[i]+=1;
+        if(std::isalpha(c)){
+        
+            if (std::isupper(c)){
+                c = tolower(c);
+            }
+            
+            if(found.find(c)==found.end()){
+                found[c]=1;
+            }
         }
     }
     
-    for (int i = 0; i<found.size(); i++){
-        found[i] = strMap[queries[i]];
+    if(found.size()>=26){
+        return "pangram";
     }
     
-    return found;
+    return "not pangram";
 }
 
 int main()
 {
     //ofstream fout(getenv("OUTPUT_PATH"));
 
-    string strings_count_temp;
-    getline(cin, strings_count_temp);
+    string s;
+    getline(cin, s);
 
-    int strings_count = stoi(ltrim(rtrim(strings_count_temp)));
+    std::cout<<pangrams(s);
 
-    vector<string> strings(strings_count);
+    //fout << result << "\n";
 
-    for (int i = 0; i < strings_count; i++) {
-        string strings_item;
-        getline(cin, strings_item);
-
-        strings[i] = strings_item;
-    }
-
-    string queries_count_temp;
-    getline(cin, queries_count_temp);
-
-    int queries_count = stoi(ltrim(rtrim(queries_count_temp)));
-
-    vector<string> queries(queries_count);
-
-    for (int i = 0; i < queries_count; i++) {
-        string queries_item;
-        getline(cin, queries_item);
-
-        queries[i] = queries_item;
-    }
-
-    vector<int> res = matchingStrings(strings, queries);
-
-    for (size_t i = 0; i < res.size(); i++) {
-        std::cout<< res[i];
-
-        if (i != res.size() - 1) {
-            std::cout<<"\n";
-        }
-    }
-
-    //fout << "\n";
-
-   //fout.close();
+    //fout.close();
 
     return 0;
 }
 
-string ltrim(const string &str) {
-    string s(str);
-
-    s.erase(
-        s.begin(),
-        find_if(s.begin(), s.end(), [](unsigned char ch) { return !isspace(ch); })
-    );
-
-    return s;
-}
-
-string rtrim(const string &str) {
-    string s(str);
-
-    s.erase(
-        find_if(s.rbegin(), s.rend(), [](unsigned char ch) { return !isspace(ch); }).base(),
-        s.end()
-    );
-
-    return s;
-}
 
 /* 
 Input format:
