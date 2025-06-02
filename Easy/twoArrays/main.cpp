@@ -12,7 +12,7 @@ string rtrim(const string &);
 vector<string> split(const string &);
 
 /*
- * Complete the 'twoArrays' function below.
+ * Complete the 'twoArrays' (one int) function below.
  *
  * The function is expected to return a STRING.
  * The function accepts following parameters:
@@ -21,7 +21,7 @@ vector<string> split(const string &);
  *  3. INTEGER_ARRAY B
  */
 
- //... This shoulve been a runtime err... but oh well.
+ //... This shoulve been a runtime err... pero bueh.
 string twoArrays(int k, vector<int> A, vector<int> B) {
     int b = B.size()-1;
     std::sort(A.begin(),A.end());
@@ -150,6 +150,11 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. 6 <length of array>
-2. 5 5 6 7 6 5 <space separated array>
+1. 1 <no of test cases>
+2. 3 10 <q=3,length of arrays; k=10>
+3. 2 3 1 <space separated array>
+4. 9 8 7 <space separated array>
+
+Output:
+5. YES <cause there is an arrangement st. ∀ i ∈ ArrA, ArrB, ArrA[i] + ArrB[i] >= k>
 */
