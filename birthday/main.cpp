@@ -21,9 +21,33 @@ vector<string> split(const string &);
  *  3. INTEGER m
  */
 
+ //There must be definetly a better way to do this but... ¯\_(ツ)_/¯
 int birthday(vector<int> s, int d, int m) {
+    int sum = 0, len = 0, divs = 0;
+    int i = 0, current = 0;
     
-    return 0;
+    while (current<s.size()) {
+        len++;
+        sum+=s[i]; 
+        i++;
+        
+        if(len>m || sum>d){
+            len=0;
+            sum=0;
+            current++;
+            i=current;
+        }
+        
+        if(len==m&&sum==d){
+            len=0;
+            sum=0;
+            current++;
+            i=current;
+            divs++;
+        }
+    }
+    
+    return divs;
 }
 
 int main()
