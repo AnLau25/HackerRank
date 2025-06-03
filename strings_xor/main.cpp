@@ -41,6 +41,16 @@ int main() {
 
 /* 
 Input format:
-1. 6 <length of array>
-2. 5 5 6 7 6 5 <space separated array>
+1. 10101 <binary number as string>
+2. 00101 <binary number as string>
+
+Output:
+3. 10000 <result of xOR operation>
+
+s | t | xOR
+1 | 0 |  1
+0 | 0 |  0
+1 | 1 |  0
+0 | 0 |  0
+1 | 1 |  0
 */
