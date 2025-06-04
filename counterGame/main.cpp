@@ -114,4 +114,7 @@ vector<string> split(const string &str) {
 Input format:
 1. 1 <# of tests>
 2. 132 <n=132>
+
+Output:
+3. Louise <cause she won, otherwise "Richard">
 */
