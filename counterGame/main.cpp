@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <cmath>
 #include <algorithm>  // for ltrim, rtrim
 #include <sstream>    // for split
 #include <compare>    // for spaceship operator (C++20)
