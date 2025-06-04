@@ -39,7 +39,7 @@ int main()
         arr[i] = arr_item;
     }
 
-    median(arr);
+    std::cout<<findMedian(arr);
 
     return 0;
 }
