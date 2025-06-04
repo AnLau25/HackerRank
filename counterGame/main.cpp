@@ -12,84 +12,60 @@ string rtrim(const string &);
 vector<string> split(const string &);
 
 /*
- * Complete the 'lonelyinteger' function below.
+ * Complete the 'counterGame' function below.
  *
- * The function is expected to return an INTEGER.
- * The function accepts INTEGER_ARRAY a as parameter.
+ * The function is expected to return a STRING.
+ * The function accepts LONG_INTEGER n as parameter.
  */
-
-/*
-int lonelyinteger(vector<int> a) {
-    int len = a.size()-1;
-    bool flag = true;
-    int pringle = 0;
+string counterGame(long n) {
+    int count = 1;
     
-    while (flag) {
-        pringle = a[len];
-        
-        bool found = false;
-        for (int i = 0; i<a.size(); i++){
-            
-            if (a[i]==pringle && i!=len){
-                found = true;
-                len--;
-                break;
-            }   
-        }
-        
-        if (!found){
-            flag = false;
-        }
+    if(n==1){
+        return "Richard"; 
     }
     
-    std::cout<<pringle<<std::endl;
-
-    return pringle;
-}
-*/
-
-//Improved... but adieu single 𝘱𝘳𝘪𝘯𝘨𝘭𝘦
-int lonelyinteger(vector<int> a) {
-    if (a.size() == 1) return a[0];
-    
-    std::sort(a.begin(), a.end());
-    
-    for (int i = 0; i < a.size() - 1; i += 2) {
-        if (a[i] != a[i + 1]) {
-            return a[i];
+    while (n>1) {
+        double logValue = std::log2(n);
+        int logAttempt = std::log2(n);
+        
+        if(logValue==logAttempt){
+            n = n/2;
         }
+        if(logValue!=logAttempt){
+            n = n - std::pow(2,logAttempt);
+        }
+        
+        count++;
     }
     
-    return a[a.size() - 1];
+    if(count%2!=0){
+        return "Richard";
+    }
+
+    return "Louise";
 }
 
 int main()
 {
-    //ofstream fout(getenv("OUTPUT_PATH"));
+    ofstream fout(getenv("OUTPUT_PATH"));
 
-    string n_temp;
-    getline(cin, n_temp);
+    string t_temp;
+    getline(cin, t_temp);
 
-    int n = stoi(ltrim(rtrim(n_temp)));
+    int t = stoi(ltrim(rtrim(t_temp)));
 
-    string a_temp_temp;
-    getline(cin, a_temp_temp);
+    for (int t_itr = 0; t_itr < t; t_itr++) {
+        string n_temp;
+        getline(cin, n_temp);
 
-    vector<string> a_temp = split(rtrim(a_temp_temp));
+        long n = stol(ltrim(rtrim(n_temp)));
 
-    vector<int> a(n);
+        string result = counterGame(n);
 
-    for (int i = 0; i < n; i++) {
-        int a_item = stoi(a_temp[i]);
-
-        a[i] = a_item;
+        fout << result << "\n";
     }
 
-    int result = lonelyinteger(a);
-
-    //fout << result << "\n";
-
-    //fout.close();
+    fout.close();
 
     return 0;
 }
