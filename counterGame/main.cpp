@@ -43,11 +43,11 @@ string counterGame(long n) {
     }
 
     return "Louise";
-}
+}// This is silly, oh so silly, I know there is a better way... but imma not gona look for it Ɛ( · — ·)3
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
     string t_temp;
     getline(cin, t_temp);
@@ -60,12 +60,12 @@ int main()
 
         long n = stol(ltrim(rtrim(n_temp)));
 
-        string result = counterGame(n);
+        std::cout<<counterGame(n)<<std::endl;
 
-        fout << result << "\n";
+        //fout << result << "\n";
     }
 
-    fout.close();
+    //fout.close();
 
     return 0;
 }
@@ -109,22 +109,8 @@ vector<string> split(const string &str) {
     return tokens;
 }
 
-
-/*
-Aparently XOR is a thing in c++???
-like???????
-
-int lonelyinteger(vector<int> a) {
-    int result = 0;
-    for (int num : a) {
-        result ^= num;
-    }
-    return result;
-}
-*/
-
 /* 
 Input format:
-1. 6 <length of array>
-2. 5 5 6 7 6 5 <space separated array>
+1. 1 <# of tests>
+2. 132 <n=132>
 */
