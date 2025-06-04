@@ -17,32 +17,10 @@ vector<string> split(const string &);
  * The function accepts INTEGER_ARRAY arr as parameter.
  */
 
-void median(vector<int> arr) 
-{   int len = arr.size();
-    vector<int> new_arr = arr;
-
-    for (int i=0; i<len; i++){
-        int current = new_arr[i];
-
-        if (current>new_arr[i+1] && !((i+1)>=len)){
-            new_arr[i] = new_arr[i+1];
-            new_arr[i+1] = current;
-        }
-    }
-
-    for (int i=0; i<len; i++){
-        int current = new_arr[i];
-
-        if (new_arr[i+1]<current && !((i+1)>=len)){
-            new_arr[i] = new_arr[i+1];
-            new_arr[i+1] = current;
-        }
-    }
-
-    std::sort(arr.begin(), arr.end());
-    std::cout<<"Sort function: "<<arr[len/2]<<std::endl;
-    std::cout<<"Homemade vrsn: "<<new_arr[len/2]<<std::endl;
+int findMedian(vector<int> arr) {
+    std::sort(arr.begin(),arr.end());
     
+    return arr[(arr.size()-1)/2];
 }
 
 int main()
