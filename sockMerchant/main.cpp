@@ -21,7 +21,20 @@ vector<string> split(const string &);
  */
 
 int sockMerchant(int n, vector<int> ar) {
-
+    std::sort(ar.begin(),ar.end());
+    int pairs = 0;
+    
+    
+    for (int i = 0; i < n - 1;) {
+        if (ar[i] == ar[i + 1]) {
+            pairs++;
+            i += 2; 
+        } else {
+            i += 1; 
+        }
+    }
+    
+    return pairs;
 }
 
 int main()
