@@ -112,5 +112,5 @@ Input format:
 2. 1 2 1 2 1 3 2 <space separated array>
 
 Output:
-3. 2 <pairs of socks>
+3. 2 <pairs of socks, because 3 socks are without pair>
 */
