@@ -21,7 +21,13 @@ vector<string> split(const string &);
  */
 
 int maxMin(int k, vector<int> arr) {
+    std::sort(arr.begin(), arr.end());
     int minUnfairness = INT_MAX;
+
+    for (int i = 0; i <= arr.size() - k; ++i) {
+        int unfairness = arr[i + k - 1] - arr[i];
+        minUnfairness = std::min(minUnfairness, unfairness);
+    }
 
     return minUnfairness;
 }
