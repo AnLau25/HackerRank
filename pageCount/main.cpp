@@ -21,9 +21,9 @@ vector<string> split(const string &);
  */
 
 int pageCount(int n, int p) {
-    
-    return 0;
-}
+                //start-end
+    return std::min(p/2, (n/2) - (p/2));
+}                           //end-start
 
 int main()
 {
