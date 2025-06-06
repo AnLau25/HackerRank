@@ -107,6 +107,14 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. 6 <length of array>
-2. 5 5 6 7 6 5 <space separated array>
+1. 4 <length of array>
+2. 2 <k=2, number of integers to concider for unfairnes>
+3. 7 <numbers of the array ↓>
+4. 1
+5. 2
+6. 4
+
+Output:
+7. 1 <minimum unfairness in a sub-array of size k>
+     <[2,1]; 2-1=1 in this case>
 */
