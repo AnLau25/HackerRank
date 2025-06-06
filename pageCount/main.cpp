@@ -89,6 +89,9 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. 6 <length of array>
-2. 5 5 6 7 6 5 <space separated array>
+1. 25 <n=25, number of pages>
+2. 15 <p=15, page number to go-to>
+
+Output:
+3. 5 <min number of pages to turn> 
 */
