@@ -92,6 +92,8 @@ int main() {
 
 /* 
 Input format:
-1. 6 <length of array>
-2. 5 5 6 7 6 5 <space separated array>
+1. 02-08-2025 04-09-2025 <two dates separated by a space in dd-mm-yyyy format>
+
+Outpit:
+2. 5 <number of lucky dates>
 */
