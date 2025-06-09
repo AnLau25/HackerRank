@@ -18,6 +18,7 @@ vector<string> split(const string &);
  * The function accepts LONG_INTEGER n as parameter.
  */
 
+/* Time ineficient
 long sumXor(long n) {
     long ter = 0;
     
@@ -27,6 +28,19 @@ long sumXor(long n) {
         }
     }
     return  ter;
+}
+*/
+
+//Meth!... I mean math... yes, math Ɛ( · — ·)3
+long sumXor(long n) {
+    if (n == 0) return 1;
+
+    int zeroBits = 0;
+    while (n) {
+        if ((n & 1) == 0) zeroBits++;
+        n >>= 1;
+    }
+    return 1L << zeroBits; // 2^zeroBits
 }
 
 int main()
