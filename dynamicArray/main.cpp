@@ -21,14 +21,29 @@ vector<string> split(const string &);
  */
 
 vector<int> dynamicArray(int n, vector<vector<int>> queries) {
+    int lastAnswer = 0, indx = 0, dfq = 0;
     vector<int> answers;
-
+    vector<vector<int>> arr(n);
+    
+    for(vector<int> i : queries){
+        if(i[0]==1){
+            indx = (i[1]^lastAnswer)%n;
+            arr[indx].push_back(i[2]);
+        }
+        if(i[0]==2){
+            indx = (i[1]^lastAnswer)%n;
+            dfq = i[2]%(arr[indx].size()); 
+            lastAnswer = arr[indx][dfq];
+            answers.push_back(lastAnswer);
+        }
+    }
+    
     return answers;
 }
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
     string first_multiple_input_temp;
     getline(cin, first_multiple_input_temp);
@@ -59,16 +74,16 @@ int main()
     vector<int> result = dynamicArray(n, queries);
 
     for (size_t i = 0; i < result.size(); i++) {
-        fout << result[i];
+        std::cout<<result[i];
 
         if (i != result.size() - 1) {
-            fout << "\n";
+            std::cout<<"\n";
         }
     }
 
-    fout << "\n";
+    std::cout<<"\n";
 
-    fout.close();
+    //fout.close();
 
     return 0;
 }
