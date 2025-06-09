@@ -20,7 +20,12 @@ vector<string> split(const string &);
 
 long sumXor(long n) {
     long ter = 0;
-   
+    
+    for (int i = 0; i<=n; i++) {
+        if((i^n)==(i+n)){
+            ter++;
+        }
+    }
     return  ter;
 }
 
