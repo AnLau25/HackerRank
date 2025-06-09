@@ -102,6 +102,8 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. 6 <length of array>
-2. 5 5 6 7 6 5 <space separated array>
+1. 10 <number to test>
+
+Output:
+2. 4 <numbers where x^10 = x+10>
 */
