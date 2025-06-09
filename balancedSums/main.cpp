@@ -18,6 +18,31 @@ vector<string> split(const string &);
  * The function accepts INTEGER_ARRAY arr as parameter.
  */
 
+ /* Time ineficient, I'm still attached to it tho
+ string balancedSums(vector<int> arr) {
+    if (arr.size()==1){
+        return "YES";
+    }
+    
+    if (arr.size()==0){
+        return "NO";
+    }
+    
+    int left = 0, right = 0;    
+    
+    for (int i = 0; i<arr.size(); i++){
+        left = std::accumulate(arr.begin(), arr.begin()+i, 0);
+        right = std::accumulate(arr.begin()+i+1, arr.end(),0);
+        if(left==right){
+            return "YES";
+        }
+    }
+    
+    return "NO";
+}
+ */
+
+
 string balancedSums(vector<int> arr) {
     
     return "NO";
