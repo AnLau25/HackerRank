@@ -138,6 +138,10 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. 6 <length of array>
-2. 5 5 6 7 6 5 <space separated array>
+1. 1 <# of test cases> 
+2. 4 <length of array>
+3. 1 2 3 3 <space separated array>
+
+Output:
+4. YES <in dis case, since 1 + 2 = 3; using 3 a middle> 
 */
