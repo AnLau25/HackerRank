@@ -129,6 +129,14 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. 6 <length of array>
-2. 5 5 6 7 6 5 <space separated array>
-*/
+1. 2 5 <n = 2, length or arr; # queries = 5>
+2. 1 0 5 <5 queries; format 𝘳𝘶𝘭𝘦 𝘹 𝘺>
+3. 1 1 7
+4. 1 0 3
+5. 2 1 0
+6. 2 1 1 
+
+Output:
+7. 7 <content of the 𝘢𝘯𝘴𝘸𝘦𝘳𝘴 array>
+8. 3
+*/ 
