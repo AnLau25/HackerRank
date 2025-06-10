@@ -12,8 +12,25 @@ string rtrim(const string &);
 vector<string> split(const string &);
 
 int anagram(string s) {
-    
-    return -1;
+    int len = s.size();
+    if (len % 2 != 0 || len == 0) return -1;
+
+    int mid = len / 2;
+    vector<int> count1(26, 0), count2(26, 0);
+
+    for (int i = 0; i < mid; i++) {
+        count1[s[i] - 'a']++;
+        count2[s[i + mid] - 'a']++;
+    }
+
+    int changes = 0;
+    for (int i = 0; i < 26; i++) {
+        if (count1[i] > count2[i]) {
+            changes += count1[i] - count2[i];
+        }
+    }
+
+    return changes;
 }
 
 int main()
