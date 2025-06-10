@@ -97,6 +97,19 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. 6 <length of array>
-2. 5 5 6 7 6 5 <space separated array>
+1. 6 <number of test cases>
+2. aaabbb <string to turn to anagrams>
+3. ab
+4. abc
+5. mnop
+6. xyyx
+7. xaxbbbxx
+
+Output:
+ 8. 3
+ 9. 1
+10.-1
+11. 2
+12. 0
+13. 1
 */
