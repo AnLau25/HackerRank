@@ -20,8 +20,42 @@ vector<string> split(const string &);
  *  2. INTEGER_ARRAY b
  */
 
-int getTotalX(vector<int> a, vector<int> b) {
+bool isProduct(int x, vector<int> a){
+    for (int i : a){
+        if (x%i!=0){
+            return false;
+        }
+    }
+    return true;
+}
 
+bool isFactor(int x, vector<int> b){
+    for (int i : b){
+        if (i%x!=0){
+            return false;
+        }
+    }
+    return true;
+}
+
+int getTotalX(vector<int> a, vector<int> b) {
+    int count = 0;
+    sort(a.begin(),a.end());
+    sort(b.begin(),b.end());
+    int smallest = a.back();
+    int biggest = b.front();
+    
+    while (smallest<=biggest) {
+        
+        if(isProduct(smallest, a)&&isFactor(smallest, b)){
+            count++;
+        }
+        
+        smallest++;
+        
+    }
+    
+    return count;
 }
 
 int main()
@@ -112,6 +146,7 @@ vector<string> split(const string &str) {
 }
 
 /* 
+
 Input format:
 1. 6 <length of array>
 2. 5 5 6 7 6 5 <space separated array>
