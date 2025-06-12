@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <map>
 #include <algorithm>  // for ltrim, rtrim
 #include <sstream>    // for split
 #include <compare>    // for spaceship operator (C++20)
@@ -18,8 +19,37 @@ vector<string> split(const string &);
  * The function accepts INTEGER_ARRAY a as parameter.
  */
 string isValid(string s) {
+    map<char, int> charMap;
+    map<int, int> freq;
     
-    return "YES";
+    for(char c : s){
+        charMap[c]++;
+    }
+    
+    for (auto& pair : charMap) {
+        freq[pair.second]++;
+    }
+    
+    if(freq.size()==1){
+        return "YES";
+    }
+    
+    if(freq.size()==2){
+        auto it = freq.begin();
+        int f1 = it->first, count1 = it->second;
+        ++it;
+        int f2 = it->first, count2 = it->second;
+        
+        if ((f1 == 1 && count1 == 1) || (f2 == 1 && count2 == 1)) {
+            return "YES";
+        }
+
+        if ((abs(f1 - f2) == 1) && (count1 == 1 || count2 == 1)) {
+            return "YES";
+        }
+    }
+    
+    return "NO";
 }
 
 int main()
