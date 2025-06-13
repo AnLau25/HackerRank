@@ -23,11 +23,26 @@ vector<string> split(const string &);
 
 
 vector<string> bomberMan(int n, vector<string> grid) {
-    if(n!=0){
-        
+   
+        size_t rows = grid.size();
+    size_t columns = grid[0].size();
+    
+    if(n <= 1){
+        return grid;
     }
     
-    return grid;
+    if(n%2==0){
+        return makeFullGrid(rows, columns);
+    }
+    
+    if(n%4==3){
+        return detonate(grid);
+     }
+     
+    if(n%4==1){
+        auto result = detonate(grid);
+        return detonate(result);
+    }
 }
 
 int main()
