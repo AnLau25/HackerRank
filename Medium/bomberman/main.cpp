@@ -20,11 +20,17 @@ vector<string> split(const string &);
  *  2. STRING_ARRAY grid
  */
 
+vector<string> fillGrid(size_t rows, size_t columns){
+    std::string fill;
+    fill.insert(0, columns, 'O');
+    
+    return {rows, fill}; // array where all rows(elements) are str fill
 
+}
 
 vector<string> bomberMan(int n, vector<string> grid) {
    
-        size_t rows = grid.size();
+    size_t rows = grid.size();
     size_t columns = grid[0].size();
     
     if(n <= 1){
@@ -32,7 +38,7 @@ vector<string> bomberMan(int n, vector<string> grid) {
     }
     
     if(n%2==0){
-        return makeFullGrid(rows, columns);
+        return fillGrid(rows, columns);
     }
     
     if(n%4==3){
