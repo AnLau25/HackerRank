@@ -28,17 +28,50 @@ vector<string> fillGrid(size_t rows, size_t columns){
 
 }
 
+void tnt(std::vector<string>& grid, int x, int y){
+    size_t rows = grid.size();
+    size_t cols = grid[0].size();
+
+    if(x<0 || y<0 || x>=rows || y>=cols){
+        return;
+    }
+
+    grid[x][y] = '.';
+
+}
+
+vector<string> detonate(vector<string> const& grid){
+    size_t rows = grid.size();
+    size_t cols = grid[0].size();
+
+    auto new_grid =  fillGrid(rows, cols);
+
+    for (int i = 0; i < rows; ++i){
+        for (int j = 0; j < cols; ++j){
+            if (grid[i][j] == 'O') {
+                if (i + 1 < rows) new_grid[i + 1][j] = '.';
+                if (i - 1 >= 0)   new_grid[i - 1][j] = '.';
+                if (j + 1 < cols) new_grid[i][j + 1] = '.';
+                if (j - 1 >= 0)   new_grid[i][j - 1] = '.';
+                new_grid[i][j] = '.';
+            }
+        }
+    }
+
+    return new_grid;
+}
+
 vector<string> bomberMan(int n, vector<string> grid) {
    
     size_t rows = grid.size();
-    size_t columns = grid[0].size();
+    size_t cols = grid[0].size();
     
     if(n <= 1){
         return grid;
     }
     
     if(n%2==0){
-        return fillGrid(rows, columns);
+        return fillGrid(rows, cols);
     }
     
     if(n%4==3){
