@@ -20,23 +20,20 @@ vector<string> split(const string &);
  *  2. STRING_ARRAY grid
  */
 
+/*
+ * Complete the 'bomberMan' function below.
+ *
+ * The function is expected to return a STRING_ARRAY.
+ * The function accepts following parameters:
+ *  1. INTEGER n
+ *  2. STRING_ARRAY grid
+ */
+
 vector<string> fillGrid(size_t rows, size_t columns){
     std::string fill;
     fill.insert(0, columns, 'O');
     
     return {rows, fill}; // array where all rows(elements) are str fill
-
-}
-
-void tnt(std::vector<string>& grid, int x, int y){
-    size_t rows = grid.size();
-    size_t cols = grid[0].size();
-
-    if(x<0 || y<0 || x>=rows || y>=cols){
-        return;
-    }
-
-    grid[x][y] = '.';
 
 }
 
@@ -82,6 +79,8 @@ vector<string> bomberMan(int n, vector<string> grid) {
         auto result = detonate(grid);
         return detonate(result);
     }
+    
+    return grid;
 }
 
 int main()
