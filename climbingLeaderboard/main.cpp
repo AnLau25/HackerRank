@@ -47,8 +47,19 @@ vector<int> climbingLeaderboard(vector<int> ranked, vector<int> player) {
 }
 */
 
+// I was just being extra causious, sue me
 vector<int> climbingLeaderboard(vector<int> ranked, vector<int> player) {
     vector<int> new_rank;
+    sort(ranked.begin(), ranked.end(), greater<int>());
+    ranked.erase(unique(ranked.begin(), ranked.end()), ranked.end());
+    
+    for(int n : player){
+        ranked.push_back(n);
+                
+        auto it = lower_bound(ranked.begin(), ranked.end(), n, greater<int>());;
+        int idx = std::distance(ranked.begin(), it)+1;
+        new_rank.push_back(idx);
+    }
     
     return new_rank;
 }
