@@ -162,6 +162,14 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. 6 <length of array>
-2. 5 5 6 7 6 5 <space separated array>
+1. 7 <# of already ranked scores>
+2. 100 100 50 40 40 20 10 <space separated scores array>
+3. 4 <# of scores to rank>
+4. 5 25 50 120 <space separated array of scores>
+
+Output:
+5. 6 <rank of the latest ranked score>
+7. 4
+8. 2
+9. 1 
 */
