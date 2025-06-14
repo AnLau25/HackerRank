@@ -166,6 +166,19 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. 6 <length of array>
-2. 5 5 6 7 6 5 <space separated array>
+ 1. 6 7 3 <rows = 6, columns = 7, sec = 3>
+ 2. ....... <grid made of string arrays ↓>         
+ 3. ...O...                
+ 4. ....O..
+ 5. .......
+ 6. OO.....
+ 7. OO.....
+
+Output:
+ 8. OOO.OOO
+ 9. OO...OO
+10. OOO...O
+11. ..OO.OO
+12. ...OOOO
+13. ...OOOO
 */
