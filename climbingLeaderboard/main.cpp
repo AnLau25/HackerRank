@@ -19,6 +19,10 @@ vector<string> split(const string &);
  *  1. INTEGER_ARRAY ranked
  *  2. INTEGER_ARRAY player
  */
+
+/*
+Runtime error, too slo (Liam Lawson much)
+
 void cleance(vector<int> *array){
     std::sort(array->begin(), array->end(), std::greater<int>());
     
@@ -38,6 +42,13 @@ vector<int> climbingLeaderboard(vector<int> ranked, vector<int> player) {
         
         new_rank.push_back(std::distance(ranked.begin(), idx)+1);
     }
+    
+    return new_rank;
+}
+*/
+
+vector<int> climbingLeaderboard(vector<int> ranked, vector<int> player) {
+    vector<int> new_rank;
     
     return new_rank;
 }
