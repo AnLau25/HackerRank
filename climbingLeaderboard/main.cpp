@@ -47,7 +47,7 @@ vector<int> climbingLeaderboard(vector<int> ranked, vector<int> player) {
 }
 */
 
-// I was just being extra causious, sue me
+// I was just being extra causious, sue me Ɛ( · — ·)3
 vector<int> climbingLeaderboard(vector<int> ranked, vector<int> player) {
     vector<int> new_rank;
     sort(ranked.begin(), ranked.end(), greater<int>());
