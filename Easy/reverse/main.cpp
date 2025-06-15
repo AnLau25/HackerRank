@@ -77,7 +77,18 @@ void print_singly_linked_list(SinglyLinkedListNode* node, string sep) {
 
 SinglyLinkedListNode* reverse(SinglyLinkedListNode* llist) {
     SinglyLinkedList* new_lst = new SinglyLinkedList();
+    SinglyLinkedListNode* current = llist;
+    std::stack<int> data; 
     
+    while (current!=nullptr) {
+        data.push(current->data);
+        current = current->next;
+    }
+    
+    while (!data.empty()) {
+        new_lst->insert_node(data.top());
+        data.pop();
+    }
     
     return new_lst->head;
 }
