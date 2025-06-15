@@ -80,7 +80,12 @@ void print_doubly_linked_list(DoublyLinkedListNode* node, string sep) {
  */
 
 DoublyLinkedListNode* reverse(DoublyLinkedListNode* llist) {
+    std::swap(llist->next,llist->prev);
     
+    while(llist->prev!=nullptr){
+        llist= llist->prev;
+        std::swap(llist->next,llist->prev);
+    }
     
     return llist;
 }
