@@ -172,6 +172,14 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. 6 <length of array>
-2. 5 5 6 7 6 5 <space separated array>
+1. 1 <number of test cases>
+2. 5 <number of elements in the linked list>
+3. 1 <Data contained in the elements of the linked list>
+4. 2
+5. 3
+6. 4
+7. 5 
+
+Output:
+8. 5 4 3 2 1 <prints out reversed linked list>
 */
