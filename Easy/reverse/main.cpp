@@ -75,6 +75,7 @@ void print_singly_linked_list(SinglyLinkedListNode* node, string sep) {
  *
  */
 
+// Feels sheap... but if it works it works Ɛ( · — ·)3
 SinglyLinkedListNode* reverse(SinglyLinkedListNode* llist) {
     SinglyLinkedList* new_lst = new SinglyLinkedList();
     SinglyLinkedListNode* current = llist;
