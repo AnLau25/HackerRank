@@ -22,6 +22,15 @@ vector<string> split(const string &);
  */
 
 vector<int> icecreamParlor(int m, vector<int> arr) {
+    unordered_map<int, int> seen;
+    
+    for (int i = 0; i < arr.size(); ++i) {
+        int complement = m - arr[i];
+        if (seen.count(complement)) {
+            return {seen[complement], i + 1};
+        }
+        seen[arr[i]] = i + 1;
+    }
     
     return {};
 }
