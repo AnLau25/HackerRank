@@ -176,14 +176,12 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. 1 <number of test cases>
-2. 5 <number of elements in the linked list>
-3. 1 <Data contained in the elements of the linked list>
-4. 2
-5. 3
-6. 4
-7. 5 
+1. 3 <size of the original linked list>
+2. 16 <elements of the list ↓>
+3. 13  
+4. 1 <element to insert>
+5. 2 <possition to insert it at>
 
 Output:
-8. 5 4 3 2 1 <prints out reversed linked list>
+6. 16 13 1 7 <prints out the linked list with 1 at possition 2>
 */
