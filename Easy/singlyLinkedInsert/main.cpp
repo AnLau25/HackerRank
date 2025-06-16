@@ -81,7 +81,16 @@ void print_singly_linked_list(SinglyLinkedListNode* node, string sep) {
 SinglyLinkedListNode* insertNodeAtPosition(SinglyLinkedListNode* llist, int data, int position) {
     SinglyLinkedList* new_lst = new SinglyLinkedList();
     
-    
+    while (llist!=nullptr) {
+        
+        if (position==0) {
+            new_lst -> insert_node(data);
+        }
+        
+        new_lst -> insert_node(llist->data);
+        llist = llist->next;
+        position--;
+    }
     
     return new_lst -> head;
 }
