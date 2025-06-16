@@ -128,6 +128,11 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. 6 <length of array>
-2. 5 5 6 7 6 5 <space separated array>
+1. 1 <number of test cases>
+2. 4 <saved up money>
+3. 5 <number of available flavours>
+4. 1 4 5 3 2 <spase separated array of the icecream prices>
+
+Output:
+5. 1 4 <1-based indexes of the 2 icecream flavours they should buy> 
 */
