@@ -167,6 +167,13 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. 6 <length of array>
-2. 5 5 6 7 6 5 <space separated array>
+1. 5 1 <length of array, number of iters>
+2. 3 4 7 6 5 <space separated array>
+
+Output:
+3. 4 <stack of plates after manipulation ↓>
+4. 6
+5. 3
+6. 7
+7. 5
 */
