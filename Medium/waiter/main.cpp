@@ -5,6 +5,7 @@
 #include <sstream>    // for split
 #include <compare>    // for spaceship operator (C++20)
 #include <iomanip> 
+#include <stack>
 using namespace std;
 
 string ltrim(const string &);
@@ -20,9 +21,66 @@ vector<string> split(const string &);
  *  2. INTEGER q
  */
 
+vector<int> sieveOfEratos(int n) {
+    vector<bool> verif(n + 1, true);
+    vector<int> primes;
+    verif[0] = verif[1] = false;
+    for (int p = 2; p * p <= n; ++p) {
+        if (verif[p]) {
+            for (int i = p * p; i <= n; i += p) {
+                verif[i] = false;
+            }
+        }
+    }
+    for (int i = 2; i <= n; ++i) {
+        if (verif[i]) {
+            primes.push_back(i);
+        }
+    }
+    return primes;
+}
+
 vector<int> waiter(vector<int> number, int q) {
+    vector<int> primes = sieveOfEratos(10000);
+    vector<int> answers;
+
+    stack<int> A, B;
+
+    for (int i = 0; i < number.size(); i++) {
+        A.push(number[i]);
+    }
+
+    for (int i = 0; i < q; ++i) {
+        stack<int> nextA;
+        B = stack<int>();  
+
+        while (!A.empty()) {
+            int val = A.top();
+            A.pop();
+            if (val % primes[i] == 0) {
+                B.push(val);
+            } else {
+                nextA.push(val);
+            }
+        }
+
+        while (!B.empty()) {
+            answers.push_back(B.top());
+            B.pop();
+        }
+
+        A = nextA; 
+    }
+
+    vector<int> remaining;
+    while (!A.empty()) {
+        remaining.push_back(A.top());
+        A.pop();
+    }
     
-    return {};
+    answers.insert(answers.end(), remaining.begin(), remaining.end());
+
+    return answers;
 }
 
 int main()
