@@ -5,6 +5,7 @@
 #include <sstream>    // for split
 #include <compare>    // for spaceship operator (C++20)
 #include <iomanip> 
+#include <set>
 using namespace std;
 
 string ltrim(const string &);
@@ -18,9 +19,25 @@ vector<string> split(const string &);
  * The function accepts STRING_ARRAY unsorted as parameter.
  */
 
+struct compStrAsLong {
+    bool operator()(const std::string &a, const std::string &b) const {
+        if (a.length()!=b.length()){
+            return  a.length()<b.length();
+        }
+        return a<b;
+    }
+};
+
 vector<string> bigSorting(vector<string> unsorted) {
+    std::multiset<string, compStrAsLong> sort;
     
-    return {};
+    for (string str : unsorted) {
+        sort.insert(str);
+    }
+    
+    std::vector<string> sorted(sort.begin(),sort.end());
+    
+    return sorted;
 }
 
 int main()
