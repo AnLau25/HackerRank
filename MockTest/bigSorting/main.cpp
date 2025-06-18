@@ -117,6 +117,19 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. 6 <length of array>
-2. 5 5 6 7 6 5 <space separated array>
+ 1. 6 <# of elements to sort>
+ 2. 96 <elements ↓>
+ 3. 165164984845155515165156875454468
+ 4. 5
+ 5. 88
+ 6. 1
+ 7. 10
+
+Output:
+ 8. 1
+ 9. 5
+10. 10
+11. 88
+12. 96
+13. 165164984845155515165156875454468
 */
