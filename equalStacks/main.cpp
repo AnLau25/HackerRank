@@ -20,16 +20,13 @@ vector<string> split(const string &);
  *  2. INTEGER_ARRAY h2
  *  3. INTEGER_ARRAY h3
  */
- 
+
 void vectorize(vector<int> stack, vector<int> &vec){
     int sum = 0;
     
-    for(int i = stack.size()-1; i>=0; i--){
-        for(int j = stack.size()-1; j>=i; j--){
-            sum+=stack[j];
-        }
+    for (int i = stack.size() - 1; i >= 0; --i) {
+        sum += stack[i];
         vec.push_back(sum);
-        sum=0;        
     }
 }
 
