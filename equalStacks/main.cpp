@@ -163,6 +163,11 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. 6 <length of array>
-2. 5 5 6 7 6 5 <space separated array>
+1. 5 3 4 <length of each stack>
+2. 3 2 1 1 1 <space separated stack 1>
+3. 4 3 2 <space separated stack 1>
+4. 1 1 4 1 <space separated stack 1>
+
+Output:
+5. 5 <minimum even height for the stacks, considering that we can only .𝘱𝘰𝘱() out the values>
 */
