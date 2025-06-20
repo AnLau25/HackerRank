@@ -18,10 +18,29 @@ vector<string> split(const string &);
  * The function accepts INTEGER_ARRAY arr as parameter.
  */
 
+//Kadane's algorithm
 vector<int> maxSubarray(vector<int> arr) {
+    if (arr.empty()) return {0,0};
     
+    int subarr_sum=0, current_sum = 0, subseq_sum=0;
     
-    return {};
+    for (int i : arr){
+        
+        current_sum = max(i, current_sum + i);
+        subarr_sum = max(current_sum, subarr_sum); 
+        
+        if (i>0){
+            subseq_sum+=i;
+        }
+    }
+    
+    if(subseq_sum==0){
+        sort(arr.begin(),arr.end());
+        subseq_sum = arr.back();
+        subarr_sum = arr.back();
+    }
+    
+    return {subarr_sum, subseq_sum};
 }
 
 int main()
@@ -108,20 +127,6 @@ vector<string> split(const string &str) {
 
     return tokens;
 }
-
-
-/*
-Aparently XOR is a thing in c++???
-like???????
-
-int lonelyinteger(vector<int> a) {
-    int result = 0;
-    for (int num : a) {
-        result ^= num;
-    }
-    return result;
-}
-*/
 
 /* 
 Input format:
