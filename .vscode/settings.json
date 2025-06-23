@@ -2,6 +2,7 @@
     "files.associations": {
         "sstream": "cpp",
         "new": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "qheap1": "cpp"
     }
 }
