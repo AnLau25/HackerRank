@@ -12,7 +12,9 @@ class Heap{
         vector<int> arr;
         int size = 0;
 
-        void heapify (int i);
+        void heapify (int i){
+
+        }
 
     public:
         Heap() = default;
@@ -32,7 +34,21 @@ class Heap{
 
         }
 
-        void remove(int key);
+        void remove(int key){
+            int idx = 0;
+
+            for (int i = 0; i<size; i++){
+                if(arr[i]==key){
+                    idx = i;
+                    break;
+                }
+            }
+
+            swap(arr[idx], arr[size-1]);
+            arr.pop_back();
+
+            heapify(idx);         
+        }
 
         void getMin(){
             cout<<arr.back();
