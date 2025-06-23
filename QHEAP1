@@ -18,7 +18,20 @@ class Heap{
         Heap() = default;
         Heap(int capacity) : arr(capacity){}
 
-        void insert(int key);
+        void insert(int key){
+            arr.push_back(key);
+            size++;
+
+            int idx = size-1;
+
+            while (idx!=0 && key>arr[(idx-1)/2])
+            {
+                swap(arr[(idx-1)/2], arr[idx]);
+                idx = (idx-1)/2;
+            }
+
+        }
+
         void remove(int key);
 
         void getMin(){
@@ -27,7 +40,6 @@ class Heap{
 
         
 };
-
 
 int main() {
     /* Enter your code here. Read input from STDIN. Print output to STDOUT */
