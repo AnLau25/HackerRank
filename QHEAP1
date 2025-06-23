@@ -7,6 +7,20 @@
 
 using namespace std;
 
+class Heap{
+    private:
+        vector<int> arr;
+        int size;
+
+        void heapify (int i);
+
+    public:
+        Heap(int capacity);
+        void getMin();
+        void insert(int key);
+        void remove(int key);
+};
+
 
 int main() {
     /* Enter your code here. Read input from STDIN. Print output to STDOUT */
