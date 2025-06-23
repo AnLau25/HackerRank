@@ -7,34 +7,34 @@
 
 using namespace std;
 
-class Heap{
+class minHeap{
     private:
         vector<int> arr;
         int size = 0;
 
         void heapify (int idx){
-            int biggest = idx;
+            int smalest = idx;
             int left = 2*idx + 1;
             int right = 2*idx + 2;
 
-            if(left<size && arr[left]>arr[biggest]){
-                biggest=left;
+            if(left<size && arr[left]<arr[smalest]){
+                smalest=left;
             }
-            if(right<size && arr[right]>arr[biggest]){
-                biggest=right;
+            if(right<size && arr[right]<arr[smalest]){
+                smalest=right;
             }
 
-            if (biggest!=idx){
-                swap(arr[idx],arr[biggest]);
-                heapify(biggest);
+            if (smalest!=idx){
+                swap(arr[idx],arr[smalest]);
+                heapify(smalest);
             }
 
         }
 
     public:
-        Heap() = default;
-        Heap(int capacity) : arr(capacity){}
-        Heap(vector<int> array) : arr(array){
+        minHeap() = default;
+        minHeap(int capacity) : arr(capacity){}
+        minHeap(vector<int> array) : arr(array),size(array.size()){
             for (int i = size / 2 - 1; i >= 0; --i) {
                 heapify(i);
             }
@@ -46,7 +46,7 @@ class Heap{
 
             int idx = size-1;
 
-            while (idx!=0 && key>arr[(idx-1)/2])
+            while (idx!=0 && key<arr[(idx-1)/2])
             {
                 swap(arr[(idx-1)/2], arr[idx]);
                 idx = (idx-1)/2;
@@ -55,7 +55,9 @@ class Heap{
         }
 
         void remove(int key){
-            int idx = 0;
+            if (arr.empty()) return;
+
+            int idx = -1;
 
             for (int i = 0; i<size; i++){
                 if(arr[i]==key){
@@ -64,17 +66,23 @@ class Heap{
                 }
             }
 
+            if(idx==-1){
+                cout<<"Key not found";
+                return;
+            }
+
             swap(arr[idx], arr[size-1]);
             arr.pop_back();
+            size--;
 
             heapify(idx);         
         }
 
-        void getMin(){
-            cout<<arr.back();
-        }
+        void getMin() const{ // cause we dont modif the heap
+            if(arr.empty()) return; 
 
-        
+            cout<<arr.front();
+        }       
 };
 
 int main() {
