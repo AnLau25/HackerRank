@@ -78,7 +78,7 @@ class minHeap{
             heapify(idx);         
         }
 
-        void getMin() const{ // cause we dont modif the heap
+        void printMin() const{ // cause we dont modif the heap
             if(arr.empty()) return; 
 
             cout<<arr.front();
@@ -88,7 +88,7 @@ class minHeap{
 int main() {
     /* Enter your code here. Read input from STDIN. Print output to STDOUT */
 
-    //Stack* stacked = new Stack();
+    minHeap hippy = minHeap();
     
     vector<vector<int>> cmds;
     
@@ -115,11 +115,11 @@ int main() {
     for(vector<int> com : cmds)//Exhecutes the commands
     {
         if (com[0]==1){
-            //stacked->enqueue(com[1]);
+            hippy.insert(com[1]);
         }else if (com[0]==2){
-            //stacked->dequeue();
+            hippy.remove(com[1]);
         }else if (com[0]==3){
-            //stacked->print();
+            hippy.printMin();
         }   
     }
     
