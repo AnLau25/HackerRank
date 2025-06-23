@@ -35,7 +35,8 @@ class minHeap{
         minHeap() = default;
         minHeap(int capacity) : arr(capacity){}
         minHeap(vector<int> array) : arr(array),size(array.size()){
-            for (int i = size / 2 - 1; i >= 0; --i) {
+            for (int i = size / 2 - 1; i >= 0; --i) { 
+                //Gotta heapify() for eachelement in the array Ɛ( · — ·)3
                 heapify(i);
             }
         }
@@ -81,7 +82,7 @@ class minHeap{
         void printMin() const{ // cause we dont modif the heap
             if(arr.empty()) return; 
 
-            cout<<arr.front();
+            cout<<arr.front()<<endl;
         }       
 };
 
@@ -123,7 +124,19 @@ int main() {
         }   
     }
     
-    
-       
     return 0;
 }
+
+/* 
+Input format:
+1. 5    <number of coms = 5>
+2. 1 4  <insert 4>
+3. 1 9  <insert 9>
+4. 3    <print minimum>
+5. 2 4  <delete 4>
+6. 3    <print minimum>
+
+Output: 
+7. 4 <print minimum at the time of command call>
+8. 9
+*/
