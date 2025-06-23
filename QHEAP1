@@ -12,13 +12,33 @@ class Heap{
         vector<int> arr;
         int size = 0;
 
-        void heapify (int i){
+        void heapify (int idx){
+            int biggest = idx;
+            int left = 2*idx + 1;
+            int right = 2*idx + 2;
+
+            if(left<size && arr[left]>arr[biggest]){
+                biggest=left;
+            }
+            if(right<size && arr[right]>arr[biggest]){
+                biggest=right;
+            }
+
+            if (biggest!=idx){
+                swap(arr[idx],arr[biggest]);
+                heapify(biggest);
+            }
 
         }
 
     public:
         Heap() = default;
         Heap(int capacity) : arr(capacity){}
+        Heap(vector<int> array) : arr(array){
+            for (int i = size / 2 - 1; i >= 0; --i) {
+                heapify(i);
+            }
+        }
 
         void insert(int key){
             arr.push_back(key);
