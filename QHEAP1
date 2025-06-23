@@ -10,15 +10,22 @@ using namespace std;
 class Heap{
     private:
         vector<int> arr;
-        int size;
+        int size = 0;
 
         void heapify (int i);
 
     public:
-        Heap(int capacity);
-        void getMin();
+        Heap() = default;
+        Heap(int capacity) : arr(capacity){}
+
         void insert(int key);
         void remove(int key);
+
+        void getMin(){
+
+        }
+
+        
 };
 
 
