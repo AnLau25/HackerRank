@@ -22,7 +22,7 @@ class Heap{
         void remove(int key);
 
         void getMin(){
-
+            cout<<arr.back();
         }
 
         
