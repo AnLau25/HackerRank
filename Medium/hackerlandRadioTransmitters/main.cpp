@@ -119,6 +119,9 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. 6 <length of array>
-2. 5 5 6 7 6 5 <space separated array>
+1. 8 2  <length of array, k>
+2. 7 2 4 6 5 9 12 11 <space separated array> 
+
+Output:
+3. 3 <# of transmitters>
 */
