@@ -193,6 +193,12 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. 5 <length of array>
-2. 5 5 6 7 6 5 <space separated array>
+1. 5 2 <length of array, no of queries>
+2. 2 3 4 5 6 <space separated array>
+3. 2 <query values ↓>
+4. 3
+
+Output:
+5. 3 <min of the max, min(max aj)>
+6. 4
 */
