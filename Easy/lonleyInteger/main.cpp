@@ -5,7 +5,6 @@
 #include <sstream>    // for split
 #include <compare>    // for spaceship operator (C++20)
 #include <iomanip> 
-#include <queue>
 using namespace std;
 
 string ltrim(const string &);
@@ -13,139 +12,82 @@ string rtrim(const string &);
 vector<string> split(const string &);
 
 /*
- * Complete the 'solve' function below.
+ * Complete the 'lonelyinteger' function below.
  *
- * The function is expected to return an INTEGER_ARRAY.
- * The function accepts following parameters:
- *  1. INTEGER_ARRAY arr
- *  2. INTEGER_ARRAY queries
+ * The function is expected to return an INTEGER.
+ * The function accepts INTEGER_ARRAY a as parameter.
  */
 
-/* 
-The hardcoded, time ineficient, version I'm still very much attached to
-vector<vector<int>> devide(vector<int> arr, int i){
-    vector<vector<int>> subarrs;
-    vector<int> curr;
-    int ent=0;
+/*
+int lonelyinteger(vector<int> a) {
+    int len = a.size()-1;
+    bool flag = true;
+    int pringle = 0;
     
-    while ((ent+i-1)<(arr.size())) {
-        curr.push_back(arr[ent]);
+    while (flag) {
+        pringle = a[len];
         
-        for(int k = 1; k<i; k++){
-            curr.push_back(arr[ent+k]);
+        bool found = false;
+        for (int i = 0; i<a.size(); i++){
+            
+            if (a[i]==pringle && i!=len){
+                found = true;
+                len--;
+                break;
+            }   
         }
-        subarrs.push_back(curr);
-        curr={};
-        ent++;
+        
+        if (!found){
+            flag = false;
+        }
     }
     
-    return subarrs;
-}
+    std::cout<<pringle<<std::endl;
 
-vector<int> max(vector<vector<int>> subarrs){
-    vector<int> locMaxes;
-    
-    for (vector<int> vec : subarrs){
-        locMaxes.push_back(*max_element(vec.begin(), vec.end()));
-    }
-    
-    return locMaxes;
-}  
-
-vector<int> solve(vector<int> arr, vector<int> queries) {
-    vector<int> soln;
-    
-    for (int i : queries){
-        vector<int> temp = max(devide(arr, i));
-        soln.push_back(*min_element(temp.begin(), temp.end()));   
-    }
-    
-    return soln;
+    return pringle;
 }
 */
 
-vector<int> solve(vector<int> arr, vector<int> queries) {
-    vector<int> soln;
-
-    for (int k : queries) {
-        deque<int> dq;
-        vector<int> max_in_windows;
-
-        for (int i = 0; i < arr.size(); ++i) {
-            
-            // Remove elements out of the window
-            if (!dq.empty() && dq.front() <= i - k){
-                dq.pop_front();
-            }
-            
-            // Maintain deque: remove elements smaller than current
-            while (!dq.empty() && arr[dq.back()] <= arr[i]){
-                dq.pop_back();
-            }
-
-            dq.push_back(i);
-
-            // If window is valid, record max
-            {if (i >= k - 1)
-                max_in_windows.push_back(arr[dq.front()]);
-            }
+//Improved... but adieu single 𝘱𝘳𝘪𝘯𝘨𝘭𝘦
+int lonelyinteger(vector<int> a) {
+    if (a.size() == 1) return a[0];
+    
+    std::sort(a.begin(), a.end());
+    
+    for (int i = 0; i < a.size() - 1; i += 2) {
+        if (a[i] != a[i + 1]) {
+            return a[i];
         }
-
-        // Take the min of all maxes in the window
-        soln.push_back(*min_element(max_in_windows.begin(), max_in_windows.end()));
     }
-
-    return soln;
+    
+    return a[a.size() - 1];
 }
 
 int main()
 {
     //ofstream fout(getenv("OUTPUT_PATH"));
 
-    string first_multiple_input_temp;
-    getline(cin, first_multiple_input_temp);
+    string n_temp;
+    getline(cin, n_temp);
 
-    vector<string> first_multiple_input = split(rtrim(first_multiple_input_temp));
+    int n = stoi(ltrim(rtrim(n_temp)));
 
-    int n = stoi(first_multiple_input[0]);
+    string a_temp_temp;
+    getline(cin, a_temp_temp);
 
-    int q = stoi(first_multiple_input[1]);
+    vector<string> a_temp = split(rtrim(a_temp_temp));
 
-    string arr_temp_temp;
-    getline(cin, arr_temp_temp);
-
-    vector<string> arr_temp = split(rtrim(arr_temp_temp));
-
-    vector<int> arr(n);
+    vector<int> a(n);
 
     for (int i = 0; i < n; i++) {
-        int arr_item = stoi(arr_temp[i]);
+        int a_item = stoi(a_temp[i]);
 
-        arr[i] = arr_item;
+        a[i] = a_item;
     }
 
-    vector<int> queries(q);
+    int result = lonelyinteger(a);
 
-    for (int i = 0; i < q; i++) {
-        string queries_item_temp;
-        getline(cin, queries_item_temp);
-
-        int queries_item = stoi(ltrim(rtrim(queries_item_temp)));
-
-        queries[i] = queries_item;
-    }
-
-    vector<int> result = solve(arr, queries);
-
-    for (size_t i = 0; i < result.size(); i++) {
-        cout<<result[i];
-
-        if (i != result.size() - 1) {
-            cout<<"\n";
-        }
-    }
-
-    cout<<"\n";
+    //fout << result << "\n";
 
     //fout.close();
 
@@ -190,6 +132,20 @@ vector<string> split(const string &str) {
 
     return tokens;
 }
+
+
+/*
+Aparently XOR is a thing in c++???
+like???????
+
+int lonelyinteger(vector<int> a) {
+    int result = 0;
+    for (int num : a) {
+        result ^= num;
+    }
+    return result;
+}
+*/
 
 /* 
 Input format:
