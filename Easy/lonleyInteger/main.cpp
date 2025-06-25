@@ -5,6 +5,7 @@
 #include <sstream>    // for split
 #include <compare>    // for spaceship operator (C++20)
 #include <iomanip> 
+#include <queue>
 using namespace std;
 
 string ltrim(const string &);
@@ -19,6 +20,9 @@ vector<string> split(const string &);
  *  1. INTEGER_ARRAY arr
  *  2. INTEGER_ARRAY queries
  */
+
+/* 
+The hardcoded, time ineficient, version I'm still very much attached to
 vector<vector<int>> devide(vector<int> arr, int i){
     vector<vector<int>> subarrs;
     vector<int> curr;
@@ -56,6 +60,41 @@ vector<int> solve(vector<int> arr, vector<int> queries) {
         soln.push_back(*min_element(temp.begin(), temp.end()));   
     }
     
+    return soln;
+}
+*/
+
+vector<int> solve(vector<int> arr, vector<int> queries) {
+    vector<int> soln;
+
+    for (int k : queries) {
+        deque<int> dq;
+        vector<int> max_in_windows;
+
+        for (int i = 0; i < arr.size(); ++i) {
+            
+            // Remove elements out of the window
+            if (!dq.empty() && dq.front() <= i - k){
+                dq.pop_front();
+            }
+            
+            // Maintain deque: remove elements smaller than current
+            while (!dq.empty() && arr[dq.back()] <= arr[i]){
+                dq.pop_back();
+            }
+
+            dq.push_back(i);
+
+            // If window is valid, record max
+            {if (i >= k - 1)
+                max_in_windows.push_back(arr[dq.front()]);
+            }
+        }
+
+        // Take the min of all maxes in the window
+        soln.push_back(*min_element(max_in_windows.begin(), max_in_windows.end()));
+    }
+
     return soln;
 }
 
