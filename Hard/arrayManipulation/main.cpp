@@ -33,7 +33,7 @@ long arrayManipulation(int n, vector<vector<int>> queries) {
         result[i]+=result[i-1];
     }
     
-    return *max_element(result.begin(),result.end());
+    return *max_element(result.begin(), result.end());
 }
 
 int main()
@@ -115,7 +115,11 @@ vector<string> split(const string &str) {
 }
 
 /* 
-Input format:
-1. 6 <length of array>
-2. 5 5 6 7 6 5 <space separated array>
+1. 5 3 <no of elements in the array, no of queries>
+2. 1 2 100 <queries where range is {a,b} and k is the value to add>
+3. 2 5 100 <ie, a=2, b=5 & k=100>
+4. 3 4 100
+
+Output:
+5. 200 <maximum number in the array after al the sum operations>
 */
