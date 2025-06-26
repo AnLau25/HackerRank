@@ -33,9 +33,7 @@ long arrayManipulation(int n, vector<vector<int>> queries) {
         result[i]+=result[i-1];
     }
     
-    std::sort(result.begin(),result.end());
-    
-    return result.back();
+    return *max_element(result.begin(),result.end());
 }
 
 int main()
