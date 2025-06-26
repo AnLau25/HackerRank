@@ -20,9 +20,22 @@ vector<string> split(const string &);
  *  2. 2D_INTEGER_ARRAY queries
  */
 
+//single prefix sum pass
 long arrayManipulation(int n, vector<vector<int>> queries) {
+    vector<long> result(n+2,0);
     
-    return 0;
+    for (vector<int> query : queries){
+        result[query[0]]+=query[2];
+        result[query[1]+1]-=query[2]; 
+    }
+    
+    for (int i = 1; i<result.size(); i++){
+        result[i]+=result[i-1];
+    }
+    
+    std::sort(result.begin(),result.end());
+    
+    return result.back();
 }
 
 int main()
