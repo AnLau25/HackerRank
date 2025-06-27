@@ -39,19 +39,23 @@ string highestValuePalindrome(string s, int n, int k) {
 
     left = 0, right = n - 1;
     while (left <= right) {
-        if (left == right) {
+
+        if (left == right) { // If at the middle, make 9
             if (k > 0 && s[left] != '9') {
                 s[left] = '9';
                 k--;
             }
+
         } else {
-            if (s[left] != '9') {
+            if (s[left] != '9') {  
                 if (changed[left] || changed[right]) {
+                    // If this mas already modified prior
                     if (k >= 1) {
+                        // Turn both numbers to 9, but only k--, since we substracted 1 when making equal
                         s[left] = s[right] = '9';
                         k--;
                     }
-                } else if (k >= 2) {
+                } else if (k >= 2) { // Else, tunr to 9 and k-2
                     s[left] = s[right] = '9';
                     k -= 2;
                 }
@@ -130,6 +134,8 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. 6 <length of array>
-2. 5 5 6 7 6 5 <space separated array>
+1. 6 3 <length of String, no of allowed modifications>
+2. 092282 <string>
+
+3. 992299 <maximized palindrome>
 */
