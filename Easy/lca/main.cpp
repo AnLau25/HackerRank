@@ -33,7 +33,8 @@ class Solution {
            }
         }
 
-    /*The tree node has data, left child and right child 
+    /*
+    The tree node has data, left child and right child 
     class Node {
         int data;
         Node* left;
