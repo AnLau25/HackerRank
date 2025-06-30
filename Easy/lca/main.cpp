@@ -87,3 +87,14 @@ int main() {
 
     return 0;
 }
+
+/*
+Input:
+1. 6 <number of nodes> 
+2. 4 2 3 1 7 6 <space separated nodes (preOrder)>
+3. 1 7 <nodes to look for>
+
+Output:
+4. 4 <Lowes Common Ancestor>
+
+*/
