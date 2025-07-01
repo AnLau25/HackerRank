@@ -22,6 +22,7 @@ vector<string> split(const string &);
  *  5. INTEGER goalY
  */
 
+// Ussing breadth first search
 int minimumMoves(vector<string> grid, int startX, int startY, int goalX, int goalY) {
     int rows = grid.size(), cols = grid[0].size();
     
@@ -44,6 +45,7 @@ int minimumMoves(vector<string> grid, int startX, int startY, int goalX, int goa
         for(int m = 0; m < 4; ++m){
             int newX = currX, newY = currY;
             
+            // Ensures to slide in one direction until blocked ('X')
             while (true) {
                 int tempX = newX + mx[m], tempY = newY + my[m];
                 
@@ -140,3 +142,18 @@ vector<string> split(const string &str) {
 
     return tokens;
 }
+
+/* 
+Input format:
+1. 3 <Number of rows in the grid>
+2. .X. <Rows of the grid as strings ↓> 
+3. .X.
+4. ...
+5. 0 0 0 2 <startX=0, startY=0, goalX=0, goalY=2>
+           < S X G
+             . X .
+             . . .>
+
+Output:
+6. 3 <minimum number of moves to reach the goal> 
+*/
