@@ -156,15 +156,12 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. 3 <Number of rows in the grid>
-2. .X. <Rows of the grid as strings ↓> 
-3. .X.
-4. ...
-5. 0 0 0 2 <startX=0, startY=0, goalX=0, goalY=2>
-           < S X G
-             . X .
-             . . .>
+1. 1        <number of tests = 1>
+2. 3 3 2 1  <number of cities = 3, number of city conections = 3, c_lib = 2, c_road = 1
+3. 1 2      <cities(3) = [[1, 2], [3, 1], [2, 3]]>
+4. 3 1
+5. 2 3
 
 Output:
-6. 3 <minimum number of moves to reach the goal> 
+6. 4 <minimum cost so all libs have a library> 
 */
