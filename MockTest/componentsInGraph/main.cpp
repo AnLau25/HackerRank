@@ -156,13 +156,14 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. 1        <number of tests = 1>
-2. 3 3 2 1  <number of cities = 3, number of city conections = 3, c_lib = 2, c_road = 1
-3. 1 2      <cities(3) = [[1, 2], [3, 1], [2, 3]]>
-4. 3 1
-5. 2 3
+1. 5       list of edges[] of size n = 5
+2. 1 6     edges = [[1, 6],[2, 7], [3, 8], [4,9], [2, 6]]
+3. 2 7
+4. 3 8
+5. 4 9
+6. 2 6
 
 Output:
-6. 4 <minimum cost so all libs have a library> 
+7. 2 4 <components with: minimum nodes>1; biggest number of nodes> 
 */
 
