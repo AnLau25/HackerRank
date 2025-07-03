@@ -50,7 +50,7 @@ vector<int> bfs(int n, int m, vector<vector<int>> edges, int s) {
             if (!visited[neighbor]){ //If the neighbor has not been visited
                 visited[neighbor] = true; //Mark it as visited
                 distance[neighbor] = distance[node] + 6; // Mark it's distance from the start node [current node distance + 6]
-                q.push(neighbor); //Push it in the queue so we can look or its neighbors
+                q.push(neighbor); //Push it in the queue so we can look for its neighbors
             }
         }
     }
