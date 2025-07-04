@@ -20,43 +20,41 @@ vector<string> split(const string &);
  *  2. 2D_INTEGER_ARRAY edges
  */
 
-int bfs(map<int, stack<int>> adj, int node){
+int bfs(map<int, vector<int>> adj, int node, map<int, int> vals) {
     int sum = 0;
-    
     map<int, bool> visited;
-    
     stack<int> neighbors;
     neighbors.push(node);
     visited[node] = true;
-    
-    
+
     while (!neighbors.empty()) {
         int curr = neighbors.top();
         neighbors.pop();
-        sum += curr;
-        
-        while (!adj[curr].empty()) {
-            int neighbor = adj[curr].top();
-            adj[curr].pop();
-            
-            if(!visited[neighbor]){
+        sum += vals[curr];
+
+        for (int neighbor : adj[curr]) {
+            if (!visited[neighbor]) {
                 visited[neighbor] = true;
                 neighbors.push(neighbor);
             }
         }
     }
-    
-    
+
     return sum;
 }
 
 int cutTheTree(vector<int> data, vector<vector<int>> edges) {
     if (edges.size()<=1) return edges.size();
     
-    map<int, stack<int>> adj;
+    map<int, int> values;
+    map<int, vector<int>> adj;
     for( vector<int> edge : edges){
-        adj[edge[0]].push(edge[1]);
-        adj[edge[1]].push(edge[0]);
+        adj[edge[0]].push_back(edge[1]);
+        adj[edge[1]].push_back(edge[0]);
+    }
+
+    for ( auto [i, _] : adj){
+        values[i] = data[i-1];
     }
     
     int edge_count = 0; 
@@ -64,8 +62,18 @@ int cutTheTree(vector<int> data, vector<vector<int>> edges) {
     
     for (vector<int> edge : edges){
         int node1 = edge[0], node2 = edge[1];
-        int diff1 = bfs(adj, node1);
-        int diff2 = bfs(adj, node2);
+
+        map<int, vector<int>> modified_adj = adj;
+
+        auto& v1 = modified_adj[node1];
+        auto& v2 = modified_adj[node2];
+        v1.erase(remove(v1.begin(), v1.end(), node2), v1.end());
+        v2.erase(remove(v2.begin(), v2.end(), node1), v2.end());
+
+        // Now call bfs on the two sides of the cut
+        int diff1 = bfs(modified_adj, node1, values);
+        int diff2 = bfs(modified_adj, node2, values);
+
         edge_count++;
         diffs.push_back({edge_count, abs(diff2 - diff1)});
     }
