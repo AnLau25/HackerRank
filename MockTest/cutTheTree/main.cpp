@@ -70,7 +70,6 @@ int cutTheTree(vector<int> data, vector<vector<int>> edges) {
         v1.erase(remove(v1.begin(), v1.end(), node2), v1.end());
         v2.erase(remove(v2.begin(), v2.end(), node1), v2.end());
 
-        // Now call bfs on the two sides of the cut
         int diff1 = bfs(modified_adj, node1, values);
         int diff2 = bfs(modified_adj, node2, values);
 
