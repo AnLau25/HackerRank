@@ -81,7 +81,7 @@ int cutTheTree(vector<int> data, vector<vector<int>> edges) {
         return a.second < b.second;
     });
     
-    return diffs.front().first;
+    return diffs.front().first; // .𝘴𝘦𝘤𝘤𝘰𝘯𝘥 to get minimum diff
 }
 
 int main()
