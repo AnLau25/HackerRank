@@ -214,15 +214,15 @@ vector<string> split(const string &str) {
 }
 
 /* 
-Input format:
-1. 5       list of edges[] of size n = 5
-2. 1 6     edges = [[1, 6],[2, 7], [3, 8], [4,9], [2, 6]]
-3. 2 7
-4. 3 8
-5. 4 9
-6. 2 6
+1. 6 <list of values[] and edges[] of size n = 6>
+2. 100 200 100 500 100 600 <values[]>
+3. 1 2 <edges[] ↓>
+4. 2 3
+5. 2 5
+6. 4 5
+7. 5 6
 
 Output:
-7. 2 4 <components with: minimum nodes>1; biggest number of nodes> 
+8. 400 <smallest diference between subtrees> 
 */
 
