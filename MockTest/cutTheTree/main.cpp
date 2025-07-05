@@ -20,6 +20,46 @@ vector<string> split(const string &);
  *  2. 2D_INTEGER_ARRAY edges
  */
 
+ int totalsum;
+vector<int> subtreeSum;
+
+int dfs(int node, int parent, map<int, vector<int>>& adj, vector<int>& data){
+    int currSum = data[node -1 ];
+    
+    for(int neighbor : adj[node]){
+        if(neighbor != parent){
+            currSum += dfs(neighbor, node, adj, data);
+        }
+    }
+    subtreeSum[node] = currSum;
+    return currSum;
+}
+
+int cutTheTree(vector<int> data, vector<vector<int>> edges) {
+    int n = data.size();
+    
+    map<int, vector<int>> adj;
+    for(vector<int> edge : edges){
+        adj[edge[0]].push_back(edge[1]);
+        adj[edge[1]].push_back(edge[0]);
+    }
+    
+    subtreeSum.resize(n+1);
+    totalsum = dfs(1, -1, adj, data);
+    
+    int minDiff = INT_MAX;
+    
+    for(int i = 2; i<=n; i++){
+       int p1 = subtreeSum[i];
+       int p2 = totalsum - p1;
+       minDiff = min(minDiff, abs(p2-p1));
+    }
+    
+    return minDiff;
+}
+
+/*
+Not time eficient due to the erase and double bsf traversal
 int bfs(map<int, vector<int>> adj, int node, map<int, int> vals) {
     int sum = 0;
     map<int, bool> visited;
@@ -83,6 +123,7 @@ int cutTheTree(vector<int> data, vector<vector<int>> edges) {
     
     return diffs.front().first; // .𝘴𝘦𝘤𝘤𝘰𝘯𝘥 to get minimum diff
 }
+*/
 
 int main()
 {
