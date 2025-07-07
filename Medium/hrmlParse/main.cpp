@@ -73,19 +73,18 @@ int main() {
 
 /* 
 Input format:
- 1. 6 7 3 <rows = 6, columns = 7, sec = 3>
- 2. ....... <grid made of string arrays ↓>         
- 3. ...O...                
- 4. ....O..
- 5. .......
- 6. OO.....
- 7. OO.....
+ 1. 4 3
+ 2. <tag1 value = "HelloWorld">
+ 3. <tag2 name = "Name1">
+ 4. </tag2>
+ 5. </tag1>
+ 6. tag1.tag2~name
+ 7. tag1~name
+ 8. tag1~value
 
 Output:
- 8. OOO.OOO
- 9. OO...OO
-10. OOO...O
-11. ..OO.OO
-12. ...OOOO
-13. ...OOOO
+ 9. Name1
+10. Not Found!
+11. HelloWorld
+
 */
