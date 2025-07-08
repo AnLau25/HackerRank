@@ -67,3 +67,13 @@ int main() {
     return 0;
 }
 
+/*
+Intput:
+ 1. 3 <number of students>
+ 2. 30 40 45 10 10 <space separated 5 grades by student>
+ 3. 40 40 40 10 10
+ 4. 50 20 30 10 10
+
+Output:
+ 5. 1 <number of student where Student grades>Student 0 grades >
+*/
