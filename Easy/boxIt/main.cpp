@@ -150,6 +150,11 @@ int main()
 
 /* 
 Input format:
-1. 6 <length of array>
-2. 5 5 6 7 6 5 <space separated array>
+1. 6 <number of Boxes>
+2. 2 1039 3749 8473 <box dimentions preceded by a query number>
+3. 4
+4. 3 1456 3836 283
+5. 3 729 3749 272
+6. 2 4839 283 273
+
 */
