@@ -67,3 +67,23 @@ Output:
  6. Too short: 2
  7. Invalid
 */
+
+/*
+Try catch example:
+
+try{
+    long long C;
+    Server serve;
+    C = serve.compute(A, B);
+    cout<<C<<endl;
+} catch(invalid_argument& e){
+    cout<<"Exception: "<<e.what()<<endl;
+} catch(bad_alloc& e){
+    cout<<"Not enough memory"<<endl;
+} catch(exception& e){ //catch general c++ exceptions 
+    cout<<"Exception: "<<e.what()<<endl;
+} catch (...){ //catch any other exception
+    cout<<"Other Exception"<<endl;            
+}
+
+*/
