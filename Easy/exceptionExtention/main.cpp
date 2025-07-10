@@ -57,11 +57,13 @@ int main() {
 
 /*
 Intput:
- 1. 3 <number of students>
- 2. 30 40 45 10 10 <space separated 5 grades by student>
- 3. 40 40 40 10 10
- 4. 50 20 30 10 10
+ 1. 3
+ 2. Peter
+ 3. Me
+ 4. Arxwwz
 
 Output:
- 5. 1 <number of student where Student grades>Student 0 grades >
+ 5. Valid
+ 6. Too short: 2
+ 7. Invalid
 */
