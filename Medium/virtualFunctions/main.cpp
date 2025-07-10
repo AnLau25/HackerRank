@@ -16,7 +16,7 @@ class Person{
         Person() = default;
         Person(string _name, int _age) : name(_name), age(_age){}
         
-        virtual void getdata() = 0;
+        virtual void getdata() = 0; //Pure virtual, ie: does absolutely nothing
         virtual void putdata() = 0;
 };
 
@@ -49,13 +49,13 @@ class Student : public Person{
         int cur_Id = 0;
     
     public:
-        static int counter;
+        static int counter; //keeps count
         Student(){
             counter++;
             cur_Id = counter;
         }
     
-        void getdata() override{
+        void getdata() override{//Overrides parent class funct
             cin >> name >> age;
             int mark;
             for (int i = 0; i < 6; i++) {
@@ -104,33 +104,21 @@ int main(){
 
 /*
 Intput:
- 1. 3
- 2. Peter
- 3. Me
- 4. Arxwwz
+ 1. 4
+ 2. 1
+ 3. Walter 56 99
+ 4. 2
+ 5. Jesse 18 50 48 97 76 34 98
+ 6. 2
+ 7. Pinkman 22 10 12 0 18 45 50
+ 8. 1
+ 9. White 58 87
 
 Output:
- 5. Valid
- 6. Too short: 2
- 7. Invalid
+10. White 58 87
+11. Walter 56 99 1
+12. Jesse 18 403 1
+13. Pinkman 22 135 2
+14. White 58 87 2
 */
 
-/*
-Try catch example:
-
-try{
-    long long C;
-    Server serve;
-    C = serve.compute(A, B);
-    cout<<C<<endl;
-} catch(invalid_argument& e){
-    cout<<"Exception: "<<e.what()<<endl;
-} catch(bad_alloc& e){
-    cout<<"Not enough memory"<<endl;
-} catch(exception& e){ //catch general c++ exceptions 
-    cout<<"Exception: "<<e.what()<<endl;
-} catch (...){ //catch any other exception
-    cout<<"Other Exception"<<endl;            
-}
-
-*/
