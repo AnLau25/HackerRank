@@ -114,11 +114,18 @@ int main() {
 }
 
 /* 
-1. 5 3 <no of elements in the array, no of queries>
-2. 1 2 100 <queries where range is {a,b} and k is the value to add>
-3. 2 5 100 <ie, a=2, b=5 & k=100>
-4. 3 4 100
+ 1. 8 4 <number queries = 8; LRUCache capacity = 4>
+ 2. set 4 2
+ 3. set 2 7
+ 4. get 2
+ 6. set 1 8
+ 7. set 5 9
+ 8. set 6 15
+ 9. get 4
+11. get 5
 
 Output:
-5. 200 <maximum number in the array after al the sum operations>
+ 5. 7
+10. -1
+12. 9
 */
