@@ -5,113 +5,112 @@
 #include <sstream>    // for split
 #include <compare>    // for spaceship operator (C++20)
 #include <iomanip> 
+#include <map>
 using namespace std;
 
-string ltrim(const string &);
-string rtrim(const string &);
-vector<string> split(const string &);
+struct Node{
+   Node* next;
+   Node* prev;
+   int value;
+   int key;
+   Node(Node* p, Node* n, int k, int val):prev(p),next(n),key(k),value(val){};
+   Node(int k, int val):prev(NULL),next(NULL),key(k),value(val){};
+};
 
-/*
- * Complete the 'arrayManipulation' function below.
- *
- * The function is expected to return a LONG_INTEGER.
- * The function accepts following parameters:
- *  1. INTEGER n
- *  2. 2D_INTEGER_ARRAY queries
- */
+class Cache{
+   
+   protected: 
+   map<int,Node*> mp; //map the key to the node in the linked list
+   int cp;  //capacity
+   Node* tail; // double linked list tail pointer
+   Node* head; // double linked list head pointer
+   virtual void set(int, int) = 0; //set function
+   virtual int get(int) = 0; //get function
 
-//single prefix sum pass
-long arrayManipulation(int n, vector<vector<int>> queries) {
-    vector<long> result(n+2,0);
+};
+
+class LRUCache : public Cache{
+    private:
+        void moveToHead(Node* node){
+            if(node==head) return;
+            removeNode(node);
+            addNode(node);
+        }
+        
+        void removeNode(Node* node){
+            if (node->prev) node->prev->next = node->next;
+            if (node->next) node->next->prev = node->prev;
+            
+            if (node==head) head = node->next;
+            if (node==tail) tail = node->prev;   
+        }
+        
+        void addNode(Node* node){
+            node->prev = nullptr;
+            node->next = head;
+            if (head) head->prev = node;
+            head=node;
+            if (!tail) tail = node;            
+        }
     
-    for (vector<int> query : queries){
-        result[query[0]]+=query[2];
-        result[query[1]+1]-=query[2]; 
-    }
+    public:
+        LRUCache(int _cp){
+            cp = _cp;
+            head = tail = nullptr;
+        }
+        
+        int get(int key){
+            
+            if(mp.find(key)!=mp.end()){
+                
+                Node* temp = mp[key];
+                moveToHead(temp);
+                
+                return mp[key]->value;    
+            }
+            return -1;
+        }
+        
+        void set(int key, int val){
+            
+            if(mp.find(key)!=mp.end()){
+                Node* temp = mp[key];
+                temp->value=val;
+                moveToHead(temp);
+                
+            } else {
+                Node* temp = new Node(key, val);
+                
+                if(mp.size()==cp){
+                    mp.erase(tail->key);
+                    removeNode(tail);
+                }
+                
+                addNode(temp);
+                mp[key]=temp;
+            }
+        }
     
-    for (int i = 1; i<result.size(); i++){
-        result[i]+=result[i-1];
-    }
-    
-    return *max_element(result.begin(), result.end());
-}
+};
 
-int main()
-{
-    //ofstream fout(getenv("OUTPUT_PATH"));
-
-    string first_multiple_input_temp;
-    getline(cin, first_multiple_input_temp);
-
-    vector<string> first_multiple_input = split(rtrim(first_multiple_input_temp));
-
-    int n = stoi(first_multiple_input[0]);
-
-    int m = stoi(first_multiple_input[1]);
-
-    vector<vector<int>> queries(m);
-
-    for (int i = 0; i < m; i++) {
-        queries[i].resize(3);
-
-        string queries_row_temp_temp;
-        getline(cin, queries_row_temp_temp);
-
-        vector<string> queries_row_temp = split(rtrim(queries_row_temp_temp));
-
-        for (int j = 0; j < 3; j++) {
-            int queries_row_item = stoi(queries_row_temp[j]);
-
-            queries[i][j] = queries_row_item;
+int main() {
+    int n, capacity,i;
+    cin >> n >> capacity;
+    LRUCache l(capacity);
+    for(i=0;i<n;i++) {
+        string command;
+        cin >> command;
+        if(command == "get") {
+            int key;
+            cin >> key;
+            cout << l.get(key) << endl;
+        } else if(command == "set") {
+            int key, value;
+            cin >> key >> value;
+            l.set(key,value);
         }
     }
-
-    long result = arrayManipulation(n, queries);
-
-    cout<<result<<"\n";
-
-    //fout.close();
-
     return 0;
-}
-
-string ltrim(const string &str) {
-    string s(str);
-
-    s.erase(
-        s.begin(),
-        find_if(s.begin(), s.end(), [](unsigned char ch) { return !isspace(ch); })
-    );
-
-    return s;
-}
-
-string rtrim(const string &str) {
-    string s(str);
-
-    s.erase(
-        find_if(s.rbegin(), s.rend(), [](unsigned char ch) { return !isspace(ch); }).base(),
-        s.end()
-    );
-
-    return s;
-}
-
-vector<string> split(const string &str) {
-    vector<string> tokens;
-
-    string::size_type start = 0;
-    string::size_type end = 0;
-
-    while ((end = str.find(" ", start)) != string::npos) {
-        tokens.push_back(str.substr(start, end - start));
-
-        start = end + 1;
-    }
-
-    tokens.push_back(str.substr(start));
-
-    return tokens;
 }
 
 /* 
