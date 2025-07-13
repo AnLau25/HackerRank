@@ -44,17 +44,17 @@ int main() {
 
 /*
 Test:
- 1. 8 <elements in vector>
- 2. 1 1 2 2 6 9 9 15 <space separated array>
- 3. 4 <Numeber of queries>
- 4. 1 <Queries ↓>
- 5. 4
- 6. 9
- 7. 15
+ 1. 7 <Numeber of queries>
+ 2. 1 Jesse 20 <Queries ↓>
+ 3. 1 Jess 12
+ 4. 1 Jess 18
+ 5. 3 Jess
+ 6. 3 Jesse
+ 7. 2 Jess
+ 8. 3 Jess
 
 Output:
- 9. Yes 1
-10. No 5
-11. Yes 6
-12. Yes 8
+ 9. 30
+10. 20
+11. 0
 */
