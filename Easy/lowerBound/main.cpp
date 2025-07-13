@@ -35,9 +35,17 @@ int main() {
 
 /*
 Test:
-1. 5 <number of elements in vector>
-2. 1 6 10 8 4 <elements to input in vector>
+ 1. 8 <elements in vector>
+ 2. 1 1 2 2 6 9 9 15 <space separated array>
+ 3. 4 <Numeber of queries>
+ 4. 1 <Queries ↓>
+ 5. 4
+ 6. 9
+ 7. 15
 
 Output:
-3. 1 4 6 8 10
+ 9. Yes 1
+10. No 5
+11. Yes 6
+12. Yes 8
 */
