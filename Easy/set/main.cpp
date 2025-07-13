@@ -44,17 +44,18 @@ int main() {
 
 /*
 Test:
- 1. 8 <elements in vector>
- 2. 1 1 2 2 6 9 9 15 <space separated array>
- 3. 4 <Numeber of queries>
- 4. 1 <Queries ↓>
- 5. 4
- 6. 9
- 7. 15
+ 1. 8 <Numeber of queries>
+ 2. 1 9 <Queries ↓, 1: insert, 2: erase, 3:find>
+ 3. 1 6
+ 4. 1 10
+ 5. 1 4
+ 6. 3 6
+ 7. 3 14
+ 8. 2 6
+ 9. 3 6 
 
 Output:
- 9. Yes 1
-10. No 5
-11. Yes 6
-12. Yes 8
+10. Yes <Find, results ↓>
+11. No
+12. Yes
 */
