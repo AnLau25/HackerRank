@@ -22,8 +22,8 @@ int main() {
 
 /*
 Test:
-1. 5
-2. 1 6 10 8 4
+1. 5 <number of elements in vector>
+2. 1 6 10 8 4 <elements to input in vector>
 
 Output:
 3. 1 4 6 8 10
