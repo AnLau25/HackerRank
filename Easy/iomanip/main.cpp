@@ -37,17 +37,11 @@ int main() {
 
 /*
 Test:
- 1. 8 <elements in vector>
- 2. 1 1 2 2 6 9 9 15 <space separated array>
- 3. 4 <Numeber of queries>
- 4. 1 <Queries ↓>
- 5. 4
- 6. 9
- 7. 15
+ 1. 1 <number of tests> 
+ 2. 100.345 2006.008 2331.41592653498 <values of a, b and c>
 
 Output:
- 9. Yes 1
-10. No 5
-11. Yes 6
-12. Yes 8
+ 3. 0x64        
+ 4. _______+2006.01  
+ 5. 331415927E+03
 */
