@@ -42,3 +42,20 @@ int main(){
   	}
   	return 0;
 }
+
+
+/*
+Input:
+ 1. 2 <number of test cases>
+ 2. 5 2 <n integers in array, k intergers in window>
+ 3. 3 4 6 3 4 <array>
+ 4. 7 4
+ 5. 3 4 5 8 1 4 10
+
+Output:
+ 6. 4 6 6 4 <local maxima per window of size k>
+ 7. 8 8 8 10
+
+Note:
+ The actual goal is more to 𝘬𝘦𝘦𝘱 𝘵𝘩𝘦 𝘮𝘢𝘹 𝘢𝘵 𝘵𝘩𝘦 𝘧𝘳𝘰𝘯𝘵 rather than finding the max
+*/
