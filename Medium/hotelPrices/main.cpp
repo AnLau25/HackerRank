@@ -55,3 +55,13 @@ int main() {
 
     return 0;
 }
+
+/*
+Input:
+ 1. 2 <Number of rented rooms>
+ 2. standard 3 1 <Room details ↓>
+ 3. apartment 1 1
+
+Output:
+ 4. 500 <profits>
+*/
