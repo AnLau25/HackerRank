@@ -44,8 +44,8 @@ int main() {
 
 /* 
 Input format:
-1. aabbcd <string to test>
+1. john doe registered <person object + string>
 
 Output:
-2. NO <not a valid Sherlock Holmes>
+2. first_name=john,last_name=doe registered
 */
