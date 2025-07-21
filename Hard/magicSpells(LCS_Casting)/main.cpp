@@ -139,18 +139,13 @@ int main() {
 }
 
 /* 
- 1. 8 4 <number queries = 8; LRUCache capacity = 4>
- 2. set 4 2
- 3. set 2 7
- 4. get 2
- 6. set 1 8
- 7. set 5 9
- 8. set 6 15
- 9. get 4
-11. get 5
+ 1. 3 <number of queries>
+ 2. fire 5
+ 3. AquaVitae 999 AruTaVae
+ 4. frost 7
 
 Output:
- 5. 7
-10. -1
-12. 9
+ 5. Fireball: 5
+ 6. 6
+ 7. Frostbite: 7
 */
