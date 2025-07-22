@@ -56,9 +56,13 @@ int main () {
 
 /* 
 Input format:
-1. 7 <length of array>
-2. 1 2 1 2 1 3 2 <space separated array>
+ 1. 3 <number of queries>
+ 2. string John Doe <type, element 1, element 2 ↓>
+ 3. int 1 2
+ 4. float 4.0 1.5
 
 Output:
-3. 2 <pairs of socks, because 3 socks are without pair>
+ 5. JohnDoe
+ 6. 3
+ 7. 5.5
 */
