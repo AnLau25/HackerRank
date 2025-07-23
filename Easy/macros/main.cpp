@@ -40,6 +40,9 @@ int main(){
 
 /* 
 Input format:
-1. 6 <length of array>
-2. 5 5 6 7 6 5 <space separated array>
-*/
+ 1. 5 <length of array>
+ 2. 32 332 -23 -154 65 <space separated array>
+
+Output:
+ 3. Result = 486
+ */
