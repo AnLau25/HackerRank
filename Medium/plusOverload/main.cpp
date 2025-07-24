@@ -70,8 +70,13 @@ int main () {
 
 /* 
 Input format:
-1. john doe registered <person object + string>
+ 1. 1 <number of test cases>
+ 2. 2 2 <dimensions of the matrix>
+ 3. 2 2 2 2 <matrix 1>
+ 4. 1 2 3 4 <matrix 2>
 
 Output:
-2. first_name=john,last_name=doe registered
+ 5. 3 4 <resulting matrix ↓> 
+    5 6
+
 */
