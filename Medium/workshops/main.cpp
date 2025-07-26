@@ -80,14 +80,15 @@ int main(int argc, char *argv[]) {
 
 /* 
 Input format:
-1. 4 <number of commands>
-2. 1 2 <1 = enqueue number>
-3. 2 <2 = deuque from head>
-4. 1 5
-5. 3 <3 = print head>
+ 1. 6 <number of workshops>
+ 2. 1 3 0 5 5 8 <array of workshop star time>
+ 3. 1 1 6 2 4 1 <array of workshop durations>
 
 Output:
-𝘛𝘩𝘦 𝘴𝘶𝘥𝘥𝘦𝘯 𝘳𝘦𝘢𝘭𝘪𝘻𝘢𝘵𝘪𝘰𝘯 𝘵𝘩𝘢𝘵 𝘵𝘩𝘦 𝘦𝘯𝘲𝘶𝘦𝘶𝘦 𝘪𝘴 𝘢𝘭𝘭 𝘸𝘳𝘰𝘯𝘨 𝘢𝘯𝘥 𝘵𝘩𝘢𝘵 𝘵𝘩𝘪𝘴 𝘱𝘢𝘴𝘴𝘦𝘥 𝘵𝘩𝘦 𝘵𝘦𝘴𝘵𝘴 𝘣𝘺 𝘤𝘩𝘦𝘦𝘳 𝘮𝘪𝘳𝘢𝘤𝘭𝘦. Ɛ( · — ·)3
-5 <only print shows smt in terminal>
+ 4. 4 <workshops that don't interfere with eachother>
 
+Note:
+ - Struct=> Public by default
+ - Class=> Private by default
+ - Otherwise Struct == Class 
 */
