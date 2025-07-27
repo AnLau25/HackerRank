@@ -55,9 +55,11 @@ int main()
 
 /* 
 Input format:
-1. 1 <number of strings to test>
-2. [{(5 5 6 7 6 5)}] <string to test>
+ 1. 2 <number of queries>
+ 2. 1 0 <numbers to get>
+ 3. 3 3
 
 Return:
-YES <printed to terminal, NO if is not balanced, ie {[)]}>
+ 4. green apple
+ 5. unknown unknown
 */
