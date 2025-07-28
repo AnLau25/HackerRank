@@ -49,18 +49,17 @@ int main()
 }
 
 /* 
- 1. 8 4 <number queries = 8; LRUCache capacity = 4>
- 2. set 4 2
- 3. set 2 7
- 4. get 2
- 6. set 1 8
- 7. set 5 9
- 8. set 6 15
- 9. get 4
-11. get 5
+Input format: 
+ 1. 2 <number of test cases>
+ 2. 65 1 <x=65, 65-64=1>
+ 3. 10 0 
+
 
 Output:
- 5. 7
-10. -1
-12. 9
+ 4. 0100000000000000000000000000000000000000000000000000000000000000
+ 5. 0000000000100000000000000000000000000000000000000000000000000000
+
+Notes:
+ - you can, straight up, multiply by bools
+ - it'll give you the binary 
 */
