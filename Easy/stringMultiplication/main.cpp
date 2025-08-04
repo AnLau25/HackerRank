@@ -18,6 +18,7 @@ vector<string> split(const string &);
  * The function accepts INTEGER n as parameter.
  */
 
+/*Operator overloading is not necessary, but it's fun Ɛ( · u ·)3*/
 string operator*(const std::string& str, int count){
     std::string result = "";
     for (int i = 0; i < count; ++i) {
@@ -90,8 +91,11 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. aabbcd <string to test>
+ 1. 4 <number of steps>
 
 Output:
-2. NO <not a valid Sherlock Holmes>
+ 2.    #
+ 3.   ##
+ 4.  ###
+ 5. ####
 */
