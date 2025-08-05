@@ -5,6 +5,7 @@
 #include <sstream>    // for split
 #include <compare>    // for spaceship operator (C++20)
 #include <iomanip> 
+#include <numeric>
 using namespace std;
 
 string ltrim(const string &);
@@ -55,7 +56,7 @@ void miniMaxSum(vector<int> arr) {
 }
 */
 
-// Improved
+/* Improved
 void miniMaxSum(vector<int> arr) {
     std::sort(arr.begin(),arr.end());
     long len = arr.size();
@@ -73,6 +74,15 @@ void miniMaxSum(vector<int> arr) {
      
     std::cout<<min_sum<<" "<<max_sum<<std::endl;
     
+}*/
+
+void miniMaxSum(vector<int> arr) {
+    sort(arr.begin(),arr.end());
+    
+    long long max_sum = accumulate(arr.begin()+1,arr.end(),0LL);
+    long long min_sum = accumulate(arr.begin(),arr.begin()+arr.size()-1,0LL);
+    
+    cout<<min_sum<<" "<<max_sum<<endl;   
 }
 
 int main()
