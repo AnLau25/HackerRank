@@ -76,6 +76,7 @@ void miniMaxSum(vector<int> arr) {
     
 }*/
 
+//Re: Improved (everytime I do this I come up with a better version xd)
 void miniMaxSum(vector<int> arr) {
     sort(arr.begin(),arr.end());
     
