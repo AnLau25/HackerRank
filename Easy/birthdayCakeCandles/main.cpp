@@ -103,10 +103,9 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. 5 <length of array>
-2. 1 2 1 3 2 <space separated array>
-3. 3 2 <day=3, month=2>
+ 1. 4 <length of candles array>
+ 2. 3 2 1 3 <space separated candles array>
 
 Output:
-4.2 <number of contiguous partitions>
+ 4. 2 <candles that will be blown>
 */
