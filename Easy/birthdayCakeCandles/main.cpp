@@ -33,7 +33,7 @@ int birthdayCakeCandles(vector<int> candles) {
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
     string candles_count_temp;
     getline(cin, candles_count_temp);
@@ -55,9 +55,9 @@ int main()
 
     int result = birthdayCakeCandles(candles);
 
-    fout << result << "\n";
+    cout << result << "\n";
 
-    fout.close();
+    //fout.close();
 
     return 0;
 }
