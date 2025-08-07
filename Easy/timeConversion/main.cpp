@@ -13,7 +13,7 @@ using namespace std;
  * The function accepts STRING s as parameter.
  */
 
- string timeConversion(string s) {
+string timeConversion(string s) {
     std::string ans;    
     
     std::istringstream iss(s);
