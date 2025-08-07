@@ -66,13 +66,8 @@ int main()
 
 /* 
 Input format:
-1. 4 <number or strings>
-2. ab <space separated array>
-3. ac
-4. acdc
-5. abcd
+ 1. ababa <string to test>
 
 Output:
-BAD SET
-acdc <cause it comes before abcd>
+ 2. 5
 */
