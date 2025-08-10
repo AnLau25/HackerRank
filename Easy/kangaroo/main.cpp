@@ -40,7 +40,7 @@ string kangaroo(int x1, int v1, int x2, int v2) {
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
     string first_multiple_input_temp;
     getline(cin, first_multiple_input_temp);
@@ -57,9 +57,9 @@ int main()
 
     string result = kangaroo(x1, v1, x2, v2);
 
-    fout << result << "\n";
+    cout << result << "\n";
 
-    fout.close();
+    //fout.close();
 
     return 0;
 }
