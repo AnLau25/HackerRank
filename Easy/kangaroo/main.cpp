@@ -105,6 +105,8 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. 6 <length of array>
-2. -2 -3 -5 0 0 1 <space separated array>
+ 1. 0 3 4 2 <x1 v1 x2 v2>
+
+Output:
+ 2. YES <if they meet, "NO" otherwise>
 */
