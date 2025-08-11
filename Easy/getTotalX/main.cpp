@@ -146,6 +146,10 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. 6 <length of array>
-2. 5 5 6 7 6 5 <space separated array>
+ 1. 2 3 <length of each rray>
+ 2. 2 4 <space separated array>
+ 3. 16 32 96 <space separated array>
+
+Output:
+ 4. 3
 */
