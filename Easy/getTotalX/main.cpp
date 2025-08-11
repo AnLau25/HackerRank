@@ -59,7 +59,7 @@ int getTotalX(vector<int> a, vector<int> b) {
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
     string first_multiple_input_temp;
     getline(cin, first_multiple_input_temp);
@@ -98,11 +98,50 @@ int main()
 
     int total = getTotalX(arr, brr);
 
-    fout << total << "\n";
+    cout << total << "\n";
 
-    fout.close();
+    //fout.close();
 
     return 0;
+}
+
+string ltrim(const string &str) {
+    string s(str);
+
+    s.erase(
+        s.begin(),
+        find_if(s.begin(), s.end(), [](unsigned char ch) { return !isspace(ch); })
+    );
+
+    return s;
+}
+
+string rtrim(const string &str) {
+    string s(str);
+
+    s.erase(
+        find_if(s.rbegin(), s.rend(), [](unsigned char ch) { return !isspace(ch); }).base(),
+        s.end()
+    );
+
+    return s;
+}
+
+vector<string> split(const string &str) {
+    vector<string> tokens;
+
+    string::size_type start = 0;
+    string::size_type end = 0;
+
+    while ((end = str.find(" ", start)) != string::npos) {
+        tokens.push_back(str.substr(start, end - start));
+
+        start = end + 1;
+    }
+
+    tokens.push_back(str.substr(start));
+
+    return tokens;
 }
 
 /* 
