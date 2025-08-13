@@ -97,11 +97,8 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. 1 <number of test cases>
-2. 4 <saved up money>
-3. 5 <number of available flavours>
-4. 1 4 5 3 2 <spase separated array of the icecream prices>
+1. 1800 <year (julian)>
 
 Output:
-5. 1 4 <1-based indexes of the 2 icecream flavours they should buy> 
+5. 12.09.1800 <julian leap 256th day> 
 */
