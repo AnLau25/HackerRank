@@ -39,7 +39,7 @@ string dayOfProgrammer(int year) {
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
     string year_temp;
     getline(cin, year_temp);
@@ -48,9 +48,9 @@ int main()
 
     string result = dayOfProgrammer(year);
 
-    fout << result << "\n";
+    cout << result << "\n";
 
-    fout.close();
+    //fout.close();
 
     return 0;
 }
