@@ -50,7 +50,7 @@ int countingValleys(int steps, string path) {
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
     string steps_temp;
     getline(cin, steps_temp);
@@ -62,9 +62,9 @@ int main()
 
     int result = countingValleys(steps, path);
 
-    fout << result << "\n";
+    cout << result << "\n";
 
-    fout.close();
+    //fout.close();
 
     return 0;
 }
