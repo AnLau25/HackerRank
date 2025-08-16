@@ -122,15 +122,10 @@ vector<string> split_string(string input_string) {
 
 /* 
 Input format:
-1. 1 <number of test cases>
-2. 3 <numbers of elements in list 1>
-3. 1 <enter-separated elements of list 1>
-4. 2
-5. 3
-6. 2 <numbers of elements in list 2>
-7. 1 <enter-separated elements of list 2>
-8. 2
+ 1. 10 2 3 <budget, number of keyboards, number of drives>
+ 2. 3 1 <list of keyboard prices>
+ 3. 5 2 8 <list of USB prices>
 
 Output:
-1 1 2 2 3 4 5
+ 4. 9 <most expensive keyboar+usb price that's in budget>
 */
