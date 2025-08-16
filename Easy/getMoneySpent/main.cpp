@@ -1,5 +1,10 @@
 #include <iostream>
-#include <limits>
+#include <vector>
+#include <string>
+#include <algorithm>  // for ltrim, rtrim
+#include <sstream>    // for split
+#include <compare>    // for spaceship operator (C++20)
+#include <iomanip>
 using namespace std;
 
 using namespace std;
@@ -34,7 +39,7 @@ int getMoneySpent(vector<int> keyboards, vector<int> drives, int b) {
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
     string bnm_temp;
     getline(cin, bnm_temp);
@@ -79,9 +84,9 @@ int main()
 
     int moneySpent = getMoneySpent(keyboards, drives, b);
 
-    fout << moneySpent << "\n";
+    cout << moneySpent << "\n";
 
-    fout.close();
+    //fout.close();
 
     return 0;
 }
