@@ -111,23 +111,23 @@ vector<string> split(const string &str) {
 
     return tokens;
 }
+/*
+Notas:
+ - The Lo Shu magic square is a 3x3 grid of numbers, where each row, column, and diagonal adds up to the same sum, which is 15. 
+ - It's also known as the Lo Shu square and is one of the earliest examples of a magic square, originating from ancient China.
+ - La solucion se basa en comparar con el cuadrado de Lo Shu, en todas su formas posibles (como cancelando en OX)
+ - Para una version mas grande, no seria recomendable escribir las reflexiones y roaciones del cuadrado, habria que generarlas
+ - Pero como es un 3x3 está bien
+ - Kinda greedy algorithm 
+*/
 
 
 /* 
 Input format:
- 1. 6 7 3 <rows = 6, columns = 7, sec = 3>
- 2. ....... <grid made of string arrays ↓>         
- 3. ...O...                
- 4. ....O..
- 5. .......
- 6. OO.....
- 7. OO.....
+ 1. 4 9 2 <rows of the 3x3 matrix ↓>
+ 2. 3 5 7
+ 3. 8 1 5
 
 Output:
- 8. OOO.OOO
- 9. OO...OO
-10. OOO...O
-11. ..OO.OO
-12. ...OOOO
-13. ...OOOO
+ 4. 1 <total cost of Lo Shu transform>
 */
