@@ -12,112 +12,61 @@ string rtrim(const string &);
 vector<string> split(const string &);
 
 /*
- * Complete the 'bomberMan' function below.
+ * Complete the 'formingMagicSquare' function below.
  *
- * The function is expected to return a STRING_ARRAY.
- * The function accepts following parameters:
- *  1. INTEGER n
- *  2. STRING_ARRAY grid
+ * The function is expected to return an INTEGER.
+ * The function accepts 2D_INTEGER_ARRAY s as parameter.
  */
 
-/*
- * Complete the 'bomberMan' function below.
- *
- * The function is expected to return a STRING_ARRAY.
- * The function accepts following parameters:
- *  1. INTEGER n
- *  2. STRING_ARRAY grid
- */
+int formingMagicSquare(vector<vector<int>> s) {
+    vector<vector<vector<int>>> magicSquares = {
+        {{8,1,6},{3,5,7},{4,9,2}},
+        {{6,1,8},{7,5,3},{2,9,4}},
+        {{4,9,2},{3,5,7},{8,1,6}},
+        {{2,9,4},{7,5,3},{6,1,8}},
+        {{8,3,4},{1,5,9},{6,7,2}},
+        {{4,3,8},{9,5,1},{2,7,6}},
+        {{6,7,2},{1,5,9},{8,3,4}},
+        {{2,7,6},{9,5,1},{4,3,8}}
+    };
 
-vector<string> fillGrid(size_t rows, size_t columns){
-    std::string fill;
-    fill.insert(0, columns, 'O');
-    
-    return {rows, fill}; // array where all rows(elements) are str fill
-
-}
-
-vector<string> detonate(vector<string> const& grid){
-    size_t rows = grid.size();
-    size_t cols = grid[0].size();
-
-    auto new_grid =  fillGrid(rows, cols);
-
-    for (int i = 0; i < rows; ++i){
-        for (int j = 0; j < cols; ++j){
-            if (grid[i][j] == 'O') {
-                if (i + 1 < rows) new_grid[i + 1][j] = '.';
-                if (i - 1 >= 0)   new_grid[i - 1][j] = '.';
-                if (j + 1 < cols) new_grid[i][j + 1] = '.';
-                if (j - 1 >= 0)   new_grid[i][j - 1] = '.';
-                new_grid[i][j] = '.';
+    int minCost = INT_MAX;
+    for (auto &magic : magicSquares) {
+        int cost = 0;
+        for (int i=0; i<3; i++) {
+            for (int j=0; j<3; j++) {
+                cost += abs(s[i][j] - magic[i][j]);
             }
         }
+        minCost = min(minCost, cost);
     }
-
-    return new_grid;
-}
-
-vector<string> bomberMan(int n, vector<string> grid) {
-   
-    size_t rows = grid.size();
-    size_t cols = grid[0].size();
-    
-    if(n <= 1){
-        return grid;
-    }
-    
-    if(n%2==0){
-        return fillGrid(rows, cols);
-    }
-    
-    if(n%4==3){
-        return detonate(grid);
-     }
-     
-    if(n%4==1){
-        auto result = detonate(grid);
-        return detonate(result);
-    }
-    
-    return grid;
+    return minCost;
 }
 
 int main()
 {
     //ofstream fout(getenv("OUTPUT_PATH"));
 
-    string first_multiple_input_temp;
-    getline(cin, first_multiple_input_temp);
+    vector<vector<int>> s(3);
 
-    vector<string> first_multiple_input = split(rtrim(first_multiple_input_temp));
+    for (int i = 0; i < 3; i++) {
+        s[i].resize(3);
 
-    int r = stoi(first_multiple_input[0]);
+        string s_row_temp_temp;
+        getline(cin, s_row_temp_temp);
 
-    int c = stoi(first_multiple_input[1]);
+        vector<string> s_row_temp = split(rtrim(s_row_temp_temp));
 
-    int n = stoi(first_multiple_input[2]);
+        for (int j = 0; j < 3; j++) {
+            int s_row_item = stoi(s_row_temp[j]);
 
-    vector<string> grid(r);
-
-    for (int i = 0; i < r; i++) {
-        string grid_item;
-        getline(cin, grid_item);
-
-        grid[i] = grid_item;
-    }
-
-    vector<string> result = bomberMan(n, grid);
-
-    for (size_t i = 0; i < result.size(); i++) {
-        std::cout<< result[i];
-
-        if (i != result.size() - 1) {
-            std::cout<<"\n";
+            s[i][j] = s_row_item;
         }
     }
 
-    std::cout<<"\n";
+    int result = formingMagicSquare(s);
+
+    cout << result << "\n";
 
     //fout.close();
 
