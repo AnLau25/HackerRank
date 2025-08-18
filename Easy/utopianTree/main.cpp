@@ -5,6 +5,7 @@
 #include <sstream>    // for split
 #include <compare>    // for spaceship operator (C++20)
 #include <iomanip> 
+#include <cmath>
 using namespace std;
 
 string ltrim(const string &);
@@ -28,7 +29,7 @@ int utopianTree(int n) {
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
     string t_temp;
     getline(cin, t_temp);
@@ -43,10 +44,10 @@ int main()
 
         int result = utopianTree(n);
 
-        fout << result << "\n";
+        cout << result << "\n";
     }
 
-    fout.close();
+    //fout.close();
 
     return 0;
 }
