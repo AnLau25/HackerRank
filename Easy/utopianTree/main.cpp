@@ -94,11 +94,13 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. 1 <no of test cases>
-2. 3 10 <q=3,length of arrays; k=10>
-3. 2 3 1 <space separated array>
-4. 9 8 7 <space separated array>
+ 1. 3 <no of test cases>
+ 2. 0 <no of cycles ↓>
+ 3. 1
+ 4. 4 
 
 Output:
-5. YES <cause there is an arrangement st. ∀ i ∈ ArrA, ArrB, ArrA[i] + ArrB[i] >= k>
+ 5. 1 <height after growth cycles>
+ 6. 2
+ 7. 7
 */
