@@ -110,9 +110,8 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
- 1. 4 <length of candles array>
- 2. 3 2 1 3 <space separated candles array>
+ 1. 20 23 6 <range start, range end, mod>
 
 Output:
- 4. 2 <candles that will be blown>
+ 2. 2 <no of beutiful days>
 */
