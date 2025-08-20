@@ -105,5 +105,11 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. 1 2 3 4 5 <space separated array>
+ 1. 2 <number of tests>
+ 2. 5 2 1 <no of prisoners, no of candies, starting position >
+ 3. 5 2 2 
+
+Output:
+ 4. 2 <position of final candy>
+ 5. 3
 */
