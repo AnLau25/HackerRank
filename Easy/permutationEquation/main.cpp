@@ -117,5 +117,11 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. 1 2 3 4 5 <space separated array>
+ 1. 3 <array size>
+ 2. 2 3 1 <space separated base 1 array>
+
+Output:
+ 3. 2 <result of p(p(y))>
+ 4. 3
+ 5. 1
 */
