@@ -102,5 +102,9 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. 1 2 3 4 5 <space separated array>
+ 1. 1 2 3 4 5 <cloud array size, value of k>
+ 2. 0 0 1 0 0 1 1 0 <space separated array>
+
+Output:
+ 3. 92 <energie after return to start>
 */
