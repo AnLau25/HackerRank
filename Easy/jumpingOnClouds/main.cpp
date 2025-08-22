@@ -11,6 +11,7 @@ using namespace std;
 string ltrim(const string &);
 string rtrim(const string &);
 vector<string> split(const string &);
+
 // Complete the jumpingOnClouds function below.
 int jumpingOnClouds(vector<int> c, int k) {
     int e = 100;
@@ -38,7 +39,7 @@ int jumpingOnClouds(vector<int> c, int k) {
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
     string nk_temp;
     getline(cin, nk_temp);
@@ -64,9 +65,9 @@ int main()
 
     int result = jumpingOnClouds(c, k);
 
-    fout << result << "\n";
+    cout << result << "\n";
 
-    fout.close();
+    //fout.close();
 
     return 0;
 }
@@ -82,21 +83,33 @@ string rtrim(const string &str) {
     return s;
 }
 
-vector<string> split(const string &str) {
-    vector<string> tokens;
+vector<string> split_string(string input_string) {
+    string::iterator new_end = unique(input_string.begin(), input_string.end(), [] (const char &x, const char &y) {
+        return x == y and x == ' ';
+    });
 
-    string::size_type start = 0;
-    string::size_type end = 0;
+    input_string.erase(new_end, input_string.end());
 
-    while ((end = str.find(" ", start)) != string::npos) {
-        tokens.push_back(str.substr(start, end - start));
-
-        start = end + 1;
+    while (input_string[input_string.length() - 1] == ' ') {
+        input_string.pop_back();
     }
 
-    tokens.push_back(str.substr(start));
+    vector<string> splits;
+    char delimiter = ' ';
 
-    return tokens;
+    size_t i = 0;
+    size_t pos = input_string.find(delimiter);
+
+    while (pos != string::npos) {
+        splits.push_back(input_string.substr(i, pos - i));
+
+        i = pos + 1;
+        pos = input_string.find(delimiter, i);
+    }
+
+    splits.push_back(input_string.substr(i, min(pos, input_string.length()) - i + 1));
+
+    return splits;
 }
 
 /* 
