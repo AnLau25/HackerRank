@@ -45,7 +45,7 @@ string appendAndDelete(string s, string t, int k) {
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
     string s;
     getline(cin, s);
@@ -60,9 +60,9 @@ int main()
 
     string result = appendAndDelete(s, t, k);
 
-    fout << result << "\n";
+    cout << result << "\n";
 
-    fout.close();
+    //fout.close();
 
     return 0;
 }
