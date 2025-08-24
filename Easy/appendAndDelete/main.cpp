@@ -108,8 +108,14 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
- 1. 20 23 6 <range start, range end, mod>
+ 1. hackerhappy <string s>
+ 2. hackerrank <string t>
+ 3. 9 <k number of moves>
 
 Output:
- 2. 2 <no of beutiful days>
+ 2. Yes <you can s->t in k moves>
+
+Note:
+ - It must be in 𝘦𝘹𝘢𝘤𝘵𝘭𝘺 k moves
+ - If you use more or less, it whould fail 
 */
