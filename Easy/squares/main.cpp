@@ -99,9 +99,9 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. 7 <length of array>
-2. 1 2 1 2 1 3 2 <space separated array>
+ 1. 1 <number of test cases>
+ 2. 3 9 <range [a,b] to get squares>
 
 Output:
-3. 2 <pairs of socks, because 3 socks are without pair>
+ 3. 2 <no of pairs in range [a,b]>
 */
