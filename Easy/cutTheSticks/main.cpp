@@ -122,8 +122,12 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. 1800 <year (julian)>
+ 1. 6               <arr[] size n = 6>
+ 2. 5 4 4 2 2 8     <arr = [5, 4, 4, 2, 2, 8]>
 
 Output:
-5. 12.09.1800 <julian leap 256th day> 
+ 4. 6 <Length of arr[] after each cut ↓>
+ 5. 4
+ 6. 2
+ 7. 1
 */
