@@ -118,14 +118,9 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. 4 <length of array>
-2. 2 <k=2, number of integers to concider for unfairnes>
-3. 7 <numbers of the array ↓>
-4. 1
-5. 2
-6. 4
+ 1. 4 3      <s[] size n = 4, k = 3>
+ 2. 1 7 2 4  <s = [1, 7, 2, 4]>
 
 Output:
-7. 1 <minimum unfairness in a sub-array of size k>
-     <[2,1]; 2-1=1 in this case>
+7. 3 <length of the longest subset of s[], where no sum of two numbers (x+y)%k=0>
 */
