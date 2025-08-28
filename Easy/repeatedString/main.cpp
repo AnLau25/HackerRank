@@ -107,6 +107,9 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. 6 <length of array>
-2. -2 -3 -5 0 0 1 <space separated array>
+ 1. aba <base string>
+ 2. 10  <n=10 number of char to concider in the infinite string>
+
+Output:
+ 3. 7 <numer of a in n char considered>
 */
