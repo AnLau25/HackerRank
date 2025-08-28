@@ -47,7 +47,7 @@ long repeatedString(string s, long n) {
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
     string s;
     getline(cin, s);
@@ -59,9 +59,9 @@ int main()
 
     long result = repeatedString(s, n);
 
-    fout << result << "\n";
+    cout << result << "\n";
 
-    fout.close();
+    //fout.close();
 
     return 0;
 }
