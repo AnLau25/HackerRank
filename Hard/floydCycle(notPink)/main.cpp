@@ -63,7 +63,7 @@ int main() {
     unsigned int n, s, p, q;
     cin>>n>>s>>p>>q;   
   
-    cout << uniqueCount(n, s, p, q) << endl; 
+    cout << uniqueCount(n, s, p, q) << endl; //Ɛ( · — ·)3
     
     return 0;
 }
@@ -75,4 +75,11 @@ int main() {
  - 𝗧𝗵𝗲 𝘀𝗲𝗾𝘂𝗲𝗻𝗰𝗲 𝗶𝘀 𝗱𝗲𝘁𝗲𝗿𝗺𝗶𝗻𝗶𝘀𝘁𝗶𝗰, so eventualy it'll repeat pegeonhole principle (Calc prof is gonna be thriled I used that).
  - Once a value repeats, the sequence becomes preiodic.
  - 𝗟𝗶𝗲𝗻𝗲𝗮𝗿 𝗰𝗼𝗻𝗴𝘂𝗿𝗲𝗻𝘁𝗶𝗮𝗹 𝗴𝗲𝗻𝗲𝗿𝗮𝘁𝗼𝗿 (𝗟𝗖𝗚), 𝘀𝗼 -> unique elements = pre-cycle length + cycle length (but clipped to 𝑁)
+ - We use Floyd algorithm for cycle detection
+
+Input format:
+ 1. 100000000 1232077670 126810854 1536183938 <N, S, P, Q>
+
+Output:
+ 2. 26 <unique numbers in sequence>
 */
