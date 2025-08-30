@@ -6,13 +6,15 @@
 #include <set>
 using namespace std;
 
-pair<long long, long long> floydCycle(long long x0, long long P, long long Q, long long N) {
-    const long long MASK = (1LL << 31) - 1;
-    auto f = [&](long long x) { return (x * P + Q) & MASK; };
+pair<long long, long long> floydCycle(long long N, long long x0, long long P, long long Q) {
+    const long long MASK = (1LL << 31) - 1; //mond = 2^31
+    auto f = [&](long long x) { return (x * P + Q) & MASK; }; //Reucrrence funtion, f(x) if you will
 
-    long long tortoise = f(x0);
-    long long hare = f(f(x0));
+    long long tortoise = f(x0); //So, tortoise moves 1 step at a time
+    long long hare = f(f(x0)); //Hare moves 2 at a time (caus it's faster uk)
 
+    //Tortoise-hare technique
+    //We either find a cycle or we die trying! (it stops if >N -> no cycle)
     long long steps = 1;
     while (tortoise != hare && steps <= N) {
         tortoise = f(tortoise);
@@ -23,7 +25,9 @@ pair<long long, long long> floydCycle(long long x0, long long P, long long Q, lo
         return {N, 0}; // no cycle within N steps
     }
 
-    // Find cycle length (lam)
+    //𝗜𝗙 there is a cycle (rejoice) ↓
+
+    //Step 1: Find cycle length (lambda || next point where tortoise and hare meet || number of unique numbers in the sequence)
     long long lam = 1;
     hare = f(tortoise);
     while (tortoise != hare) {
@@ -31,7 +35,7 @@ pair<long long, long long> floydCycle(long long x0, long long P, long long Q, lo
         lam++;
     }
 
-    // Find pre-cycle length (mu)
+    //Step 2: Find pre-cycle length (mu || length of path until meeting || number of unique numbers before cycle start)
     long long mu = 0;
     tortoise = x0; hare = x0;
     for (long long i = 0; i < lam; i++) hare = f(hare);
@@ -44,12 +48,13 @@ pair<long long, long long> floydCycle(long long x0, long long P, long long Q, lo
     return {mu, lam};
 }
 
-long long uniqueCount(long long S, long long P, long long Q, long long N) {
+long long uniqueCount(long long N, long long S, long long P, long long Q) {
     auto [mu, lam] = floydCycle(S, P, Q, N);
     if (lam == 0) {
         return N; // no cycle within N
     }
-    long long total = mu + lam; // unique elements before repetition
+
+    long long total = mu + lam; // unique elements before 1rst repetition (counting, 0, 1, 2)
     return min(N, total);
 }
 
@@ -58,7 +63,16 @@ int main() {
     unsigned int n, s, p, q;
     cin>>n>>s>>p>>q;   
   
-    cout << uniqueCount(s, p, q, n) << endl; 
+    cout << uniqueCount(n, s, p, q) << endl; 
     
     return 0;
 }
+
+/*
+𝗡𝗼𝘁𝗲𝘀:
+ - N can be as large as 10^8, too many to brute-force with a set. (I tried)
+ - Mod2^31 is arround 2billion posible states (I asked chatGPT).
+ - 𝗧𝗵𝗲 𝘀𝗲𝗾𝘂𝗲𝗻𝗰𝗲 𝗶𝘀 𝗱𝗲𝘁𝗲𝗿𝗺𝗶𝗻𝗶𝘀𝘁𝗶𝗰, so eventualy it'll repeat pegeonhole principle (Calc prof is gonna be thriled I used that).
+ - Once a value repeats, the sequence becomes preiodic.
+ - 𝗟𝗶𝗲𝗻𝗲𝗮𝗿 𝗰𝗼𝗻𝗴𝘂𝗿𝗲𝗻𝘁𝗶𝗮𝗹 𝗴𝗲𝗻𝗲𝗿𝗮𝘁𝗼𝗿 (𝗟𝗖𝗚), 𝘀𝗼 -> unique elements = pre-cycle length + cycle length (but clipped to 𝑁)
+*/
