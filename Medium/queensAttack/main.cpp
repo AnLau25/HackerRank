@@ -138,38 +138,14 @@ vector<string> split(const string &str) {
     return tokens;
 }
 
-
-/*
-𝗡𝗼𝗻 𝗼𝗽𝘁𝗶𝗺𝗮𝗹: 𝗟𝗶𝗺𝗶𝘁 𝘁𝗶𝗺𝗲 𝗲𝘅𝗰𝗲𝗱𝗲𝗱 O(n^2)
-void minimumBribes(vector<int> q) {
-    int len = q.size();
-    int bribes = 0;
-    
-    for (int i = 0; i<len; i++){
-        int curr_bribe = 0;
-        for(int j = i + 1; j<len; j++){
-           if(q[i]>q[j]){
-                curr_bribe++;
-            }
-            if (curr_bribe>2) {
-                std::cout<<"Too chaotic"<<std::endl;
-                return;
-            }           
-        }    
-        bribes+=curr_bribe;  
-    }
-    
-    std::cout<<bribes<<std::endl;
-    return;
-}
-*/
-
 /* 
 Input format:
-1. 1 <number of tests>
-2. 5 <array length>
-3. 1 3 2 5 4 <space separated array>
+ 1. 5 3 <board size, number of obstacles>
+ 2. 4 3 <queen's initial possition>
+ 3. 5 5 <obstacle's positions ↓>
+ 4. 4 2
+ 5. 2 3
 
-Return:
-"2" <in this case or "Too chaotic" in case of 3+ bribes>
+Output:
+ 6. 10 <available positions of the queen's attack>
 */
