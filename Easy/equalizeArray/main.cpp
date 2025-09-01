@@ -112,11 +112,9 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. 1 <number of test cases>
-2. 4 <saved up money>
-3. 5 <number of available flavours>
-4. 1 4 5 3 2 <spase separated array of the icecream prices>
+ 1. 5 <size of array>
+ 2. 3 3 2 1 3  <space separated array>
 
 Output:
-5. 1 4 <1-based indexes of the 2 icecream flavours they should buy> 
+ 3. 2 <number of elements to delete to equalize the array> 
 */
