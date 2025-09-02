@@ -142,9 +142,13 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
- 1. 4 <length of candles array>
- 2. 3 2 1 3 <space separated candles array>
+ 1. 4 5 <number of  attendees, number of subjects>
+ 2. 10101 <topis mastered by each atendee ↓>
+ 3. 11100
+ 4. 11010
+ 5. 00101
 
 Output:
- 4. 2 <candles that will be blown>
+ 6. 5 <number of subjects mastered by all atendees>
+ 7. 2 <number of teams that master ↑ subjects>
 */
