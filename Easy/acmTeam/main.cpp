@@ -64,7 +64,7 @@ vector<int> acmTeam(vector<string> topic) {
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
     string first_multiple_input_temp;
     getline(cin, first_multiple_input_temp);
@@ -87,16 +87,16 @@ int main()
     vector<int> result = acmTeam(topic);
 
     for (size_t i = 0; i < result.size(); i++) {
-        fout << result[i];
+        cout << result[i];
 
         if (i != result.size() - 1) {
-            fout << "\n";
+            cout << "\n";
         }
     }
 
-    fout << "\n";
+    cout << "\n";
 
-    fout.close();
+    //fout.close();
 
     return 0;
 }
