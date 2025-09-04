@@ -110,8 +110,13 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. 10 <number to test>
-
+ 1. 2 <number of test cases>
+ 2. 10 10  <number of gifts to buy>
+ 3. 1 1 1  <bc = 1, wc = 1, z = 1>
+ 4. 5 9     
+ 5. 2 3 4
+ 
 Output:
-2. 4 <numbers where x^10 = x+10>
+ 6. 20 <cost of buying gifts, case 1>
+ 6. 37 <cost of buying gifts, case 2>
 */
