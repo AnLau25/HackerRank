@@ -124,9 +124,15 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. 1 <number of strings to test>
-2. [{(5 5 6 7 6 5)}] <string to test>
+ 1. 2 <number of test cases>
+ 2. 2 <number of containers>
+ 3. 1 1 <ball distribution for ball 1>
+ 4. 1 1 <ball distribution for ball 2>
+ 5. 2
+ 6. 0 2
+ 7. 1 1
 
-Return:
-YES <printed to terminal, NO if is not balanced, ie {[)]}>
-*/
+Output:
+ 8. Possible <to put all balls of one color in the same container using only swaps>
+ 9. Impossible
+ */
