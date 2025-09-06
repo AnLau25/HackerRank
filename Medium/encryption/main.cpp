@@ -14,7 +14,6 @@ using namespace std;
  */
 
 string encryption(string s) {
-     s.erase(remove(s.begin(), s.end(), ' '), s.end());
     int L = s.size();
 
     int rows = floor(sqrt(L));
@@ -64,19 +63,8 @@ int main()
 
 /* 
 Input format:
- 1. 6 7 3 <rows = 6, columns = 7, sec = 3>
- 2. ....... <grid made of string arrays ↓>         
- 3. ...O...                
- 4. ....O..
- 5. .......
- 6. OO.....
- 7. OO.....
+ 1. haveaniceday <sentence without spaces>
 
 Output:
- 8. OOO.OOO
- 9. OO...OO
-10. OOO...O
-11. ..OO.OO
-12. ...OOOO
-13. ...OOOO
+ 2. hae and via ecy <matrix encrypted sentence>
 */
