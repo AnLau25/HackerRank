@@ -30,6 +30,7 @@ int beautifulTriplets(int d, vector<int> arr) {
         if (s.count(arr[i]) && 
             s.count(arr[i] + d) && 
             s.count(arr[i] + 2 * d)) 
+            //set.count(x) will look for x number in the set, if it exist returns 1, else 0
         {
             c++;
         }
@@ -113,8 +114,10 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
- 1. 20 23 6 <range start, range end, mod>
+ 1. 7 3             <arr[] size n = 7, d = 3>
+ 2. 1 2 4 5 7 8 10  <arr = [1, 2, 4, 5, 7, 8, 10]>
+
 
 Output:
- 2. 2 <no of beutiful days>
+ 2. 3 <no of beutiful triplets>
 */
