@@ -5,6 +5,7 @@
 #include <sstream>    // for split
 #include <compare>    // for spaceship operator (C++20)
 #include <iomanip> 
+#include <unordered_set>
 using namespace std;
 
 string ltrim(const string &);
@@ -34,12 +35,11 @@ int beautifulTriplets(int d, vector<int> arr) {
         }
     }
     return c;
-
 }
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
     string first_multiple_input_temp;
     getline(cin, first_multiple_input_temp);
@@ -64,30 +64,6 @@ int main()
     }
 
     int result = beautifulTriplets(d, arr);
-
-    fout << result << "\n";
-
-    fout.close();
-
-    return 0;
-}
-
-int main()
-{
-    //ofstream fout(getenv("OUTPUT_PATH"));
-
-    string first_multiple_input_temp;
-    getline(cin, first_multiple_input_temp);
-
-    vector<string> first_multiple_input = split(rtrim(first_multiple_input_temp));
-
-    int i = stoi(first_multiple_input[0]);
-
-    int j = stoi(first_multiple_input[1]);
-
-    int k = stoi(first_multiple_input[2]);
-
-    int result = beautifulDays(i, j, k);
 
     cout << result << "\n";
 
