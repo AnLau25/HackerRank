@@ -5,6 +5,7 @@
 #include <sstream>    // for split
 #include <compare>    // for spaceship operator (C++20)
 #include <iomanip> 
+#include <unordered_map>
 #include <numeric>
 using namespace std;
 
@@ -35,7 +36,7 @@ int minimumDistances(vector<int> a) {
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
     string n_temp;
     getline(cin, n_temp);
@@ -57,9 +58,9 @@ int main()
 
     int result = minimumDistances(a);
 
-    fout << result << "\n";
+    cout << result << "\n";
 
-    fout.close();
+    //fout.close();
 
     return 0;
 }
