@@ -106,5 +106,9 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. 1 2 3 4 5 <space separated array>
+ 1. 6               <arr[] size n = 6>
+ 2. 7 1 3 4 1 7     <arr = [7, 1, 3, 4, 1, 7]>
+
+Output:
+ 3. 3 <he minimum distance found or -1 if there are no matching elements>
 */
