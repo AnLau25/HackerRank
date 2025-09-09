@@ -37,7 +37,7 @@ void kaprekarNumbers(int p, int q) {
         }
     }
 
-    if (!found) cout << "INVALID RANGE";
+    if (!found) cout<<"INVALID RANGE";
 }
 
 int main()
@@ -81,8 +81,9 @@ string rtrim(const string &str) {
 
 /* 
 Input format:
- 1. 20 23 6 <range start, range end, mod>
+ 1. 1       <p = 1>
+ 2. 100     <q = 100>
 
 Output:
- 2. 2 <no of beutiful days>
+ 3. 1 9 45 55 99 <list of kaprekar numbers, else "INVALID RANGE" if none found>
 */
