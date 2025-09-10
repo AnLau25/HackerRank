@@ -94,9 +94,17 @@ string rtrim(const string &str) {
 
 /* 
 Input format:
- 1. 1       <p = 1>
- 2. 100     <q = 100>
+ 1. 5         <number of test cases>
+ 2. ab
+ 3. bb
+ 4. hefg
+ 5. dhck
+ 6. dkhc     
 
 Output:
- 3. 1 9 45 55 99 <list of kaprekar numbers, else "INVALID RANGE" if none found>
+ 7. ba        <re-organized "word">
+ 8. no answer <if the word can't be made re-organized>
+ 9. hegf
+10. dhkc
+11. hcdk
 */
