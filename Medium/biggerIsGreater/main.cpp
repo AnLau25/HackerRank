@@ -49,7 +49,7 @@ string biggerIsGreater(string w) {
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
     string T_temp;
     getline(cin, T_temp);
@@ -62,10 +62,10 @@ int main()
 
         string result = biggerIsGreater(w);
 
-        fout << result << "\n";
+        cout << result << "\n";
     }
 
-    fout.close();
+    //fout.close();
 
     return 0;
 }
