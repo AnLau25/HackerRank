@@ -109,8 +109,8 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
- 1. 20 23 6 <range start, range end, mod>
+ 1. 20 3 6 85 <p=20, d=3, m=6, s=85>
 
 Output:
- 2. 2 <no of beutiful days>
+ 2. 6 <no of games you can buy>
 */
