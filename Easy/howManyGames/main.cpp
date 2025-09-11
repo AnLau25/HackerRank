@@ -44,7 +44,7 @@ int howManyGames(int p, int d, int m, int s) {
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
     string first_multiple_input_temp;
     getline(cin, first_multiple_input_temp);
@@ -61,9 +61,9 @@ int main()
 
     int answer = howManyGames(p, d, m, s);
 
-    fout << answer << "\n";
+    cout << answer << "\n";
 
-    fout.close();
+    //fout.close();
 
     return 0;
 }
