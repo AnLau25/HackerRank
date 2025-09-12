@@ -6,6 +6,7 @@
 #include <sstream>    // for split
 #include <compare>    // for spaceship operator (C++20)
 #include <iomanip> 
+#include <map>
 using namespace std;
 
 string ltrim(const string &);
@@ -63,7 +64,7 @@ string timeInWords(int h, int m) {
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
     string h_temp;
     getline(cin, h_temp);
@@ -77,9 +78,9 @@ int main()
 
     string result = timeInWords(h, m);
 
-    fout << result << "\n";
+    cout << result << "\n";
 
-    fout.close();
+    //fout.close();
 
     return 0;
 }
