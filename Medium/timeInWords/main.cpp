@@ -126,9 +126,9 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. 1 <# of tests>
-2. 132 <n=132>
+1. 6  <hour>
+2. 35 <minutes>
 
 Output:
-3. Louise <cause she won, otherwise "Richard">
+3. twenty five minutes to seven <time in words>
 */
