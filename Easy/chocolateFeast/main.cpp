@@ -114,8 +114,13 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
- 1. 20 23 6 <range start, range end, mod>
+ 1. 3       <t = 3 (test cases)>
+ 2. 10 2 5  <n = 10, c = 2, m = 5 (first test case)>
+ 3. 12 4 4  <n = 12, c = 4, m = 4 (second test case)>
+ 4. 6 2 2   <n = 6,  c = 2, m = 2 (third test case)>
 
 Output:
- 2. 2 <no of beutiful days>
+ 5. 6
+ 6. 3
+ 7. 5
 */
