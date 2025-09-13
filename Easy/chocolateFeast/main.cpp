@@ -44,7 +44,7 @@ int chocolateFeast(int n, int c, int m) {
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
     string t_temp;
     getline(cin, t_temp);
@@ -65,10 +65,10 @@ int main()
 
         int result = chocolateFeast(n, c, m);
 
-        fout << result << "\n";
+        cout << result << "\n";
     }
 
-    fout.close();
+    //fout.close();
 
     return 0;
 }
