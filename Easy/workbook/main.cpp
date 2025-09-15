@@ -119,8 +119,8 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
- 1. 20 23 6 <range start, range end, mod>
-
+ 1. 5 3         <n = 5, k = 3>
+ 2. 4 2 6 1 10  <arr = [4, 2, 6, 1, 10]>
 Output:
- 2. 2 <no of beutiful days>
+ 2. 4 <no of excercices whose id matches their page number>
 */
