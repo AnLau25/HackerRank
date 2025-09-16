@@ -31,7 +31,7 @@ int flatlandSpaceStations(int n, vector<int> c) {
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
     string nm_temp;
     getline(cin, nm_temp);
@@ -57,9 +57,9 @@ int main()
 
     int result = flatlandSpaceStations(n, c);
 
-    fout << result << "\n";
+    cout << result << "\n";
 
-    fout.close();
+    //fout.close();
 
     return 0;
 }
