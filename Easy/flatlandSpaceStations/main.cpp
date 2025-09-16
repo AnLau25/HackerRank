@@ -95,8 +95,9 @@ vector<string> split_string(string input_string) {
 
 /* 
 Input format:
- 1. 20 23 6 <range start, range end, mod>
+ 1. 5 2     <n = 5, c[] size m = 2>
+ 2. 0 4     <c = [0, 4]>
 
 Output:
- 2. 2 <no of beutiful days>
+ 3. 2 <longuest distance from a city to it's nearest space station>
 */
