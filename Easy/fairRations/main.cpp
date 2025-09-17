@@ -33,7 +33,7 @@ string fairRations(vector<int> B) {
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
     string N_temp;
     getline(cin, N_temp);
@@ -55,9 +55,9 @@ int main()
 
     string result = fairRations(B);
 
-    fout << result << "\n";
+    cout << result << "\n";
 
-    fout.close();
+    //fout.close();
 
     return 0;
 }
