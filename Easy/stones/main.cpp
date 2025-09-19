@@ -138,8 +138,15 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
- 1. 20 23 6 <range start, range end, mod>
+ 1. 2       <T = 2 (test cases)>
+ 2. 3       <n = 3 (test case 1)>
+ 3. 1       <a = 1>
+ 4. 2       <b = 2>
+ 5. 4       <n = 4 (test case 2)>
+ 6. 10      <a = 10>
+ 7. 100     <b = 100>
 
 Output:
- 2. 2 <no of beutiful days>
+ 8. 2 3 4   <possible values to the last stone> 
+ 9. 30 120 210 300 
 */
