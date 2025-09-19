@@ -9,8 +9,6 @@ using namespace std;
 
 string ltrim(const string &);
 string rtrim(const string &);
-vector<string> split(const string &);
-
 /*
  * Complete the 'cavityMap' function below.
  *
@@ -95,27 +93,17 @@ string rtrim(const string &str) {
     return s;
 }
 
-vector<string> split(const string &str) {
-    vector<string> tokens;
-
-    string::size_type start = 0;
-    string::size_type end = 0;
-
-    while ((end = str.find(" ", start)) != string::npos) {
-        tokens.push_back(str.substr(start, end - start));
-
-        start = end + 1;
-    }
-
-    tokens.push_back(str.substr(start));
-
-    return tokens;
-}
-
 /* 
 Input format:
- 1. 20 23 6 <range start, range end, mod>
+ 1. 4       <grid[] size n = 4>
+ 2. 1112    <grid = ['1112', '1912', '1892', '1234']>
+ 3. 1912
+ 4. 1892
+ 5. 1234
 
 Output:
- 2. 2 <no of beutiful days>
+ 6. 1112
+ 7. 1X12
+ 8. 18X2
+ 9. 1234
 */
