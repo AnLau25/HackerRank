@@ -9,7 +9,6 @@ using namespace std;
 
 string ltrim(const string &);
 string rtrim(const string &);
-vector<string> split(const string &);
 
 /*
  * Complete the 'stones' function below.
@@ -57,7 +56,7 @@ vector<int> stones(int n, int a, int b) {
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
     string T_temp;
     getline(cin, T_temp);
@@ -83,17 +82,17 @@ int main()
         vector<int> result = stones(n, a, b);
 
         for (size_t i = 0; i < result.size(); i++) {
-            fout << result[i];
+            cout << result[i];
 
             if (i != result.size() - 1) {
-                fout << " ";
+                cout << " ";
             }
         }
 
-        fout << "\n";
+        cout << "\n";
     }
 
-    fout.close();
+    //fout.close();
 
     return 0;
 }
