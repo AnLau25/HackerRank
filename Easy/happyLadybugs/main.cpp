@@ -88,8 +88,19 @@ string rtrim(const string &str) {
 
 /* 
 Input format:
- 1. 20 23 6 <range start, range end, mod>
+ 1. 4       <no of test cases>
+ 2. 7       <length of string b>
+ 3. RBY_YBR <string b>
+ 4. 6
+ 5. X_Y__X
+ 6. 2
+ 7. __
+ 8. 6
+ 9. B_RRBR
 
 Output:
- 2. 2 <no of beutiful days>
+10. YES     <if happy ladybugs>
+11. NO      <if not all ladydugs are happy>
+12. YES
+13. YES
 */
