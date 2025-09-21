@@ -71,8 +71,8 @@ string rtrim(const string &str) {
 
 /* 
 Input format:
- 1. 20 23 6 <range start, range end, mod>
+ 1. 4 <time to get>
 
 Output:
- 2. 2 <no of beutiful days>
+ 2. 6 <number displayed for that time>
 */
