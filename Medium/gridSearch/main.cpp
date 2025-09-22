@@ -139,8 +139,23 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
- 1. 20 23 6 <range start, range end, mod>
+ 1. 1          <number of test cases>
+ 2. 10 10      <Grid[Rows][Columns]>
+ 3. 7283455864 <Grid Rows ↓>
+ 4. 6731158619
+ 5. 8988242643
+ 6. 3830589324
+ 7. 2229505813
+ 8. 5633845374
+ 9. 6473530293
+10. 7053106601
+11. 0834282956
+12. 4607924137
+13. 3 4        <Pattern[Rows][Columns]>
+14. 9505       <Pattern Rows ↓>
+15. 3845
+16. 3530
 
 Output:
- 2. 2 <no of beutiful days>
+ 2. YES <or NO if the pattern aint in the Grid>
 */
