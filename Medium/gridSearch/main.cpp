@@ -44,7 +44,7 @@ string gridSearch(vector<string> G, vector<string> P) {
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
     string t_temp;
     getline(cin, t_temp);
@@ -90,10 +90,10 @@ int main()
 
         string result = gridSearch(G, P);
 
-        fout << result << "\n";
+        cout << result << "\n";
     }
 
-    fout.close();
+    //fout.close();
 
     return 0;
 }
