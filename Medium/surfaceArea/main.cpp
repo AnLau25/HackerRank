@@ -48,13 +48,28 @@ int main()
 
     vector<string> first_multiple_input = split(rtrim(first_multiple_input_temp));
 
-    int i = stoi(first_multiple_input[0]);
+    int H = stoi(first_multiple_input[0]);
 
-    int j = stoi(first_multiple_input[1]);
+    int W = stoi(first_multiple_input[1]);
 
-    int k = stoi(first_multiple_input[2]);
+    vector<vector<int>> A(H);
 
-    int result = beautifulDays(i, j, k);
+    for (int i = 0; i < H; i++) {
+        A[i].resize(W);
+
+        string A_row_temp_temp;
+        getline(cin, A_row_temp_temp);
+
+        vector<string> A_row_temp = split(rtrim(A_row_temp_temp));
+
+        for (int j = 0; j < W; j++) {
+            int A_row_item = stoi(A_row_temp[j]);
+
+            A[i][j] = A_row_item;
+        }
+    }
+
+    int result = surfaceArea(A);
 
     cout << result << "\n";
 
