@@ -12,88 +12,52 @@ string rtrim(const string &);
 vector<string> split(const string &);
 
 /*
- * Complete the 'gridSearch' function below.
+ * Complete the 'bigSorting' function below.
  *
- * The function is expected to return a STRING.
- * The function accepts following parameters:
- *  1. STRING_ARRAY G
- *  2. STRING_ARRAY P
+ * The function is expected to return a STRING_ARRAY.
+ * The function accepts STRING_ARRAY unsorted as parameter.
  */
 
-string gridSearch(vector<string> G, vector<string> P) {
-    
-    int R = G.size();
-    int C = G[0].size();
-    int r = P.size();
-    int c = P[0].size();
-
-    for (int i = 0; i <= R - r; i++) {
-        for (int j = 0; j <= C - c; j++) {
-            bool match = true;
-            for (int x = 0; x < r; x++) {
-                if (G[i + x].substr(j, c) != P[x]) {
-                    match = false;
-                    break;
-                }
-            }
-            if (match) return "YES";
-        }
-    }
-    return "NO";
+vector<string> bigSorting(vector<string> unsorted) {
+    sort(unsorted.begin(), unsorted.end(), [](const string &a, const string &b) {
+        if (a.size() != b.size())
+            return a.size() < b.size();   
+        return a < b;        
+    });
+    return unsorted;
 }
 
 int main()
 {
-    //ofstream fout(getenv("OUTPUT_PATH"));
+    ofstream fout(getenv("OUTPUT_PATH"));
 
-    string t_temp;
-    getline(cin, t_temp);
+    string n_temp;
+    getline(cin, n_temp);
 
-    int t = stoi(ltrim(rtrim(t_temp)));
+    int n = stoi(ltrim(rtrim(n_temp)));
 
-    for (int t_itr = 0; t_itr < t; t_itr++) {
-        string first_multiple_input_temp;
-        getline(cin, first_multiple_input_temp);
+    vector<string> unsorted(n);
 
-        vector<string> first_multiple_input = split(rtrim(first_multiple_input_temp));
+    for (int i = 0; i < n; i++) {
+        string unsorted_item;
+        getline(cin, unsorted_item);
 
-        int R = stoi(first_multiple_input[0]);
-
-        int C = stoi(first_multiple_input[1]);
-
-        vector<string> G(R);
-
-        for (int i = 0; i < R; i++) {
-            string G_item;
-            getline(cin, G_item);
-
-            G[i] = G_item;
-        }
-
-        string second_multiple_input_temp;
-        getline(cin, second_multiple_input_temp);
-
-        vector<string> second_multiple_input = split(rtrim(second_multiple_input_temp));
-
-        int r = stoi(second_multiple_input[0]);
-
-        int c = stoi(second_multiple_input[1]);
-
-        vector<string> P(r);
-
-        for (int i = 0; i < r; i++) {
-            string P_item;
-            getline(cin, P_item);
-
-            P[i] = P_item;
-        }
-
-        string result = gridSearch(G, P);
-
-        cout << result << "\n";
+        unsorted[i] = unsorted_item;
     }
 
-    //fout.close();
+    vector<string> result = bigSorting(unsorted);
+
+    for (size_t i = 0; i < result.size(); i++) {
+        fout << result[i];
+
+        if (i != result.size() - 1) {
+            fout << "\n";
+        }
+    }
+
+    fout << "\n";
+
+    fout.close();
 
     return 0;
 }
