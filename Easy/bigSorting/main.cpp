@@ -86,8 +86,19 @@ string rtrim(const string &str) {
 
 /* 
 Input format:
- 1. 20 23 6 <range start, range end, mod>
+ 1. 6 <Number of elements>
+ 2. 31415926535897932384626433832795
+ 3. 1
+ 4. 3
+ 5. 10
+ 6. 3
+ 7. 5
 
 Output:
- 2. 2 <no of beutiful days>
+ 8. 1 <Sorted output ↓>
+ 9. 3
+10. 3
+11. 5
+12. 10
+13. 31415926535897932384626433832795
 */
