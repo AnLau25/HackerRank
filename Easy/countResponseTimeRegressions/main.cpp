@@ -103,8 +103,12 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
- 1. 20 23 6 <range start, range end, mod>
+ 1. 4 <length of array> 
+ 2. 100 <elements ↓>
+ 3. 200
+ 4. 150
+ 5. 300 
 
 Output:
- 2. 2 <no of beutiful days>
+ 2. 2 <no of numbers greater than prev-average>
 */
