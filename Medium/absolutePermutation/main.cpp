@@ -119,8 +119,13 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
- 1. 20 23 6 <range start, range end, mod>
+ 1. 3       <no of test cases>
+ 2. 2 1     <n = 2, k = 1>
+ 3. 3 0     <n = 3, k = 0>
+ 4. 3 2     <n = 3, k = 2>
 
 Output:
- 2. 2 <no of beutiful days>
+ 5. 2 1     <successful permutation ↓>
+ 6. 1 2 3
+ 7. -1      <else -1>
 */
