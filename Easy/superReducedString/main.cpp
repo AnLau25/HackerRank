@@ -49,8 +49,8 @@ int main()
 
 /* 
 Input format:
- 1. 20 23 6 <range start, range end, mod>
+ 1. aaabccddd <string to reduce>
 
 Output:
- 2. 2 <no of beutiful days>
+ 2. abd <reduced string or "Empty String" if fully reduced>
 */
