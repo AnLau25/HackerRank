@@ -7,105 +7,44 @@
 #include <iomanip> 
 using namespace std;
 
-string ltrim(const string &);
-string rtrim(const string &);
-vector<string> split(const string &);
-
 /*
- * Complete the 'beautifulDays' function below.
+ * Complete the 'superReducedString' function below.
  *
- * The function is expected to return an INTEGER.
- * The function accepts following parameters:
- *  1. INTEGER i
- *  2. INTEGER j
- *  3. INTEGER k
+ * The function is expected to return a STRING.
+ * The function accepts STRING s as parameter.
  */
-int reverse_int(int n){
-    string sn = to_string(n);
-    
-    reverse(sn.begin(),sn.end());
-    
-    return stoi(sn);
-}
 
-int beautifulDays(int i, int j, int k) {
-    int beutiful = 0;
+string superReducedString(string s) {
     
-    while (i<=j) {
+    for(int i = 0; i<s.size(); i++){
         
-        int dif = abs(i - reverse_int(i));
-        
-        if(dif%k==0){
-            beutiful++;
-        }
-        
-        i++;
+        if(((i+1)<s.size()) && (s[i]==s[i+1])){
+            s.erase(i,2);
+            return superReducedString(s);
+        }   
     }
     
-    return beutiful;
+    if(s.empty()){
+        return "Empty String";
+    }
+    
+    return s;
 }
 
 int main()
 {
     //ofstream fout(getenv("OUTPUT_PATH"));
 
-    string first_multiple_input_temp;
-    getline(cin, first_multiple_input_temp);
+    string s;
+    getline(cin, s);
 
-    vector<string> first_multiple_input = split(rtrim(first_multiple_input_temp));
-
-    int i = stoi(first_multiple_input[0]);
-
-    int j = stoi(first_multiple_input[1]);
-
-    int k = stoi(first_multiple_input[2]);
-
-    int result = beautifulDays(i, j, k);
+    string result = superReducedString(s);
 
     cout << result << "\n";
 
     //fout.close();
 
     return 0;
-}
-
-string ltrim(const string &str) {
-    string s(str);
-
-    s.erase(
-        s.begin(),
-        find_if(s.begin(), s.end(), [](unsigned char ch) { return !isspace(ch); })
-    );
-
-    return s;
-}
-
-string rtrim(const string &str) {
-    string s(str);
-
-    s.erase(
-        find_if(s.rbegin(), s.rend(), [](unsigned char ch) { return !isspace(ch); }).base(),
-        s.end()
-    );
-
-    return s;
-}
-
-vector<string> split(const string &str) {
-    vector<string> tokens;
-
-    string::size_type start = 0;
-    string::size_type end = 0;
-
-    while ((end = str.find(" ", start)) != string::npos) {
-        tokens.push_back(str.substr(start, end - start));
-
-        start = end + 1;
-    }
-
-    tokens.push_back(str.substr(start));
-
-    return tokens;
 }
 
 /* 
