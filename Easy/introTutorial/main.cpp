@@ -26,7 +26,7 @@ int introTutorial(int V, vector<int> arr) {
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
     string V_temp;
     getline(cin, V_temp);
@@ -53,9 +53,9 @@ int main()
 
     int result = introTutorial(V, arr);
 
-    fout << result << "\n";
+    cout << result << "\n";
 
-    fout.close();
+    //fout.close();
 
     return 0;
 }
