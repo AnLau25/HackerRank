@@ -110,19 +110,16 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
- 1. 6 7 3 <rows = 6, columns = 7, sec = 3>
- 2. ....... <grid made of string arrays ↓>         
- 3. ...O...                
- 4. ....O..
- 5. .......
- 6. OO.....
- 7. OO.....
+ 1. 3      <no of test cases>
+ 2. 3      <length of array>
+ 3. 3 1 2  <array>
+ 4. 4
+ 5. 1 3 4 2
+ 6. 5
+ 7. 1 2 3 5 4
 
 Output:
- 8. OOO.OOO
- 9. OO...OO
-10. OOO...O
-11. ..OO.OO
-12. ...OOOO
-13. ...OOOO
+ 8. YES    <can be sorted through a permutation process>
+ 9. YES
+10. NO     <cannot be sorted through a permutation process>
 */
