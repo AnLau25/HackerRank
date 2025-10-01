@@ -121,19 +121,10 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
- 1. 6 7 3 <rows = 6, columns = 7, sec = 3>
- 2. ....... <grid made of string arrays ↓>         
- 3. ...O...                
- 4. ....O..
- 5. .......
- 6. OO.....
- 7. OO.....
+ 1. 2        <arr[] size n = 2>
+ 2. 4 2      <arr = [4, 2]>
 
 Output:
- 8. OOO.OOO
- 9. OO...OO
-10. OOO...O
-11. ..OO.OO
-12. ...OOOO
-13. ...OOOO
+ 3. yes      <if sorted, or can be sorted>  
+ 4. swap 1 2 <swap idx1 idx2, or reverse> 
 */
