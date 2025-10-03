@@ -147,11 +147,15 @@ vector<string> split(const string &str) {
 }
 
 /* 
-1. 5 3 <no of elements in the array, no of queries>
-2. 1 2 100 <queries where range is {a,b} and k is the value to add>
-3. 2 5 100 <ie, a=2, b=5 & k=100>
-4. 3 4 100
+ 1. 4 4 2        <rows m = 4, columns n = 4, rotation factor r = 2>
+ 2. 1 2 3 4      <matrix = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]]>
+ 3. 5 6 7 8
+ 4. 9 10 11 12
+ 5. 13 14 15 16
 
 Output:
-5. 200 <maximum number in the array after al the sum operations>
+ 6. 3 4 8 12     <matrix rotated by r ↓>
+ 7. 2 11 10 16
+ 8. 1 7 6 15
+ 9. 5 9 13 14
 */
