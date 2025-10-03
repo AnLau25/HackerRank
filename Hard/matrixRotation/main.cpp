@@ -25,14 +25,17 @@ void matrixRotation(vector<vector<int>> matrix, int r) {
     for (int i = 0; i < row; i++) {
         for (int j = 0; j < col; j++) {
             
+            //Find layer and  layer dimensions
             int layer = min({i, j, row-1-i, col-1-j});
             
             int top = layer, left = layer;
             int bottom = row-1-layer, right = col-1-layer;
-            
+
             int perimeter = 2 * ((bottom-top) + (right-left));
             
+            //Index of (i,j) along the perimeter
             int idx = 0;
+            
             if (i == top){ 
                 idx = j-left;
             }else if (j == right){
@@ -43,8 +46,10 @@ void matrixRotation(vector<vector<int>> matrix, int r) {
                 idx = (right-left) + (bottom-top) + (right-left) + (bottom-i);
             }
             
+            //Shift backwards by r (since anticlockwise rotation)
             int newIdx = (idx + r) % perimeter;
-            
+             
+            //Map newIdx back to coordinates in original
             int x, y;
             if (newIdx < (right-left)){ 
                 x = top; 
@@ -60,6 +65,7 @@ void matrixRotation(vector<vector<int>> matrix, int r) {
                 y = left; 
             }
             
+            //Print
             cout << matrix[x][y] << " ";
         }
         cout << endl;
