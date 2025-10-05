@@ -100,8 +100,9 @@ string rtrim(const string &str) {
 
 /* 
 Input format:
- 1. 20 23 6 <range start, range end, mod>
+ 1. 3    <length of attempted password>
+ 2. Ab1  <attempted password>
 
 Output:
- 2. 2 <no of beutiful days>
+ 2. 3    <minimum number of changes to make the password valid>
 */
