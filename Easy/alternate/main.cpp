@@ -111,8 +111,9 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
- 1. 20 23 6 <range start, range end, mod>
+ 1. 10          <length of s = 10>
+ 2. beabeefeab  <s = 'beabeefeab'>
 
 Output:
- 2. 2 <no of beutiful days>
+ 3. 5           <length of longest alternating string>
 */
