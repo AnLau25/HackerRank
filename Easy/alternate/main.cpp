@@ -5,6 +5,7 @@
 #include <sstream>    // for split
 #include <compare>    // for spaceship operator (C++20)
 #include <iomanip> 
+#include <set>
 using namespace std;
 
 string ltrim(const string &);
@@ -50,7 +51,7 @@ int alternate(string s) {
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
     string l_temp;
     getline(cin, l_temp);
@@ -62,9 +63,9 @@ int main()
 
     int result = alternate(s);
 
-    fout << result << "\n";
+    cout << result << "\n";
 
-    fout.close();
+    //fout.close();
 
     return 0;
 }
