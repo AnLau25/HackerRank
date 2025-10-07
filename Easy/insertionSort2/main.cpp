@@ -105,12 +105,13 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
- 1. 5         <length of array>
- 2. 2 4 6 8 3 <array with unsorted element at the end>
+ 1. 6               <n = 6>
+ 2. 1 4 3 5 6 2     <arr = [1, 4, 3, 5, 6, 2]>
 
 Output:
- 3. 2 4 6 8 8 <steps of sorting>
- 4. 2 4 6 6 8 
- 5. 2 4 4 6 8 
- 6. 2 3 4 6 8 
+ 3. 1 4 3 5 6 2     <steps of sorting>
+ 4. 1 3 4 5 6 2 
+ 5. 1 3 4 5 6 2 
+ 6. 1 3 4 5 6 2 
+ 7. 1 2 3 4 5 6 
 */
