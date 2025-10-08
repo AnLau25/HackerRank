@@ -19,11 +19,11 @@ vector<string> split(const string &);
 void insertionSort(int N, int arr[]) {
     int i,j;
     int value;
-    for(i=0;i<N;i++)
+    for(i=0;i<N;i++) //Mistake 1, i=0 instead of i=1
     {
         value=arr[i];
         j=i-1;
-        while(j>=0 && value<arr[j])
+        while(j>=0 && value<arr[j]) //Mistake 2, j>=0 rather than j>0
         {
             arr[j+1]=arr[j];
             j=j-1;
@@ -52,12 +52,9 @@ int main(void) {
 
 /* 
 Input format:
- 1. 5         <length of array>
- 2. 2 4 6 8 3 <array with unsorted element at the end>
+ 1. 6           <length of array>
+ 2. 7 4 3 5 6 2 <array with unsorted element at the end>
 
 Output:
- 3. 2 4 6 8 8 <steps of sorting>
- 4. 2 4 6 6 8 
- 5. 2 4 4 6 8 
- 6. 2 3 4 6 8 
+ 3. 2 3 4 5 6 7 <sorted array>
 */
