@@ -12,57 +12,59 @@ string rtrim(const string &);
 vector<string> split(const string &);
 
 /*
- * Complete the 'runningTime' function below.
+ * Complete the 'beautifulDays' function below.
  *
  * The function is expected to return an INTEGER.
- * The function accepts INTEGER_ARRAY arr as parameter.
+ * The function accepts following parameters:
+ *  1. INTEGER i
+ *  2. INTEGER j
+ *  3. INTEGER k
  */
-
-int runningTime(vector<int> arr) {
-    int moves = 0;
+int reverse_int(int n){
+    string sn = to_string(n);
     
-    for (size_t i = 1; i < arr.size(); i++) {
-        int current = arr[i];
-        int j = i - 1;
+    reverse(sn.begin(),sn.end());
+    
+    return stoi(sn);
+}
+
+int beautifulDays(int i, int j, int k) {
+    int beutiful = 0;
+    
+    while (i<=j) {
         
-        while (j >= 0 && arr[j] > current) {
-            arr[j + 1] = arr[j];
-            moves++;
-            j--;
+        int dif = abs(i - reverse_int(i));
+        
+        if(dif%k==0){
+            beutiful++;
         }
-        arr[j + 1] = current;
+        
+        i++;
     }
     
-    return moves;
+    return beutiful;
 }
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
-    string n_temp;
-    getline(cin, n_temp);
+    string first_multiple_input_temp;
+    getline(cin, first_multiple_input_temp);
 
-    int n = stoi(ltrim(rtrim(n_temp)));
+    vector<string> first_multiple_input = split(rtrim(first_multiple_input_temp));
 
-    string arr_temp_temp;
-    getline(cin, arr_temp_temp);
+    int i = stoi(first_multiple_input[0]);
 
-    vector<string> arr_temp = split(rtrim(arr_temp_temp));
+    int j = stoi(first_multiple_input[1]);
 
-    vector<int> arr(n);
+    int k = stoi(first_multiple_input[2]);
 
-    for (int i = 0; i < n; i++) {
-        int arr_item = stoi(arr_temp[i]);
+    int result = beautifulDays(i, j, k);
 
-        arr[i] = arr_item;
-    }
+    cout << result << "\n";
 
-    int result = runningTime(arr);
-
-    fout << result << "\n";
-
-    fout.close();
+    //fout.close();
 
     return 0;
 }
