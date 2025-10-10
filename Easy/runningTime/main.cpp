@@ -12,55 +12,53 @@ string rtrim(const string &);
 vector<string> split(const string &);
 
 /*
- * Complete the 'beautifulDays' function below.
+ * Complete the 'runningTime' function below.
  *
  * The function is expected to return an INTEGER.
- * The function accepts following parameters:
- *  1. INTEGER i
- *  2. INTEGER j
- *  3. INTEGER k
+ * The function accepts INTEGER_ARRAY arr as parameter.
  */
-int reverse_int(int n){
-    string sn = to_string(n);
-    
-    reverse(sn.begin(),sn.end());
-    
-    return stoi(sn);
-}
 
-int beautifulDays(int i, int j, int k) {
-    int beutiful = 0;
+int runningTime(vector<int> arr) {
+    int moves = 0;
     
-    while (i<=j) {
+    for (size_t i = 1; i < arr.size(); i++) {
+        int current = arr[i];
+        int j = i - 1;
         
-        int dif = abs(i - reverse_int(i));
-        
-        if(dif%k==0){
-            beutiful++;
+        while (j >= 0 && arr[j] > current) {
+            arr[j + 1] = arr[j];
+            moves++;
+            j--;
         }
-        
-        i++;
+        arr[j + 1] = current;
     }
     
-    return beutiful;
+    return moves;
 }
 
 int main()
 {
     //ofstream fout(getenv("OUTPUT_PATH"));
 
-    string first_multiple_input_temp;
-    getline(cin, first_multiple_input_temp);
+    string n_temp;
+    getline(cin, n_temp);
 
-    vector<string> first_multiple_input = split(rtrim(first_multiple_input_temp));
+    int n = stoi(ltrim(rtrim(n_temp)));
 
-    int i = stoi(first_multiple_input[0]);
+    string arr_temp_temp;
+    getline(cin, arr_temp_temp);
 
-    int j = stoi(first_multiple_input[1]);
+    vector<string> arr_temp = split(rtrim(arr_temp_temp));
 
-    int k = stoi(first_multiple_input[2]);
+    vector<int> arr(n);
 
-    int result = beautifulDays(i, j, k);
+    for (int i = 0; i < n; i++) {
+        int arr_item = stoi(arr_temp[i]);
+
+        arr[i] = arr_item;
+    }
+
+    int result = runningTime(arr);
 
     cout << result << "\n";
 
