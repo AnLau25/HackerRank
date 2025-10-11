@@ -81,8 +81,11 @@ string rtrim(const string &str) {
 
 /* 
 Input format:
- 1. 20 23 6 <range start, range end, mod>
+ 1. 2                  <no of test cases>
+ 2. hereiamstackerrank <strings to test>
+ 3. hackerworld
 
 Output:
- 2. 2 <no of beutiful days>
+ 4. YES                <contains hackerrank>   
+ 5. NO                 <doesn't contain hackerrank>
 */
