@@ -122,8 +122,9 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
- 1. 20 23 6 <range start, range end, mod>
+ 1. 5           <arr[] size n =5>
+ 2. 4 5 3 7 2   <arr =[4, 5, 3, 7, 2]>
 
 Output:
- 2. 2 <no of beutiful days>
+ 3. 3 2 4 5 7   <"sorted" array>
 */
