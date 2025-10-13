@@ -5,6 +5,7 @@
 #include <sstream>    // for split
 #include <compare>    // for spaceship operator (C++20)
 #include <iomanip> 
+#include <set>
 using namespace std;
 
 string ltrim(const string &);
@@ -43,7 +44,7 @@ vector<string> weightedUniformStrings(string s, vector<int> queries) {
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
     string s;
     getline(cin, s);
@@ -67,16 +68,16 @@ int main()
     vector<string> result = weightedUniformStrings(s, queries);
 
     for (size_t i = 0; i < result.size(); i++) {
-        fout << result[i];
+        cout << result[i];
 
         if (i != result.size() - 1) {
-            fout << "\n";
+            cout << "\n";
         }
     }
 
-    fout << "\n";
+    cout << "\n";
 
-    fout.close();
+    //fout.close();
 
     return 0;
 }
