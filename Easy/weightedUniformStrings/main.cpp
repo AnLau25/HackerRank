@@ -123,8 +123,18 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
- 1. 20 23 6 <range start, range end, mod>
+ 1. aaabbbbcccddd <string to weight>
+ 2. 5             <no of queries>   
+ 3. 9             <queries ↓>
+ 4. 7
+ 5. 8
+ 6. 12
+ 7. 5
 
 Output:
- 2. 2 <no of beutiful days>
+ 8. Yes           <answers to queries ↓>
+ 9. No
+10. Yes
+11. Yes
+12. No 
 */
