@@ -75,8 +75,21 @@ string rtrim(const string &str) {
 
 /* 
 Input format:
- 1. 20 23 6 <range start, range end, mod>
+ 1. 7      <no of test cases>
+ 2. 1234   <numbers to test ↓>
+ 3. 91011
+ 4. 99100
+ 5. 101103 
+ 6. 010203
+ 7. 13
+ 8. 1
 
 Output:
- 2. 2 <no of beutiful days>
+ 9. YES 1  <if the number can be split into a sequence of positive integers that follow eachother>
+10. YES 9
+11. YES 99
+12. NO     <if it cannot be split>
+13. NO
+14. NO
+15. NO
 */
