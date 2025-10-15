@@ -86,8 +86,11 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
- 1. 20 23 6 <range start, range end, mod>
+ 1. 2       <test cases 2>
+ 2. acxz    <s = 'acxz'>
+ 3. bcxz    <s = 'bcxz'>
 
 Output:
- 2. 2 <no of beutiful days>
+ 4. Funny
+ 5. Not Funny
 */
