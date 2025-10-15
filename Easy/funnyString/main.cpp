@@ -9,7 +9,6 @@ using namespace std;
 
 string ltrim(const string &);
 string rtrim(const string &);
-vector<string> split(const string &);
 
 string funnyString(string s) {
     string z = s;
@@ -24,9 +23,8 @@ string funnyString(string s) {
     return "Funny";
 }
 
-int main()
-{
-    ofstream fout(getenv("OUTPUT_PATH"));
+int main(){
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
     string q_temp;
     getline(cin, q_temp);
@@ -39,10 +37,10 @@ int main()
 
         string result = funnyString(s);
 
-        fout << result << "\n";
+        cout << result << "\n";
     }
 
-    fout.close();
+    //fout.close();
 
     return 0;
 }
