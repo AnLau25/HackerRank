@@ -12,13 +12,13 @@ string rtrim(const string &);
 vector<string> split(const string &);
 
 /*
- * Complete the 'countingSort' function below.
+ * Complete the 'countingSort1' function below.
  *
  * The function is expected to return an INTEGER_ARRAY.
  * The function accepts INTEGER_ARRAY arr as parameter.
  */
 
-vector<int> countingSort(vector<int> arr) {
+vector<int> countingSort1(vector<int> arr) {
     vector<int> frequency(100);
     std::fill(frequency.begin(), frequency.end(), 0);
     
@@ -55,7 +55,7 @@ int main()
         arr[i] = arr_item;
     }
 
-    vector<int> result = countingSort(arr);
+    vector<int> result = countingSort1(arr);
 
     /*for (size_t i = 0; i < result.size(); i++) {
         fout << result[i];
