@@ -95,8 +95,11 @@ string rtrim(const string &str) {
 
 /* 
 Input format:
- 1. 20 23 6 <range start, range end, mod>
+ 1. 3           <arr[] size n = 3>
+ 2. abcdde      <arr = ['abcdde', 'baccd', 'eeabg']>
+ 3. baccd
+ 4. eeabg
 
 Output:
- 2. 2 <no of beutiful days>
+ 2. 2           <no of rocks that appears on all the gem>
 */
