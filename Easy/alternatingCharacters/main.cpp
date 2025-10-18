@@ -81,8 +81,17 @@ string rtrim(const string &str) {
 
 /* 
 Input format:
- 1. 20 23 6 <range start, range end, mod>
+ 1. 5        <no of test cases>
+ 2. AAAA     <test cases ↓>
+ 3. BBBBB
+ 4. ABABABAB
+ 5. BABABA
+ 6. AAABBB
 
 Output:
- 2. 2 <no of beutiful days>
+ 7. 3        <no of deletes needed for string to be alternate ↓>
+ 8. 4
+ 9. 0
+10. 0
+11. 4
 */
