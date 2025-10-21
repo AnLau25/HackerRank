@@ -77,8 +77,9 @@ string rtrim(const string &str) {
 
 /* 
 Input format:
- 1. 20 23 6 <range start, range end, mod>
+ 1. 7           <length of string n = 7>
+ 2. 0101010     <b = '0101010'>
 
 Output:
- 2. 2 <no of beutiful days>
+ 3. 2           <no of modifications needed to have no '010' substrings>
 */
