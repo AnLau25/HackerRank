@@ -105,8 +105,28 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
- 1. 20 23 6 <range start, range end, mod>
+ 1. 20      <number of elements>
+ 2. 0 ab    <index, value>
+ 3. 6 cd
+ 4. 0 ef
+ 5. 6 gh
+ 6. 4 ij
+ 7. 0 ab
+ 8. 6 cd
+ 9. 0 ef
+10. 6 gh
+11. 0 ij
+12. 4 that
+13. 3 be
+14. 0 to
+15. 1 be
+16. 5 question
+17. 1 or
+18. 2 not
+19. 4 is
+20. 2 to
+21. 4 the
 
 Output:
- 2. 2 <no of beutiful days>
+22. - - - - - to be or not to be - that is the question - - - -
 */
