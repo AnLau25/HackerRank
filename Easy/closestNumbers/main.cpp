@@ -126,8 +126,9 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
- 1. 20 23 6 <range start, range end, mod>
+ 1. 10 <length of array>
+ 2. -20 -3916237 -357920 -3620601 7374819 -7330761 30 6246457 -6461594 266854 
 
 Output:
- 2. 2 <no of beutiful days>
+ 3. -520 -470 -20 30 <list of pairs with the minimum difference>
 */
