@@ -81,8 +81,15 @@ string rtrim(const string &str) {
 
 /* 
 Input format:
- 1. 20 23 6 <range start, range end, mod>
+ 1. 4       <q = 4>
+ 2. abc     <queries ↓>
+ 3. abcba
+ 4. abcd
+ 5. cba
 
 Output:
- 2. 2 <no of beutiful days>
+ 6. 2       <modifs needed to turn to palindrome>
+ 7. 0
+ 8. 4
+ 9. 2
 */
