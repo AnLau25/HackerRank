@@ -78,8 +78,11 @@ string rtrim(const string &str) {
 
 /* 
 Input format:
- 1. 20 23 6 <range start, range end, mod>
+ 1. 2    <no of test cases>
+ 2. abcd <test strings ↓>
+ 3. abab
 
-Output:
- 2. 2 <no of beutiful days>
-*/
+ Output:
+ 4. 4    <cost of copying ↓>
+ 6. 2
+ */
