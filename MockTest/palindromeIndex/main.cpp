@@ -146,5 +146,13 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. 1 2 3 4 5 <space separated array>
+ 1. 3       <q = 3>
+ 2. aaab    <s = 'aaab' (first query)>
+ 3. baa     <s = 'baa'  (second query)>
+ 4. aaa     <s = 'aaa'  (third query)>
+
+Output:
+ 5. 3       <possition of index to remove>
+ 6. 0
+ 7. -1      <else, if no solution, -1> 
 */
