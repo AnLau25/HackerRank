@@ -222,15 +222,14 @@ vector<string> split(const string &str) {
 }
 
 /* 
- 1. 4 4 2        <rows m = 4, columns n = 4, rotation factor r = 2>
- 2. 1 2 3 4      <matrix = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]]>
- 3. 5 6 7 8
- 4. 9 10 11 12
- 5. 13 14 15 16
+ 1. 6             <no of gene types>
+ 2. a b c aa d b  <gene types array>
+ 3. 1 2 3 4 5 6   <health values array>
+ 4. 3             <no strands to test ↓>
+ 5. 1 5 caaab     <types index range, strand to test>
+ 6. 0 4 xyz
+ 7. 2 4 bcdybc
 
 Output:
- 6. 3 4 8 12     <matrix rotated by r ↓>
- 7. 2 11 10 16
- 8. 1 7 6 15
- 9. 5 9 13 14
+ 6. 0 19          <min and max health values among tested strands>
 */
