@@ -22,6 +22,7 @@ struct dnastrand {
 };
 
 struct TrieNode {
+    //Max number or characters in lowercase English alphabet
     TrieNode* next[26] = {nullptr};
     TrieNode* fail = nullptr;
     TrieNode* outputLink = nullptr;
@@ -233,3 +234,12 @@ vector<string> split(const string &str) {
 Output:
  6. 0 19          <min and max health values among tested strands>
 */
+
+// 𝗡𝗼𝘁𝗲𝘀:
+
+// 𝗔𝗵𝗼-𝗖𝗼𝗿𝗮𝘀𝗶𝗰𝗸: Algorithm finds all words in O(n + m + z) time where z is total number of occurrences of words in text. 
+
+// Used Aho-Corasick algorithm to efficiently find all occurrences of multiple patterns (genes) in the given strands.
+// - Constructed a Trie to store the genes and built failure links for efficient searching.
+// - For each strand, traversed the Trie while calculating health based on the specified gene index range.
+//https://www.geeksforgeeks.org/dsa/aho-corasick-algorithm-pattern-searching/
