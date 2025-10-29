@@ -9,7 +9,6 @@ using namespace std;
 
 string ltrim(const string &);
 string rtrim(const string &);
-vector<string> split(const string &);
 
 /*
  * Complete the 'anagram' function below.
@@ -83,27 +82,21 @@ string rtrim(const string &str) {
     return s;
 }
 
-vector<string> split(const string &str) {
-    vector<string> tokens;
-
-    string::size_type start = 0;
-    string::size_type end = 0;
-
-    while ((end = str.find(" ", start)) != string::npos) {
-        tokens.push_back(str.substr(start, end - start));
-
-        start = end + 1;
-    }
-
-    tokens.push_back(str.substr(start));
-
-    return tokens;
-}
-
 /* 
 Input format:
- 1. 20 23 6 <range start, range end, mod>
+ 1. 6      <no of test cases>
+ 2. aaabbb
+ 3. ab
+ 4. abc
+ 5. mnop
+ 6. xyyx
+ 7. xaxbbbxx
 
 Output:
- 2. 2 <no of beutiful days>
+ 8. 3
+ 9. 1
+10. -1
+11. 2
+12. 0
+13. 1
 */
