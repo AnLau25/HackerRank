@@ -121,6 +121,35 @@ class genepool {
     }
 };
 
+/*
+const int maxs = INT16_MAX;
+const int maxc = 26;
+
+int out[maxs];
+
+int f[maxs];
+
+int g[maxs][maxc];
+
+int matchingMachine(string arr[], int k){
+    memset(out, 0, sizeof out);
+    memset(g, -1, sizeof g);
+    
+    int states = 1;
+    
+    for(int i = 0; i<k; ++i){
+        const string &word = arr[i];
+        int currentState = 0;
+        
+        for (int j = 0; j<word.size(); j++){
+            
+        }
+    }
+    
+    return states;
+}
+*/
+
 int main()
 {
     string n_temp;
