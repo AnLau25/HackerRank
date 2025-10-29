@@ -54,8 +54,9 @@ int main()
 
 /* 
 Input format:
- 1. 20 23 6 <range start, range end, mod>
+ 1. cde  <strings to test ↓>
+ 2. abc
 
 Output:
- 2. 2 <no of beutiful days>
+ 3. 4    <no of dels necessary to make anagrams>
 */
