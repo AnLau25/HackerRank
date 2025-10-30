@@ -51,8 +51,8 @@ int main()
 
 /* 
 Input format:
- 1. 20 23 6 <range start, range end, mod>
+ 1. aaabbbb <string to test>
 
 Output:
- 2. 2 <no of beutiful days>
+ 2. YES     <if can be rearranged to palindrome, else NO>
 */
