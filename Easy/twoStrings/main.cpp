@@ -78,8 +78,13 @@ string rtrim(const string &str) {
 
 /* 
 Input format:
- 1. 20 23 6 <range start, range end, mod>
+ 1. 2      <no of test cases>
+ 2. hello  <case1 ↓>
+ 3. world
+ 4. hi     <case2 ↓>
+ 5. world
 
 Output:
- 2. 2 <no of beutiful days>
+ 6. YES    <Has matching substring of at least one character>
+ 7. NO     <No matching substring>
 */
