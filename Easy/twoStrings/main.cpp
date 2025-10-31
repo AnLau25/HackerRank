@@ -1,5 +1,5 @@
 #include <iostream>
-#include <vector>
+#include <unordered_set>
 #include <string>
 #include <algorithm>  // for ltrim, rtrim
 #include <sstream>    // for split
@@ -9,7 +9,6 @@ using namespace std;
 
 string ltrim(const string &);
 string rtrim(const string &);
-vector<string> split(const string &);
 
 /*
  * Complete the 'twoStrings' function below.
@@ -31,7 +30,7 @@ string twoStrings(string s1, string s2) {
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
     string q_temp;
     getline(cin, q_temp);
@@ -47,10 +46,10 @@ int main()
 
         string result = twoStrings(s1, s2);
 
-        fout << result << "\n";
+        cout << result << "\n";
     }
 
-    fout.close();
+    //fout.close();
 
     return 0;
 }
@@ -75,23 +74,6 @@ string rtrim(const string &str) {
     );
 
     return s;
-}
-
-vector<string> split(const string &str) {
-    vector<string> tokens;
-
-    string::size_type start = 0;
-    string::size_type end = 0;
-
-    while ((end = str.find(" ", start)) != string::npos) {
-        tokens.push_back(str.substr(start, end - start));
-
-        start = end + 1;
-    }
-
-    tokens.push_back(str.substr(start));
-
-    return tokens;
 }
 
 /* 
