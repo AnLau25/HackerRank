@@ -19,7 +19,7 @@ vector<string> split(const string &);
  */
 
 long long insertionSort(vector<int> arr) {
-    long long count = 0; //inversion count 
+    long long count = 0; //Inversion count 
     long long fenSum = 0; //Numbers seen so far
     vector<int> fenwick(10000001, 0); //Fenwick tree init to 0; assuming arr max size = 10^7
 
