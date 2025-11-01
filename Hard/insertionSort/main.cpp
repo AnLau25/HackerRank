@@ -19,24 +19,26 @@ vector<string> split(const string &);
  */
 
 long long insertionSort(vector<int> arr) {
-    long long count = 0, fenSum = 0;
-    vector<int> fenwick(10000001, 0); 
+    long long count = 0; //inversion count 
+    long long fenSum = 0; //Numbers seen so far
+    vector<int> fenwick(10000001, 0); //Fenwick tree init to 0; assuming arr max size = 10^7
 
-    for (int n : arr) {
-        count += fenSum;
-        int idx = n;
-        while (idx) {
+    for (int n : arr) { //Build the tree using values as indexes
+        count += fenSum; //All numbers seen so far are greater than current number (shifts)
+        int idx = n; //Current index in Fenwick tree
+
+        while (idx) { //Substract numbers less than or equal to current number
             count -= fenwick[idx];
-            idx -= idx & -idx;
+            idx -= idx & -idx; //Move to parent
         }
 
         idx = n;
-        while (idx < 10000001) {
-            fenwick[idx] += 1;
-            idx += idx & -idx;
+        while (idx < 10000001) { //Insert current number into Fenwick tree
+            fenwick[idx] += 1; //Increment count at index, seen more than one occurrence
+            idx += idx & -idx; //Move to next
         }
 
-        fenSum += 1;
+        fenSum += 1; //Increment total numbers seen so far
     }
 
     return count;
@@ -120,11 +122,20 @@ vector<string> split(const string &str) {
 }
 
 /* 
-1. 5 3 <no of elements in the array, no of queries>
-2. 1 2 100 <queries where range is {a,b} and k is the value to add>
-3. 2 5 100 <ie, a=2, b=5 & k=100>
-4. 3 4 100
+ 1. 2          <number of test cases>
+ 2. 5          <arr size>
+ 3. 1 1 1 2 2  <arr elements>
+ 4. 5  
+ 5. 2 1 3 1 2
 
 Output:
-5. 200 <maximum number in the array after al the sum operations>
+ 6. 0          <number of inversions to sort arr>
+ 7. 4   
+
+Note:
+    - Using a Fenwick Tree (Binary Indexed Tree) to count inversions efficiently.
+    - Time Complexity: O(n log m), where n is the number of elements and m is the range of input values.
+    - Space Complexity: O(m) for the Fenwick tree.
+    - https://www.geeksforgeeks.org/dsa/binary-indexed-tree-or-fenwick-tree-2/
+    - https://stackoverflow.com/questions/61158098/count-the-no-of-shifts-in-insertion-sort-using-fenwick-tree-binary-index-tree
 */
