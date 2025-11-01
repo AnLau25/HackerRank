@@ -20,8 +20,7 @@ vector<string> split(const string &);
 
 long long insertionSort(vector<int> arr) {
     long long count = 0, fenSum = 0;
-    static vector<int> fenwick(10000001, 0); 
-    fill(fenwick.begin(), fenwick.end(), 0);
+    vector<int> fenwick(10000001, 0); 
 
     for (int n : arr) {
         count += fenSum;
@@ -45,7 +44,7 @@ long long insertionSort(vector<int> arr) {
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
     string t_temp;
     getline(cin, t_temp);
@@ -73,10 +72,10 @@ int main()
 
         long long result = insertionSort(arr);
 
-        fout << result << "\n";
+        cout << result << "\n";
     }
 
-    fout.close();
+    //fout.close();
 
     return 0;
 }
