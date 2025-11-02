@@ -6,7 +6,7 @@
 #include <compare>    // for spaceship operator (C++20)
 #include <iomanip> 
 #include <queue>
-#include <climits>
+#include <cinttypes>
 #include <cstring>
 using namespace std;
 
