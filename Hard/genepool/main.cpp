@@ -6,12 +6,15 @@
 #include <compare>    // for spaceship operator (C++20)
 #include <iomanip> 
 #include <queue>
+#include <climits>
+#include <cstring>
 using namespace std;
 
 string ltrim(const string &);
 string rtrim(const string &);
 vector<string> split(const string &);
 
+/*
 struct dnastrand {
     int start;
     int end;
@@ -119,9 +122,9 @@ class genepool {
         sort(strandsHp.begin(), strandsHp.end());
         cout << strandsHp.front() << " " << strandsHp.back();
     }
-};
+};*/
 
-/*
+/* Aho-Corasick: Simplified */
 const int maxs = INT16_MAX;
 const int maxc = 26;
 
@@ -130,6 +133,15 @@ int out[maxs];
 int f[maxs];
 
 int g[maxs][maxc];
+
+struct dnastrand {
+    int start;
+    int end;
+    string dna;
+
+    dnastrand(int _start, int _end, string _dna)
+        : start(_start), end(_end), dna(_dna) {}
+};
 
 int matchingMachine(string arr[], int k){
     memset(out, 0, sizeof out);
@@ -142,14 +154,95 @@ int matchingMachine(string arr[], int k){
         int currentState = 0;
         
         for (int j = 0; j<word.size(); j++){
-            
+            int ch = word[j] - 'a';
+            if (g[currentState][ch] == -1){
+                g[currentState][ch] = states++;
+            }
+            currentState = g[currentState][ch];
+        }
+        out[currentState] |= (1 << i);
+    }
+
+    for (int ch = 0; ch < maxc; ++ch){
+        if (g[0][ch] == -1){
+            g[0][ch] = 0;
+        }
+    }
+
+    memset(f, -1, sizeof f);
+
+    queue<int> q;
+
+    for(int ch = 0; ch < maxc; ++ch){
+        if (g[0][ch] != 0){
+            f[g[0][ch]] = 0;
+            q.push(g[0][ch]);
+        }
+    }
+
+    while(!q.empty()){
+        int state = q.front();
+        q.pop();
+
+        for(int ch = 0; ch < maxc; ++ch){
+            if (g[state][ch] != -1){
+                int failure = f[state];
+
+                while (g[failure][ch] == -1){
+                    failure = f[failure];
+                }
+
+                failure = g[failure][ch];
+                f[g[state][ch]] = failure;
+                out[g[state][ch]] |= out[failure];
+                q.push(g[state][ch]);
+            }
         }
     }
     
     return states;
 }
-*/
 
+int searchGenes(vector<string> genes, vector<int> health, dnastrand strand) {
+    int currentState = 0;
+    int healthSum = 0;
+
+    for (int i = 0; i < strand.dna.size(); ++i) {
+        int ch = strand.dna[i] - 'a';
+
+        while (g[currentState][ch] == -1) {
+            currentState = f[currentState];
+        }
+
+        currentState = g[currentState][ch];
+
+        for (int j = 0; j < genes.size(); ++j) {
+            if (out[currentState] & (1 << j)) {
+                if (j >= strand.start && j <= strand.end) {
+                    healthSum += health[j];
+                }
+            }
+        }
+    }
+
+    return healthSum;
+}
+
+void sortGenes (vector<dnastrand> strands, vector<string> genes, vector<int> health) {
+    vector<int> strandsHp;    
+
+    for(auto strand : strands){
+        strandsHp.push_back(searchGenes(genes, health, strand));
+    }
+
+    sort(strandsHp.begin(), strandsHp.end());
+
+    cout<<strandsHp[0]<<" "<<strandsHp.back();
+}
+
+
+
+/*Main*/
 int main()
 {
     string n_temp;
@@ -205,10 +298,9 @@ int main()
         
         strands.push_back(strand);
     }
-    
-    genepool pool(genes, health);
-    pool.sortGenes(strands);
-    
+
+    sortGenes(strands, genes, health);
+
     return 0;
 }
 
