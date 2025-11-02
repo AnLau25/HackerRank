@@ -14,7 +14,7 @@ string ltrim(const string &);
 string rtrim(const string &);
 vector<string> split(const string &);
 
-/*
+/* Aho-Corasick: Messy-ver */
 struct dnastrand {
     int start;
     int end;
@@ -47,31 +47,43 @@ class genepool {
         buildFailureLinks();
     }
 
+    /* Build Prefix the Trie - stores found patterns */
     void buildTrie() {
+        //Loop through all genes and insert into Trie
         for (int i = 0; i < genes.size(); ++i) {
-            TrieNode* node = root;
+            TrieNode* node = root; //Start at root
             for (char c : genes[i]) {
                 int idx = c - 'a';
+                //If no next node (edge), create new
                 if (!node->next[idx]) node->next[idx] = new TrieNode();
+                //Move to child node
                 node = node->next[idx];
             }
+            //At the end of the gene, add index to output list
             node->output.push_back(i);
         }
     }
 
+    /* Build Failure Links - Allow back tracking if mismatch occur*/
     void buildFailureLinks() {
         queue<TrieNode*> q;
+        //Initialize root's failure link to itself
         root->fail = root;
 
+        //For every direct child of root, set failure link to root
         for (int i = 0; i < 26; ++i) {
             if (root->next[i]) {
                 root->next[i]->fail = root;
+                //Quickly jump to next node that produces matches
                 root->next[i]->outputLink = root;
+                //Push child to queue for BFS
                 q.push(root->next[i]);
             }
         }
 
+        //BFS to process nodes level by level and ensure parents fail links are found first
         while (!q.empty()) {
+            //Explore each character transition
             TrieNode* current = q.front(); q.pop();
 
             for (int i = 0; i < 26; ++i) {
@@ -79,12 +91,14 @@ class genepool {
                 if (!child) continue;
 
                 TrieNode* f = current->fail;
+                //Follow fail links until we find a match or reach root (same character transition)
                 while (f != root && !f->next[i]) f = f->fail;
                 if (f->next[i] && f->next[i] != child)
                     child->fail = f->next[i];
                 else
                     child->fail = root;
 
+                //Set output link to the nearest (fail) ancestor that has matches
                 child->outputLink = !child->fail->output.empty() ? child->fail : child->fail->outputLink;
 
                 q.push(child);
@@ -92,20 +106,25 @@ class genepool {
         }
     }
 
+    /* Process each strand to calculate health values*/
     void insert_strands(int start, int end, const string& dna) {
         long long hp = 0;
-        TrieNode* node = root;
+        TrieNode* node = root; //Start root of aho-corasick automaton
 
         for (char c : dna) {
             int idx = c - 'a';
+            //If no transition (edge) to c, follow fail links until match or root
             while (node != root && !node->next[idx])
                 node = node->fail;
 
+            //Move to next node if match found
             if (node->next[idx])
                 node = node->next[idx];
 
+            //For the currecnt node and all its output links, accumulate health values
             for (TrieNode* temp = node; temp != nullptr; temp = temp->outputLink) {
                 for (int geneIdx : temp->output) {
+                    //Only consider genes within the specified [start, end] index range
                     if (geneIdx >= start && geneIdx <= end)
                         hp += health[geneIdx];
                 }
@@ -122,123 +141,115 @@ class genepool {
         sort(strandsHp.begin(), strandsHp.end());
         cout << strandsHp.front() << " " << strandsHp.back();
     }
-};*/
+};
 
-/* Aho-Corasick: Simplified */
-const int maxs = INT16_MAX;
-const int maxc = 26;
+/* Aho-Corasick: Simplified 
+const int ALPHABET = 26; // assuming lowercase a–z
 
-int out[maxs];
-
-int f[maxs];
-
-int g[maxs][maxc];
-
-struct dnastrand {
+struct DnaStrand {
     int start;
     int end;
     string dna;
-
-    dnastrand(int _start, int _end, string _dna)
-        : start(_start), end(_end), dna(_dna) {}
+    DnaStrand(int s, int e, const string& d) : start(s), end(e), dna(d) {}
 };
 
-int matchingMachine(string arr[], int k){
-    memset(out, 0, sizeof out);
-    memset(g, -1, sizeof g);
-    
-    int states = 1;
-    
-    for(int i = 0; i<k; ++i){
-        const string &word = arr[i];
-        int currentState = 0;
-        
-        for (int j = 0; j<word.size(); j++){
-            int ch = word[j] - 'a';
-            if (g[currentState][ch] == -1){
-                g[currentState][ch] = states++;
+struct AhoCorasick {
+    vector<vector<int>> g;       // transitions
+    vector<int> f;               // failure links
+    vector<vector<int>> out;     // output lists
+
+    AhoCorasick() {
+        g.push_back(vector<int>(ALPHABET, -1)); // root state 0
+        f.push_back(-1);
+        out.push_back({});
+    }
+
+    void insert(const string& word, int idx) {
+        int state = 0;
+        for (char c : word) {
+            int ch = c - 'a';
+            if (g[state][ch] == -1) {
+                g[state][ch] = g.size();
+                g.push_back(vector<int>(ALPHABET, -1));
+                f.push_back(-1);
+                out.push_back({});
             }
-            currentState = g[currentState][ch];
+            state = g[state][ch];
         }
-        out[currentState] |= (1 << i);
+        out[state].push_back(idx);
     }
 
-    for (int ch = 0; ch < maxc; ++ch){
-        if (g[0][ch] == -1){
-            g[0][ch] = 0;
-        }
-    }
+    void build() {
+        queue<int> q;
 
-    memset(f, -1, sizeof f);
-
-    queue<int> q;
-
-    for(int ch = 0; ch < maxc; ++ch){
-        if (g[0][ch] != 0){
-            f[g[0][ch]] = 0;
-            q.push(g[0][ch]);
-        }
-    }
-
-    while(!q.empty()){
-        int state = q.front();
-        q.pop();
-
-        for(int ch = 0; ch < maxc; ++ch){
-            if (g[state][ch] != -1){
-                int failure = f[state];
-
-                while (g[failure][ch] == -1){
-                    failure = f[failure];
-                }
-
-                failure = g[failure][ch];
-                f[g[state][ch]] = failure;
-                out[g[state][ch]] |= out[failure];
-                q.push(g[state][ch]);
+        // root transitions
+        for (int ch = 0; ch < ALPHABET; ++ch) {
+            if (g[0][ch] != -1) {
+                f[g[0][ch]] = 0;
+                q.push(g[0][ch]);
+            } else {
+                g[0][ch] = 0;
             }
         }
-    }
-    
-    return states;
-}
 
-int searchGenes(vector<string> genes, vector<int> health, dnastrand strand) {
-    int currentState = 0;
-    int healthSum = 0;
+        // BFS
+        while (!q.empty()) {
+            int state = q.front();
+            q.pop();
 
-    for (int i = 0; i < strand.dna.size(); ++i) {
-        int ch = strand.dna[i] - 'a';
+            for (int ch = 0; ch < ALPHABET; ++ch) {
+                int nxt = g[state][ch];
+                if (nxt != -1) {
+                    int fail = f[state];
+                    while (g[fail][ch] == -1)
+                        fail = f[fail];
+                    f[nxt] = g[fail][ch];
 
-        while (g[currentState][ch] == -1) {
-            currentState = f[currentState];
-        }
+                    // merge outputs
+                    for (int idx : out[f[nxt]])
+                        out[nxt].push_back(idx);
 
-        currentState = g[currentState][ch];
-
-        for (int j = 0; j < genes.size(); ++j) {
-            if (out[currentState] & (1 << j)) {
-                if (j >= strand.start && j <= strand.end) {
-                    healthSum += health[j];
+                    q.push(nxt);
                 }
             }
         }
     }
 
-    return healthSum;
-}
+    int search(const vector<int>& health, const DnaStrand& strand) const {
+        int current = 0;
+        long long healthSum = 0;
 
-void sortGenes (vector<dnastrand> strands, vector<string> genes, vector<int> health) {
-    vector<int> strandsHp;    
+        for (char c : strand.dna) {
+            int ch = c - 'a';
+            while (g[current][ch] == -1)
+                current = f[current];
+            current = g[current][ch];
 
-    for(auto strand : strands){
-        strandsHp.push_back(searchGenes(genes, health, strand));
+            for (int idx : out[current]) {
+                if (idx >= strand.start && idx <= strand.end)
+                    healthSum += health[idx];
+            }
+        }
+        return (int)healthSum;
     }
+};
 
-    sort(strandsHp.begin(), strandsHp.end());
+void sortGenes(const vector<DnaStrand>& strands,
+               const vector<string>& genes,
+               const vector<int>& health) {
+    AhoCorasick ac;
+    for (int i = 0; i < (int)genes.size(); ++i)
+        ac.insert(genes[i], i);
+    ac.build();
 
-    cout<<strandsHp[0]<<" "<<strandsHp.back();
-}
+    vector<int> scores;
+    for (const auto& s : strands)
+        scores.push_back(ac.search(health, s));
+
+    sort(scores.begin(), scores.end());
+    cout << scores.front() << " " << scores.back() << "\n";
+}*/
+
 
 
 
@@ -299,7 +310,9 @@ int main()
         strands.push_back(strand);
     }
 
-    sortGenes(strands, genes, health);
+    //buildMatchingMachine(genes);
+    genepool gp(genes, health);
+    gp.sortGenes(strands);
 
     return 0;
 }
