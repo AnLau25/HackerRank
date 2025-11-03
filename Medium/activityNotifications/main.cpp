@@ -140,10 +140,9 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
- 1. 2        <arr[] size n = 2>
- 2. 4 2      <arr = [4, 2]>
+ 1. 9 5                 <expenditure[] size n =9, d = 5>
+ 2. 2 3 4 2 3 6 8 4 5   <expenditure = [2, 3, 4, 2, 3, 6, 8, 4, 5]>
 
 Output:
- 3. yes      <if sorted, or can be sorted>  
- 4. swap 1 2 <swap idx1 idx2, or reverse> 
+ 3. 2                   <number of notifications>
 */
