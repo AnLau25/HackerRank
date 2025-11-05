@@ -167,4 +167,12 @@ Input format:
 Output:
  5. 2     <number of palindromic anagrams for substring ↓>
  6. 1
+
+Note:
+ - Ussing Fermat's little theorem for calculating modular inverses (ie for speeding up calculation). 
+ - Precomputing factorials and their inverses for efficient query answering.
+ - https://blogarithms.github.io/articles/2019-01/fermats-theorem
+ - https://www.geeksforgeeks.org/multiplicative-inverse-under-modulo-m/
+ - https://brilliant.org/wiki/permutations-with-repetition/
+
 */
