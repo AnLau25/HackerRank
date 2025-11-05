@@ -5,6 +5,7 @@
 #include <sstream>    // for split
 #include <compare>    // for spaceship operator (C++20)
 #include <iomanip> 
+#include <bits/stdc++.h> 
 using namespace std;
 
 string ltrim(const string &);
@@ -84,7 +85,7 @@ int answerQuery(int l, int r) {
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
     string s;
     getline(cin, s);
@@ -108,10 +109,10 @@ int main()
 
         int result = answerQuery(l, r);
 
-        fout << result << "\n";
+        cout << result << "\n";
     }
 
-    fout.close();
+    //fout.close();
 
     return 0;
 }
