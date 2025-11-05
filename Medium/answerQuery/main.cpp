@@ -159,9 +159,12 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
- 1. 9 5                 <expenditure[] size n =9, d = 5>
- 2. 2 3 4 2 3 6 8 4 5   <expenditure = [2, 3, 4, 2, 3, 6, 8, 4, 5]>
+ 1. week  <string to query>
+ 2. 2     <number of queries>
+ 3. 1 4   <r=1, l=4>  
+ 4. 2 3   <r=2, l=3>
 
 Output:
- 3. 2                   <number of notifications>
+ 5. 2     <number of palindromic anagrams for substring ↓>
+ 6. 1
 */
