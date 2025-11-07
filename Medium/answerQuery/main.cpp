@@ -25,7 +25,7 @@ const int MOD = 1000000007; // % under modular prime 1e9+7
 vector<array<int, 26>> letcmpt;
 vector<long long> fact(MAXN + 1), invFact(MAXN + 1); 
 
-//base^`exp % mod
+//base^exp % mod
 long long modpow(long long base, long long exp, long long mod) { 
     long long res = 1; 
     while (exp > 0) { 
@@ -36,6 +36,11 @@ long long modpow(long long base, long long exp, long long mod) {
     return res; 
 }
 
+//Precomputes everything necesary for answering queries
+    //Avoids recomputation for each query
+    //Precomputes the data for any length factorial possible up to n
+    //So, we can answer each query in O(26) time, through the prefix sums
+    //The prefix sums associate the count of each letter up to index i in s
 void initialize(string s) {
     // This function is called once before all queries.
     int n = s.size();
@@ -45,9 +50,10 @@ void initialize(string s) {
     for (int i = 1; i<=n; i++) {
         fact[i] = (fact[i-1]*i)%MOD;
     }
+    
     // Compute inverse of factorials using Fermat's little theorem, n!−1 mod p
     invFact[n] = modpow(fact[n], MOD - 2, MOD);
-    
+    //That means any time we need to divide by a factorial (like (f/2)!), we can just multiply by invFact[f/2] — no recomputation, no division needed.
     for(int i = n-1; i>=0; i--){
         invFact[i] = (invFact[i+1] * (i+1))%MOD; 
     }
@@ -75,17 +81,21 @@ void initialize(string s) {
 int answerQuery(int l, int r) {
     // Return the answer for this query modulo 1000000007.
     vector<int> freq(26);
+
+//get frequency of each letter in substring s[l-1:r]
     for(int i = 0; i<26; i++){
         freq[i] = letcmpt[r][i] - letcmpt[l-1][i];
     }
-    
+
+//Compute halves and odds
     long long left = 0, odds = 0, denom = 1;
     for(int f : freq){
-        left +=f/2;
-        if (f%2!=0) odds++;
-        denom = (denom * fact[f/2]) % MOD;
+        left +=f/2;//total letters in half palindrome
+        if (f%2!=0) odds++;//count of odd frequency letters
+        denom = (denom * fact[f/2]) % MOD;//denominator for permutations with repetitions (duplicates)
     }
-    
+
+//Apply Fermat's and combinatorial formula
     long long res = (fact[left]*modpow(denom, MOD-2, MOD)) % MOD;
     if(odds) res = (res*odds) % MOD;
     return res;
