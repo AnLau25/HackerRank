@@ -17,11 +17,15 @@ vector<string> split(const string &);
  * The function accepts STRING s as parameter.
  */
 const int MAXN = 100000; 
-const int MOD = 1000000007; 
+const int MOD = 1000000007; // % under modular prime 1e9+7 
+//division under modulo not directly possible, so we use modular multiplicative inverse
+//a^(p-1) ≡ 1 (mod p)  => a^(p-2) ≡ a^(-1) (mod p)  (Fermat's little theorem)
+//ie if we want to divede by x under mod p, we can multiply by x^(p-2) under mod p
 
 vector<array<int, 26>> letcmpt;
 vector<long long> fact(MAXN + 1), invFact(MAXN + 1); 
 
+//base^`exp % mod
 long long modpow(long long base, long long exp, long long mod) { 
     long long res = 1; 
     while (exp > 0) { 
@@ -36,16 +40,20 @@ void initialize(string s) {
     // This function is called once before all queries.
     int n = s.size();
     fact[0] = 1;
-    
+
+//Computes factorials and their inverses    
     for (int i = 1; i<=n; i++) {
         fact[i] = (fact[i-1]*i)%MOD;
     }
+    // Compute inverse of factorials using Fermat's little theorem, n!−1 mod p
     invFact[n] = modpow(fact[n], MOD - 2, MOD);
     
     for(int i = n-1; i>=0; i--){
         invFact[i] = (invFact[i+1] * (i+1))%MOD; 
     }
-    
+
+//Prepares letter count prefix sums
+// C(n,k) = (n! / (k! * (n-k)!)) % p
     letcmpt.resize(n+1);
     letcmpt[0].fill(0);
     
