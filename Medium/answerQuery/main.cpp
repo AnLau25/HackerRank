@@ -42,7 +42,7 @@ long long modpow(long long base, long long exp, long long mod) {
     //So, we can answer each query in O(26) time, through the prefix sums
     //The prefix sums associate the count of each letter up to index i in s
 void initialize(string s) {
-    // This function is called once before all queries.
+    // This function is called once before all queries. Ɛ( · — ·)3
     int n = s.size();
     fact[0] = 1;
 
