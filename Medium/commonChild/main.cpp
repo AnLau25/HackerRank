@@ -8,9 +8,7 @@
 #include <bits/stdc++.h> 
 using namespace std;
 
-string ltrim(const string &);
-string rtrim(const string &);
-vector<string> split(const string &);
+
 /*
  * Complete the 'commonChild' function below.
  *
@@ -19,6 +17,7 @@ vector<string> split(const string &);
  *  1. STRING s1
  *  2. STRING s2
  */
+
 int lcsRec(string &s1, string &s2,int m,int n, vector<vector<int>> &memo){
     if (m == 0 || n == 0) return 0;
 
@@ -51,45 +50,6 @@ int main()
     fout.close();
 
     return 0;
-}
-
-string ltrim(const string &str) {
-    string s(str);
-
-    s.erase(
-        s.begin(),
-        find_if(s.begin(), s.end(), [](unsigned char ch) { return !isspace(ch); })
-    );
-
-    return s;
-}
-
-string rtrim(const string &str) {
-    string s(str);
-
-    s.erase(
-        find_if(s.rbegin(), s.rend(), [](unsigned char ch) { return !isspace(ch); }).base(),
-        s.end()
-    );
-
-    return s;
-}
-
-vector<string> split(const string &str) {
-    vector<string> tokens;
-
-    string::size_type start = 0;
-    string::size_type end = 0;
-
-    while ((end = str.find(" ", start)) != string::npos) {
-        tokens.push_back(str.substr(start, end - start));
-
-        start = end + 1;
-    }
-
-    tokens.push_back(str.substr(start));
-
-    return tokens;
 }
 
 
