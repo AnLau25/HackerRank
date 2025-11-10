@@ -55,20 +55,13 @@ int main()
 
 /* 
 Input format:
- 1. week  <string to query>
- 2. 2     <number of queries>
- 3. 1 4   <r=1, l=4>  
- 4. 2 3   <r=2, l=3>
+ 1. SHINCHAN <two same ength strings ↓>
+ 2. NOHARAAA
 
 Output:
- 5. 2     <number of palindromic anagrams for substring ↓>
- 6. 1
+ 3. 3        <length of longest common subsequence>
 
 Note:
- - Ussing Fermat's little theorem for calculating modular inverses (ie for speeding up calculation). 
- - Precomputing factorials and their inverses for efficient query answering.
- - https://blogarithms.github.io/articles/2019-01/fermats-theorem
- - https://www.geeksforgeeks.org/multiplicative-inverse-under-modulo-m/
- - https://brilliant.org/wiki/permutations-with-repetition/
+ - https://www.geeksforgeeks.org/dsa/longest-common-subsequence-dp-4/
 
 */
