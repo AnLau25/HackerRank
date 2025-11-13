@@ -5,10 +5,12 @@
 #include <sstream>    // for split
 #include <compare>    // for spaceship operator (C++20)
 #include <iomanip> 
+#include <map>
 using namespace std;
 
 string ltrim(const string &);
 string rtrim(const string &);
+vector<string> split(const string &);
 
 /*
  * Complete the 'missingNumbers' function below.
@@ -43,7 +45,7 @@ vector<int> missingNumbers(vector<int> arr, vector<int> brr) {
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
     string n_temp;
     getline(cin, n_temp);
@@ -84,16 +86,16 @@ int main()
     vector<int> result = missingNumbers(arr, brr);
 
     for (size_t i = 0; i < result.size(); i++) {
-        fout << result[i];
+        cout << result[i];
 
         if (i != result.size() - 1) {
-            fout << " ";
+            cout << " ";
         }
     }
 
-    fout << "\n";
+    cout << "\n";
 
-    fout.close();
+    //fout.close();
 
     return 0;
 }
@@ -117,6 +119,23 @@ string rtrim(const string &str) {
     );
 
     return s;
+}
+
+vector<string> split(const string &str) {
+    vector<string> tokens;
+
+    string::size_type start = 0;
+    string::size_type end = 0;
+
+    while ((end = str.find(" ", start)) != string::npos) {
+        tokens.push_back(str.substr(start, end - start));
+
+        start = end + 1;
+    }
+
+    tokens.push_back(str.substr(start));
+
+    return tokens;
 }
 
 /* 
