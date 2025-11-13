@@ -21,20 +21,18 @@ vector<string> split(const string &);
  */
 
 int hackerlandRadioTransmitters(vector<int> x, int k) {
-    sort(x.begin(),x.end());
+    sort(x.begin(),x.end()); //Sort the array of house positions
     int count = 0, len = x.size(), transmitters = 0;
     
     while (count<len) {
-        transmitters++;
+        transmitters++;//Place a new transmitter
         
         int pos = x[count] + k;
         while (count<len && x[count]<=pos){
             count++;
         }
         
-        int transmit = x[count-1];
-        pos = transmit + k;
-        
+        pos = x[count-1] + k;  
         while (count<len && x[count]<=pos) {
             count++;
         }
