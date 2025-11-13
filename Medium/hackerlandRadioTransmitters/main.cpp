@@ -27,14 +27,14 @@ int hackerlandRadioTransmitters(vector<int> x, int k) {
     while (count<len) {
         transmitters++;//Place a new transmitter
         
-        int pos = x[count] + k;
+        int pos = x[count] + k;//Find the max coverage position of this transmitter
         while (count<len && x[count]<=pos){
-            count++;
+            count++;//Move to the furthest house within coverage
         }
         
-        pos = x[count-1] + k;  
+        pos = x[count-1] + k; //Find the furthest uncovered house withing coverage range for next transmitter
         while (count<len && x[count]<=pos) {
-            count++;
+            count++;//Go to next transmitter position (will cover the skipped houses)
         }
     }
     
