@@ -140,9 +140,11 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
- 1. 3    <length of attempted password>
- 2. Ab1  <attempted password>
+ 1. 10                                                 <length of array arr ↓>
+ 2. 203 204 205 206 207 208 203 204 205 206
+ 3. 13                                                 <length of array arr ↓>
+ 4. 203 204 204 205 206 207 205 208 203 206 205 206 204
 
 Output:
- 2. 3    <minimum number of changes to make the password valid>
+ 5. 204 205 206                                        <array of missing numbers>
 */
