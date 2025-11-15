@@ -7,94 +7,51 @@
 
 using namespace std;
 
-string ltrim(const string &);
-string rtrim(const string &);
-vector<string> split(const string &);
-
 /*
- * Complete the 'sherlockAndAnagrams' function below.
+ * Complete the 'shortPalindrome' function below.
  *
  * The function is expected to return an INTEGER.
  * The function accepts STRING s as parameter.
  */
+static const int MOD = 1000000007;
 
-int sherlockAndAnagrams(string s) {
-    int ana = 0;
-    map<map<char,int>, int> grams; // map frequency maps to their counts
+long shortPalindrome(string s) {
+    long tuples = 0;
+    vector<long> char1(26, 0);
+    vector<long> char2(26*26, 0);
+    vector<long> char3(26*26, 0);
+    long charn = 0;
+    long charc = 0;
     
-    for (int i = 0; i < s.size(); i++) {
-        map<char,int> subgram; // frequency map for current starting index
-        for (int j = i; j < s.size(); j++) {
-            subgram[s[j]]++; // update frequency of current character   
-            grams[subgram]++;  // increment count of this frequency map
+    for(char c : s){
+        charn = c - 97;
+        charc = charn;
+        tuples = (tuples%MOD) + char3[charc];
+        for(int i = 0; i<26; i++){
+            char3[i] += char2[charc];
+            char2[charc] += char1[i];
+            charc += 26;
         }
+        char1[charn]++;
     }
     
-    for(auto [substr, num] : grams) ana += (num-1) * num/2; // nC2 combinations of anagrammatic pairs
-    
-    return ana;
+    return tuples%MOD;
 }
 
 int main()
 {
     //ofstream fout(getenv("OUTPUT_PATH"));
 
-    string q_temp;
-    getline(cin, q_temp);
+    string s;
+    getline(cin, s);
 
-    int q = stoi(ltrim(rtrim(q_temp)));
+    int result = shortPalindrome(s);
 
-    for (int q_itr = 0; q_itr < q; q_itr++) {
-        string s;
-        getline(cin, s);
-
-        int result = sherlockAndAnagrams(s);
-
-        cout << result << "\n";
-    }
+    cout << result << "\n";
 
     //fout.close();
 
     return 0;
-}
-
-string ltrim(const string &str) {
-    string s(str);
-
-    s.erase(
-        s.begin(),
-        find_if(s.begin(), s.end(), [](unsigned char ch) { return !isspace(ch); })
-    );
-
-    return s;
-}
-
-string rtrim(const string &str) {
-    string s(str);
-
-    s.erase(
-        find_if(s.rbegin(), s.rend(), [](unsigned char ch) { return !isspace(ch); }).base(),
-        s.end()
-    );
-
-    return s;
-}
-
-vector<string> split(const string &str) {
-    vector<string> tokens;
-
-    string::size_type start = 0;
-    string::size_type end = 0;
-
-    while ((end = str.find(" ", start)) != string::npos) {
-        tokens.push_back(str.substr(start, end - start));
-
-        start = end + 1;
-    }
-
-    tokens.push_back(str.substr(start));
-
-    return tokens;
 }
 
 /* 

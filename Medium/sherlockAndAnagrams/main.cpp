@@ -18,49 +18,42 @@ vector<string> split(const string &);
  * The function accepts STRING s as parameter.
  */
 
-/*
- * Complete the 'shortPalindrome' function below.
- *
- * The function is expected to return an INTEGER.
- * The function accepts STRING s as parameter.
- */
-static const int MOD = 1000000007;
-
-long shortPalindrome(string s) {
-    long tuples = 0;
-    vector<long> char1(26, 0);
-    vector<long> char2(26*26, 0);
-    vector<long> char3(26*26, 0);
-    long charn = 0;
-    long charc = 0;
+int sherlockAndAnagrams(string s) {
+    int ana = 0;
+    map<map<char,int>, int> grams; // map frequency maps to their counts
     
-    for(char c : s){
-        charn = c - 97;
-        charc = charn;
-        tuples = (tuples%MOD) + char3[charc];
-        for(int i = 0; i<26; i++){
-            char3[i] += char2[charc];
-            char2[charc] += char1[i];
-            charc += 26;
+    for (int i = 0; i < s.size(); i++) {
+        map<char,int> subgram; // frequency map for current starting index
+        for (int j = i; j < s.size(); j++) {
+            subgram[s[j]]++; // update frequency of current character   
+            grams[subgram]++;  // increment count of this frequency map
         }
-        char1[charn]++;
     }
     
-    return tuples%MOD;
+    for(auto [substr, num] : grams) ana += (num-1) * num/2; // nC2 combinations of anagrammatic pairs
+    
+    return ana;
 }
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
-    string s;
-    getline(cin, s);
+    string q_temp;
+    getline(cin, q_temp);
 
-    int result = shortPalindrome(s);
+    int q = stoi(ltrim(rtrim(q_temp)));
 
-    fout << result << "\n";
+    for (int q_itr = 0; q_itr < q; q_itr++) {
+        string s;
+        getline(cin, s);
 
-    fout.close();
+        int result = sherlockAndAnagrams(s);
+
+        cout << result << "\n";
+    }
+
+    //fout.close();
 
     return 0;
 }
