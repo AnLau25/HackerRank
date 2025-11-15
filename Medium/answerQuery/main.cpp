@@ -82,12 +82,12 @@ int answerQuery(int l, int r) {
     // Return the answer for this query modulo 1000000007.
     vector<int> freq(26);
 
-//get frequency of each letter in substring s[l-1:r]
+    //get frequency of each letter in substring s[l-1:r]
     for(int i = 0; i<26; i++){
         freq[i] = letcmpt[r][i] - letcmpt[l-1][i];
     }
 
-//Compute halves and odds
+    //Compute halves and odds
     long long left = 0, odds = 0, denom = 1;
     for(int f : freq){
         left +=f/2;//total letters in half palindrome
@@ -95,7 +95,7 @@ int answerQuery(int l, int r) {
         denom = (denom * fact[f/2]) % MOD;//denominator for permutations with repetitions (duplicates)
     }
 
-//Apply Fermat's and combinatorial formula
+    //Apply Fermat's and combinatorial formula
     long long res = (fact[left]*modpow(denom, MOD-2, MOD)) % MOD;
     if(odds) res = (res*odds) % MOD;
     return res;
