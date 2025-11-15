@@ -56,11 +56,8 @@ int main()
 
 /* 
 Input format:
- 1. 2          <no of test cases>
- 2. ifailuhkqq <strings to test ↓>
- 3. kkkk
+ 1. kkkkkkz         <strings to test>
 
 Output:
- 4. 3          <no of anagrammatic substring pairs ↓>
- 5. 10
+ 2. 15              <number of abba palindromic tuples that can be formed>
 */
