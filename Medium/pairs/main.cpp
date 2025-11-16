@@ -23,13 +23,17 @@ vector<string> split(const string &);
 
 int pairs(int k, vector<int> arr) {
     sort(arr.begin(),arr.end());
-    set<int> arrset;
+    set<int> arrset; //hashset to store seen numbers
     int pairs = 0;
     
     for(int n : arr){
+
+        //check if n+k or n-k (complement) exists in the set
         if(arrset.count(n+k)||arrset.count(n-k)){
             pairs++;
         }
+
+        //insert the number into the set
         arrset.insert(n);
     }
     
@@ -112,15 +116,9 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
- 1. 2 <number of test cases>
- 2. 2 <number of containers>
- 3. 1 1 <ball distribution for ball 1>
- 4. 1 1 <ball distribution for ball 2>
- 5. 2
- 6. 0 2
- 7. 1 1
+ 1. 5 2         <arr[] size n = 5, k =2>
+ 2. 1 5 3 4 2   <arr = [1, 5, 3, 4, 2]>
 
 Output:
- 8. Possible <to put all balls of one color in the same container using only swaps>
- 9. Impossible
- */
+ 3. 3           <no of pairs with a difference of k>
+*/
