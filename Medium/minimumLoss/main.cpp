@@ -5,6 +5,8 @@
 #include <sstream>    // for split
 #include <compare>    // for spaceship operator (C++20)
 #include <iomanip> 
+#include <set>
+#include <climits>  
 using namespace std;
 
 string ltrim(const string &);
@@ -40,7 +42,7 @@ long minimumLoss(vector<long> price) {
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
     string n_temp;
     getline(cin, n_temp);
@@ -62,9 +64,9 @@ int main()
 
     long result = minimumLoss(price);
 
-    fout << result << "\n";
+    cout << result << "\n";
 
-    fout.close();
+    //fout.close();
 
     return 0;
 }
