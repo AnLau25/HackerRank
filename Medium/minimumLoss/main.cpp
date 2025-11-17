@@ -22,18 +22,19 @@ vector<string> split(const string &);
 
 long minimumLoss(vector<long> price) {
     long minDiff = INT_MAX;
-    set<long> pset(price.begin(), price.end());
+    //set will work like a dq
+    set<long> pset(price.begin(), price.end()); //sort the prices
     
     for(int i = 0; i<price.size()-1; i++){
-        auto it = pset.lower_bound(price[i]);
+        auto it = pset.lower_bound(price[i]); //find the closest higher price
         long tmp = *it;
         
         if(it!=pset.begin()){
-            it--;
+            it--;//move to the next lower price
             long k = *it;
-            minDiff=min(minDiff, abs(price[i]-k));
+            minDiff=min(minDiff, abs(price[i]-k));//update minDiff
         }
-        pset.erase(tmp);
+        pset.erase(tmp);//remove current price to ensure future prices are lower
     }    
     
     
@@ -110,38 +111,11 @@ vector<string> split(const string &str) {
     return tokens;
 }
 
-
-/*
-𝗡𝗼𝗻 𝗼𝗽𝘁𝗶𝗺𝗮𝗹: 𝗟𝗶𝗺𝗶𝘁 𝘁𝗶𝗺𝗲 𝗲𝘅𝗰𝗲𝗱𝗲𝗱 O(n^2)
-void minimumBribes(vector<int> q) {
-    int len = q.size();
-    int bribes = 0;
-    
-    for (int i = 0; i<len; i++){
-        int curr_bribe = 0;
-        for(int j = i + 1; j<len; j++){
-           if(q[i]>q[j]){
-                curr_bribe++;
-            }
-            if (curr_bribe>2) {
-                std::cout<<"Too chaotic"<<std::endl;
-                return;
-            }           
-        }    
-        bribes+=curr_bribe;  
-    }
-    
-    std::cout<<bribes<<std::endl;
-    return;
-}
-*/
-
 /* 
 Input format:
-1. 1 <number of tests>
-2. 5 <array length>
-3. 1 3 2 5 4 <space separated array>
+1. 5           <no of price projections>
+2. 20 7 8 2 5  <price projections>
 
 Return:
-"2" <in this case or "Too chaotic" in case of 3+ bribes>
+3. 2           <minimum loss> 
 */
