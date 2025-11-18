@@ -98,22 +98,11 @@ vector<string> split(const string &str) {
     return tokens;
 }
 
-
-/*
-Aparently XOR is a thing in c++???
-like???????
-
-int lonelyinteger(vector<int> a) {
-    int result = 0;
-    for (int num : a) {
-        result ^= num;
-    }
-    return result;
-}
-*/
-
 /* 
 Input format:
-1. 6 <length of array>
-2. 5 5 6 7 6 5 <space separated array>
+ 1. 4       <length of array>
+ 2. 7 4 9 6 <space separated array>
+
+Output:
+ 3. 79      <minimum miles to burn all calories based on: 2^i * calorie[i]>
 */
