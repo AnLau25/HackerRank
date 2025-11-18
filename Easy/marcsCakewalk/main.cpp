@@ -5,6 +5,7 @@
 #include <sstream>    // for split
 #include <compare>    // for spaceship operator (C++20)
 #include <iomanip> 
+#include <cmath>      
 using namespace std;
 
 string ltrim(const string &);
@@ -29,7 +30,7 @@ long marcsCakewalk(vector<int> calorie) {
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
     string n_temp;
     getline(cin, n_temp);
@@ -51,9 +52,9 @@ int main()
 
     long result = marcsCakewalk(calorie);
 
-    fout << result << "\n";
+    cout << result << "\n";
 
-    fout.close();
+    //fout.close();
 
     return 0;
 }
