@@ -18,6 +18,8 @@ string rtrim(const string &);
  *  1. STRING a
  *  2. STRING b
  */
+
+//function to compare the lexicographical value of a and b starting from idxa and idxb
 bool comp(string a, int idxa, string b, int idxb){
     while(idxa<a.size() && idxb<b.size()){
         if (a[idxa]-'A' < b[idxb]-'A') return true;
@@ -46,9 +48,11 @@ string morganAndString(string a, string b) {
             min+= b[idxb];
             idxb++;
          }else{
+            //deal with identical characters
             if(comp(a, idxa + 1, b, idxb + 1)){
                 min+= a[idxa];
                 idxa++;
+                //deal with duplicates
                 while (idxa<lna && a[idxa]==a[idxa-1]) {
                     min+= a[idxa];
                     idxa++;
@@ -56,6 +60,7 @@ string morganAndString(string a, string b) {
             }else{
                 min+= b[idxb];
                 idxb++;
+                //deal with duplicates
                 while (idxb<lnb && b[idxb]==b[idxb-1]) {
                     min+= b[idxb];
                     idxb++;
@@ -126,15 +131,13 @@ string rtrim(const string &str) {
 }
 
 /* 
- 1. 4 4 2        <rows m = 4, columns n = 4, rotation factor r = 2>
- 2. 1 2 3 4      <matrix = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]]>
- 3. 5 6 7 8
- 4. 9 10 11 12
- 5. 13 14 15 16
+ 1. 2               <number of test cases>
+ 2. JACK            <string a for test case 1>
+ 3. DANIEL          <string b for test case 1>
+ 4. ABACABA 
+ 5. ABACABA 
 
 Output:
- 6. 3 4 8 12     <matrix rotated by r ↓>
- 7. 2 11 10 16
- 8. 1 7 6 15
- 9. 5 9 13 14
+ 6. DAJACKNIEL      <minimaly lexicographical string for test case 1>
+ 7. AABABACABACABA
 */
