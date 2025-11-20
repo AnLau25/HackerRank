@@ -45,7 +45,7 @@ int luckBalance(int k, vector<vector<int>> contests) {
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
     string first_multiple_input_temp;
     getline(cin, first_multiple_input_temp);
@@ -75,9 +75,9 @@ int main()
 
     int result = luckBalance(k, contests);
 
-    fout << result << "\n";
+    cout << result << "\n";
 
-    fout.close();
+    //fout.close();
 
     return 0;
 }
@@ -120,20 +120,6 @@ vector<string> split(const string &str) {
 
     return tokens;
 }
-
-
-/*
-Aparently XOR is a thing in c++???
-like???????
-
-int lonelyinteger(vector<int> a) {
-    int result = 0;
-    for (int num : a) {
-        result ^= num;
-    }
-    return result;
-}
-*/
 
 /* 
 Input format:
