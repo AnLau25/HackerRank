@@ -123,6 +123,14 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. 6 <length of array>
-2. 5 5 6 7 6 5 <space separated array>
+ 1. 6 3         <n = 6, k = 3>
+ 2. 5 1         <contests = [[5, 1], [2, 1], [1, 1], [8, 1], [10, 0], [5, 0]]>
+ 3. 2 1
+ 4. 1 1
+ 5. 8 1
+ 6. 10 0
+ 7. 5 0
+
+Output:
+ 8. 29          <total luck after loosing k important contests>
 */
