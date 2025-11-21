@@ -18,7 +18,7 @@ vector<string> split(const string &);
  * The function accepts 2D_INTEGER_ARRAY matrix as parameter.
  */
 
-int backtrack(vector<vector<int>> &matrix,int i,int j){
+int backtrack(vector<vector<int>> &matrix, int i, int j){
     if(i>=0 && i<matrix.size() && j>=0 &&
      j<matrix[0].size() && matrix[i][j]!=0){
         matrix[i][j]--;
@@ -128,14 +128,13 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. 7 <# of already ranked scores>
-2. 100 100 50 40 40 20 10 <space separated scores array>
-3. 4 <# of scores to rank>
-4. 5 25 50 120 <space separated array of scores>
+ 1. 4           <n = 4>
+ 2. 4           <m = 4>
+ 3. 1 1 0 0     <grid = [[1, 1, 1, 0], [0, 1, 1, 0], [0, 0, 1, 0], [1, 0, 0, 0]]>
+ 4. 0 1 1 0
+ 5. 0 0 1 0
+ 6. 1 0 0 0
 
 Output:
-5. 6 <rank of the latest ranked score>
-7. 4
-8. 2
-9. 1 
+ 7. 5           <n = 4>
 */
