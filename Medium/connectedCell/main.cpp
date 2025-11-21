@@ -49,7 +49,7 @@ int connectedCell(vector<vector<int>> matrix) {
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
     string n_temp;
     getline(cin, n_temp);
@@ -80,9 +80,9 @@ int main()
 
     int result = connectedCell(matrix);
 
-    fout << result << "\n";
+    cout << result << "\n";
 
-    fout.close();
+    //fout.close();
 
     return 0;
 }
