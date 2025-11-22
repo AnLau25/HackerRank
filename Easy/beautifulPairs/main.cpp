@@ -119,8 +119,10 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
- 1. 20 23 6 <range start, range end, mod>
+ 1. 4          <array size>
+ 2. 1 2 3 4    <array A>
+ 3. 1 2 3 3    <array B>
 
 Output:
- 2. 2 <no of beutiful days>
+ 4. 4          <no of pairwise disjoint beautiful pairs>
 */
