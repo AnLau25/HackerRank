@@ -5,6 +5,7 @@
 #include <sstream>    // for split
 #include <compare>    // for spaceship operator (C++20)
 #include <iomanip> 
+#include <map>
 using namespace std;
 
 string ltrim(const string &);
@@ -35,7 +36,7 @@ int beautifulPairs(vector<int> A, vector<int> B) {
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
     string n_temp;
     getline(cin, n_temp);
@@ -70,9 +71,9 @@ int main()
 
     int result = beautifulPairs(A, B);
 
-    fout << result << "\n";
+    cout << result << "\n";
 
-    fout.close();
+    //fout.close();
 
     return 0;
 }
