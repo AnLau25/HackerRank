@@ -114,9 +114,12 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
- 1. 4       <length of array>
- 2. 7 4 9 6 <space separated array>
-
+ 1. 5         <length of array>
+ 2. 1 1 1 3 3 <space separated array>
+ 3. 3
+ 4. 1 2 3
+ 
 Output:
- 3. 79      <minimum miles to burn all calories based on: 2^i * calorie[i]>
-*/
+ 5. 1 3 3     <perimeter of the biggest possible non-degenerate triangle>
+ 6. -1        <if no non-degenerate triangle is possible>
+ */
