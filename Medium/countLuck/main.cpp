@@ -165,20 +165,21 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
- 1. week  <string to query>
- 2. 2     <number of queries>
- 3. 1 4   <r=1, l=4>  
- 4. 2 3   <r=2, l=3>
-
-Output:
- 5. 2     <number of palindromic anagrams for substring ↓>
- 6. 1
-
-Note:
- - Ussing Fermat's little theorem for calculating modular inverses (ie for speeding up calculation). 
- - Precomputing factorials and their inverses for efficient query answering.
- - https://blogarithms.github.io/articles/2019-01/fermats-theorem
- - https://www.geeksforgeeks.org/multiplicative-inverse-under-modulo-m/
- - https://brilliant.org/wiki/permutations-with-repetition/
-
+ 1. 3       <number of test cases>
+ 2. 2 3     <rows cols>
+ 3. *.M     <matrix ↓ where M is start, * is destination, X is blocked>
+ 4. .X.
+ 5. 1
+ 6. 4 11
+ 7. .X.X......X
+ 8. .X*.X.XXX.X
+ 9. .XX.X.XM...
+10. ......XXXX.
+11. 3
+12. 4 11
+13. .X.X......X
+14. .X*.X.XXX.X
+15. .XX.X.XM...
+16. ......XXXX.
+17. 4
 */
