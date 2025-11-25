@@ -34,7 +34,7 @@ int backtrack(vector<vector<int>> &matrix, int i, int j){
 
 
 int connectedCell(vector<vector<int>> matrix) {
-     vector<int>v;
+    vector<int>v;
     for(int i=0;i<matrix.size();i++){
         for(int j=0;j<matrix[0].size();j++){
             if(matrix[i][j]==1){
