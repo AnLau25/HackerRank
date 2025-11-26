@@ -25,12 +25,12 @@ int getMinimumCost(int k, vector<int> c) {
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
     string nk_temp;
     getline(cin, nk_temp);
 
-    vector<string> nk = split_string(nk_temp);
+    vector<string> nk = split(nk_temp);
 
     int n = stoi(nk[0]);
 
@@ -39,7 +39,7 @@ int main()
     string c_temp_temp;
     getline(cin, c_temp_temp);
 
-    vector<string> c_temp = split_string(c_temp_temp);
+    vector<string> c_temp = split(c_temp_temp);
 
     vector<int> c(n);
 
@@ -51,9 +51,9 @@ int main()
 
     int minimumCost = getMinimumCost(k, c);
 
-    fout << minimumCost << "\n";
+    cout << minimumCost << "\n";
 
-    fout.close();
+    //fout.close();
 
     return 0;
 }
