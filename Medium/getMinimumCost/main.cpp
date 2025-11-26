@@ -110,10 +110,9 @@ Notas:
 
 /* 
 Input format:
- 1. 4 9 2 <rows of the 3x3 matrix ↓>
- 2. 3 5 7
- 3. 8 1 5
+ 1. 3 3   <n=3 flowes, k=3 friends>
+ 2. 2 5 6 <array of flower costs>
 
 Output:
- 4. 1 <total cost of Lo Shu transform>
+ 3. 13    <cost of flowers, following the equation ((i/k)+1)*c[i]>
 */
