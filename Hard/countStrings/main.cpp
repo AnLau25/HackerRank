@@ -6,6 +6,8 @@
 #include <compare>    // for spaceship operator (C++20)
 #include <iomanip> 
 #include <queue>
+#include <array>
+#include <map>
 #include <cinttypes>
 #include <cstring>
 using namespace std;
@@ -319,7 +321,7 @@ int countStrings(string r, int L) {
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
     string t_temp;
     getline(cin, t_temp);
@@ -338,10 +340,10 @@ int main()
 
         int result = countStrings(r, l);
 
-        fout << result << "\n";
+        cout << result << "\n";
     }
 
-    fout.close();
+    //fout.close();
 
     return 0;
 }
