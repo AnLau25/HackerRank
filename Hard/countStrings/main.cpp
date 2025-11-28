@@ -28,8 +28,8 @@ vector<string> split(const string &);
 const long long MOD = 1000000007;
 
 struct Node {
-    char op;
-    Node *l, *r;
+    char op; // 'a', 'b', '|', '.', '*'
+    Node *l, *r; // left and right children for operators
     Node(char c): op(c), l(NULL), r(NULL) {}
 };
 
@@ -59,6 +59,7 @@ Node* parseAlt() {
 }
 
 Node* parseConcat() {
+    // sequence of repeats
     Node* left = parseRepeat();
     while (pos < (int)s.size() && (s[pos]=='a' || s[pos]=='b' || s[pos]=='(')) {
         Node* p = new Node('.');
@@ -70,6 +71,7 @@ Node* parseConcat() {
 }
 
 Node* parseRepeat() {
+    // base followed by zero or more '*'
     Node* n = parseBase();
     while (pos < (int)s.size() && s[pos] == '*') {
         Node* p = new Node('*');
@@ -81,6 +83,7 @@ Node* parseRepeat() {
 }
 
 Node* parseBase() {
+    // single character or parenthesized expression
     if (s[pos] == 'a' || s[pos] == 'b') {
         Node* n = new Node(s[pos]);
         pos++;
@@ -92,7 +95,7 @@ Node* parseBase() {
         pos++; // ')'
         return inside;
     }
-    return NULL;
+    return NULL; // should not reach here
 }
 
 // ------------ NFA CONSTRUCTION ------------
@@ -389,23 +392,25 @@ vector<string> split(const string &str) {
 }
 
 /* 
- 1. 6             <no of gene types>
- 2. a b c aa d b  <gene types array>
- 3. 1 2 3 4 5 6   <health values array>
- 4. 3             <no strands to test ↓>
- 5. 1 5 caaab     <types index range, strand to test>
- 6. 0 4 xyz
- 7. 2 4 bcdybc
+ 1. 3                   <number of test cases>
+ 2. ((ab)|(ba)) 2       <regex and length L ↓>
+ 3. ((a|b)*) 5  
+ 4. ((a*)(b(a*))) 100
 
 Output:
- 6. 0 19          <min and max health values among tested strands>
+ 5. 2                   <number of strings of length L that match the regex>  
+ 6. 32  
+ 7. 100
 */
 
 // 𝗡𝗼𝘁𝗲𝘀:
-
-// 𝗔𝗵𝗼-𝗖𝗼𝗿𝗮𝘀𝗶𝗰𝗸: Algorithm finds all words in O(n + m + z) time where z is total number of occurrences of words in text. 
-
-// Used Aho-Corasick algorithm to efficiently find all occurrences of multiple patterns (genes) in the given strands.
-// - Constructed a Trie to store the genes and built failure links for efficient searching.
-// - For each strand, traversed the Trie while calculating health based on the specified gene index range.
-//https://www.geeksforgeeks.org/dsa/aho-corasick-algorithm-pattern-searching/
+// - The regex supports characters 'a', 'b', alternation '|', concatenation (implicit),
+//   Kleene star '*', and grouping with parentheses '()'.
+// - The approach involves parsing the regex into a syntax tree, constructing an NFA,
+//   converting it to a DFA using subset construction, and then using matrix exponentiation
+//   to count the number of accepted strings of length L efficiently.
+// - The time complexity is O(M^3 log L), where M is the number of DFA states.
+// 𝗥𝗲𝗳𝗲𝗿𝗲𝗻𝗰𝗲𝘀:
+// - https://www.geeksforgeeks.org/theory-of-computation/introduction-of-finite-automata/
+// - https://www.geeksforgeeks.org/theory-of-computation/designing-non-deterministic-finite-automata-set-3/
+// - https://www.geeksforgeeks.org/dsa/matrix-exponentiation/
