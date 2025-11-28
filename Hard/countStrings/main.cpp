@@ -23,263 +23,297 @@ vector<string> split(const string &);
  *  2. INTEGER l
  */
 
-const int MOD = 1000000007;
+const long long MOD = 1000000007;
 
-// =============================================================
-// NFA STRUCT
-// =============================================================
-struct NFA {
-    int start, end;
-    vector<array<vector<int>,2>> trans;
-    vector<vector<int>> eps;
+struct Node {
+    char op;
+    Node *l, *r;
+    Node(char c): op(c), l(NULL), r(NULL) {}
 };
 
-int newState(vector<array<vector<int>,2>> &t, vector<vector<int>> &e) {
-    t.push_back({});
-    e.push_back({});
-    return (int)t.size() - 1;
+string s;
+int pos;
+
+// ------------ PARSER ------------
+
+Node* parseRegex();
+Node* parseAlt();
+Node* parseConcat();
+Node* parseRepeat();
+Node* parseBase();
+
+Node* parseRegex() { return parseAlt(); }
+
+Node* parseAlt() {
+    Node* left = parseConcat();
+    while (pos < (int)s.size() && s[pos] == '|') {
+        pos++;
+        Node* p = new Node('|');
+        p->l = left;
+        p->r = parseConcat();
+        left = p;
+    }
+    return left;
 }
 
-// =============================================================
-// THOMPSON CONSTRUCTION
-// =============================================================
-NFA literal(char c) {
-    NFA n;
-    int s = newState(n.trans, n.eps);
-    int e = newState(n.trans, n.eps);
-    n.start = s;
-    n.end = e;
-    n.trans[s][c=='b'].push_back(e);
+Node* parseConcat() {
+    Node* left = parseRepeat();
+    while (pos < (int)s.size() && (s[pos]=='a' || s[pos]=='b' || s[pos]=='(')) {
+        Node* p = new Node('.');
+        p->l = left;
+        p->r = parseRepeat();
+        left = p;
+    }
+    return left;
+}
+
+Node* parseRepeat() {
+    Node* n = parseBase();
+    while (pos < (int)s.size() && s[pos] == '*') {
+        Node* p = new Node('*');
+        p->l = n;
+        pos++;
+        n = p;
+    }
     return n;
 }
 
-NFA concatNFA(const NFA &A, const NFA &B) {
-    NFA r;
-    r.trans = A.trans;
-    r.eps   = A.eps;
-    int off = r.trans.size();
-
-    // copy B
-    for (int i = 0; i < (int)B.trans.size(); i++) {
-        r.trans.push_back(B.trans[i]);
-        r.eps.push_back(B.eps[i]);
+Node* parseBase() {
+    if (s[pos] == 'a' || s[pos] == 'b') {
+        Node* n = new Node(s[pos]);
+        pos++;
+        return n;
     }
-
-    // fix B offsets
-    for (int i = off; i < (int)r.trans.size(); i++) {
-        for (int c=0;c<2;c++)
-            for (int &v : r.trans[i][c])
-                v += off;
-        for (int &v : r.eps[i])
-            v += off;
+    if (s[pos] == '(') {
+        pos++;
+        Node* inside = parseRegex();
+        pos++; // ')'
+        return inside;
     }
-
-    // connect
-    r.eps[A.end].push_back(B.start + off);
-
-    r.start = A.start;
-    r.end = B.end + off;
-    return r;
+    return NULL;
 }
 
-NFA unionNFA(const NFA &A, const NFA &B) {
-    NFA r;
-    r.trans = {};
-    r.eps   = {};
+// ------------ NFA CONSTRUCTION ------------
 
-    int s = newState(r.trans, r.eps);
+struct Frag { int st, en; };
 
-    int oA = r.trans.size();
-    for (int i=0;i<(int)A.trans.size();i++) {
-        r.trans.push_back(A.trans[i]);
-        r.eps.push_back(A.eps[i]);
-    }
-    for (int i=oA;i<(int)r.trans.size();i++) {
-        for (int c=0;c<2;c++)
-            for (int &v : r.trans[i][c])
-                v += oA;
-        for (int &v : r.eps[i])
-            v += oA;
-    }
-
-    int oB = r.trans.size();
-    for (int i=0;i<(int)B.trans.size();i++) {
-        r.trans.push_back(B.trans[i]);
-        r.eps.push_back(B.eps[i]);
-    }
-    for (int i=oB;i<(int)r.trans.size();i++) {
-        for (int c=0;c<2;c++)
-            for (int &v : r.trans[i][c])
-                v += oB;
-        for (int &v : r.eps[i])
-            v += oB;
-    }
-
-    int e = newState(r.trans, r.eps);
-
-    r.eps[s].push_back(A.start + oA);
-    r.eps[s].push_back(B.start + oB);
-
-    r.eps[A.end + oA].push_back(e);
-    r.eps[B.end + oB].push_back(e);
-
-    r.start = s;
-    r.end   = e;
-    return r;
+int newState(vector<vector<int>>& eps, vector<array<vector<int>,2>>& tr) {
+    eps.push_back({});
+    tr.push_back({vector<int>(), vector<int>()});
+    return eps.size() - 1;
 }
 
-NFA starNFA(const NFA &A) {
-    NFA r;
-    r.trans = {};
-    r.eps   = {};
+Frag buildNFA(Node* n,
+              vector<vector<int>>& eps,
+              vector<array<vector<int>,2>>& tr) {
+    if (!n) return {-1, -1};
 
-    int s = newState(r.trans, r.eps);
-
-    int oA = r.trans.size();
-    for (int i=0;i<(int)A.trans.size();i++) {
-        r.trans.push_back(A.trans[i]);
-        r.eps.push_back(A.eps[i]);
-    }
-    for (int i=oA;i<(int)r.trans.size();i++) {
-        for (int c=0;c<2;c++)
-            for (int &v : r.trans[i][c])
-                v += oA;
-        for (int &v : r.eps[i])
-            v += oA;
+    if (n->op == 'a' || n->op == 'b') {
+        int s = newState(eps, tr);
+        int t = newState(eps, tr);
+        int idx = (n->op == 'a' ? 0 : 1);
+        tr[s][idx].push_back(t);
+        return {s, t};
     }
 
-    int e = newState(r.trans, r.eps);
+    if (n->op == '|') {
+        Frag L = buildNFA(n->l, eps, tr);
+        Frag R = buildNFA(n->r, eps, tr);
+        int s = newState(eps, tr);
+        int t = newState(eps, tr);
+        eps[s].push_back(L.st);
+        eps[s].push_back(R.st);
+        eps[L.en].push_back(t);
+        eps[R.en].push_back(t);
+        return {s, t};
+    }
 
-    r.eps[s].push_back(A.start + oA);
-    r.eps[s].push_back(e);
-    r.eps[A.end + oA].push_back(A.start + oA);
-    r.eps[A.end + oA].push_back(e);
+    if (n->op == '.') {
+        Frag A = buildNFA(n->l, eps, tr);
+        Frag B = buildNFA(n->r, eps, tr);
+        eps[A.en].push_back(B.st);
+        return {A.st, B.en};
+    }
 
-    r.start = s;
-    r.end   = e;
-    return r;
+    if (n->op == '*') {
+        Frag A = buildNFA(n->l, eps, tr);
+        int s = newState(eps, tr);
+        int t = newState(eps, tr);
+        eps[s].push_back(A.st);
+        eps[s].push_back(t);
+        eps[A.en].push_back(A.st);
+        eps[A.en].push_back(t);
+        return {s, t};
+    }
+
+    return {-1,-1};
 }
 
-// =============================================================
-// PARSER (FULLY PARENTHESIZED REGEX)
-// =============================================================
-NFA parse(const string &s, int &i);
+// ------------ DFA (subset construction) ------------
 
-NFA parseElement(const string &s, int &i) {
-    if (s[i] == 'a' || s[i] == 'b') {
-        char c = s[i++];
-        return literal(c);
-    }
+using Bits = vector<uint64_t>;
 
-    if (s[i] == '(') {
-        i++; // skip '('
-        NFA L = parse(s, i);
-        char op = s[i++]; // | or next element beginning
+Bits toBits(const vector<int>& v, int N) {
+    Bits b((N + 63) / 64);
+    for (int x : v) b[x/64] |= (1ULL << (x%64));
+    return b;
+}
 
-        if (op == '|') {
-            NFA R = parse(s, i);
-            i++; // skip ')'
-            return unionNFA(L, R);
-        }
-        else {
-            // concatenation
-            i--; // un-read char
-            NFA R = parse(s, i);
-            i++; // skip ')'
-            return concatNFA(L, R);
+vector<int> epsilonClosure(int start,
+                           const vector<vector<int>>& eps) {
+    int N = eps.size();
+    vector<char> vis(N,0);
+    queue<int> q;
+    q.push(start);
+    vis[start] = 1;
+
+    while (!q.empty()) {
+        int u = q.front(); q.pop();
+        for (int v : eps[u]) {
+            if (!vis[v]) { vis[v] = 1; q.push(v); }
         }
     }
 
-    return literal('a'); // unreachable
+    vector<int> res;
+    for (int i = 0; i < N; i++)
+        if (vis[i]) res.push_back(i);
+    return res;
 }
 
-NFA parse(const string &s, int &i) {
-    NFA x = parseElement(s, i);
-    if (i < (int)s.size() && s[i] == '*') {
-        i++;
-        return starNFA(x);
+vector<int> epsilonClosureSet(const vector<int>& st,
+                              const vector<vector<int>>& eps) {
+    int N = eps.size();
+    vector<char> vis(N,0);
+    queue<int> q;
+
+    for (int u : st) {
+        if (!vis[u]) { vis[u] = 1; q.push(u); }
     }
-    return x;
-}
 
-NFA buildRegex(const string &s) {
-    int i = 0;
-    return parse(s, i);
-}
-
-// =============================================================
-// EPSILON CLOSURES
-// =============================================================
-vector<vector<int>> computeClosure(const NFA &nfa) {
-    int N = nfa.trans.size();
-    vector<vector<int>> C(N);
-
-    for (int i=0;i<N;i++) {
-        vector<bool> vis(N,false);
-        vector<int> q = {i};
-        vis[i] = true;
-
-        for (int p=0;p<(int)q.size();p++) {
-            int u = q[p];
-            C[i].push_back(u);
-            for (int v : nfa.eps[u]) if (!vis[v]) {
-                vis[v] = true;
-                q.push_back(v);
-            }
-        }
-        sort(C[i].begin(), C[i].end());
+    while (!q.empty()) {
+        int u = q.front(); q.pop();
+        for (int v : eps[u])
+            if (!vis[v]) { vis[v] = 1; q.push(v); }
     }
+
+    vector<int> res;
+    for (int i = 0; i < N; i++)
+        if (vis[i]) res.push_back(i);
+    return res;
+}
+
+// ------------ MATRIX EXPONENTIATION ------------
+
+using Mat = vector<vector<long long>>;
+
+Mat matMul(const Mat& A, const Mat& B) {
+    int n = A.size();
+    Mat C(n, vector<long long>(n,0));
+    for (int i = 0; i < n; i++)
+        for (int k = 0; k < n; k++)
+            if (A[i][k])
+                for (int j = 0; j < n; j++)
+                    C[i][j] = (C[i][j] + A[i][k] * B[k][j]) % MOD;
     return C;
 }
 
-// =============================================================
-// DP COUNTING
-// =============================================================
-int countStrings(string r, int L) {
-    NFA nfa = buildRegex(r);
-    int N = nfa.trans.size();
+Mat matPow(Mat base, long long e) {
+    int n = base.size();
+    Mat r(n, vector<long long>(n,0));
+    for (int i = 0; i < n; i++) r[i][i] = 1;
 
-    auto closure = computeClosure(nfa);
-
-    using BS = bitset<800>;
-    unordered_map<unsigned long long,long long> dp, nxt;
-
-    BS startSet;
-    for (int x : closure[nfa.start]) startSet.set(x);
-    dp[startSet.to_ullong()] = 1;
-
-    auto moveSet = [&](const BS &st, int c) {
-        BS mid, res;
-        for (int u=0;u<N;u++) if (st[u]) {
-            for (int v : nfa.trans[u][c]) mid.set(v);
-        }
-        for (int u=0;u<N;u++) if (mid[u]) {
-            for (int v : closure[u]) res.set(v);
-        }
-        return res;
-    };
-
-    for (int i=0;i<L;i++) {
-        nxt.clear();
-        for (auto &p : dp) {
-            BS S = BS(p.first);
-            long long val = p.second;
-
-            for (int c=0;c<2;c++) {
-                BS T = moveSet(S, c);
-                if (T.any()) {
-                    nxt[T.to_ullong()] = (nxt[T.to_ullong()] + val) % MOD;
-                }
-            }
-        }
-        dp.swap(nxt);
+    while (e) {
+        if (e & 1) r = matMul(r, base);
+        base = matMul(base, base);
+        e >>= 1;
     }
+    return r;
+}
+
+// ------------ TOP-LEVEL FUNCTION ------------
+
+int countStrings(string r, int L) {
+    // build parse tree
+    s.clear();
+    for (char c : r) if (c!=' ') s += c;
+    pos = 0;
+
+    Node* root = parseRegex();
+
+    // build NFA
+    vector<vector<int>> eps;
+    vector<array<vector<int>,2>> tr;
+    Frag f = buildNFA(root, eps, tr);
+    int N = eps.size();
+
+    // subset-construction (DFA)
+    map<Bits,int> id;
+    vector<Bits> states;
+    vector<int> accept;
+
+    // start closure
+    vector<int> st0 = epsilonClosure(f.st, eps);
+    Bits b0 = toBits(st0, N);
+    id[b0] = 0;
+    states.push_back(b0);
+    accept.push_back(find(st0.begin(), st0.end(), f.en) != st0.end() ? 1 : 0);
+
+    queue<Bits> q;
+    q.push(b0);
+
+    vector<array<int,2>> dfatrans;
+    dfatrans.push_back({-1,-1});
+
+    while (!q.empty()) {
+        Bits u = q.front(); q.pop();
+        int ui = id[u];
+
+        // decode
+        vector<int> ulist;
+        for (int i = 0; i < N; i++)
+            if ( (u[i/64] >> (i%64)) & 1ULL ) ulist.push_back(i);
+
+        for (int c = 0; c < 2; c++) {
+            vector<int> move;
+            vector<char> vis(N,0);
+
+            for (int x : ulist)
+                for (int y : tr[x][c])
+                    if (!vis[y]) { vis[y] = 1; move.push_back(y); }
+
+            vector<int> clo = epsilonClosureSet(move, eps);
+            Bits nb = toBits(clo, N);
+
+            if (!id.count(nb)) {
+                int k = states.size();
+                id[nb] = k;
+                states.push_back(nb);
+                accept.push_back(find(clo.begin(), clo.end(), f.en) != clo.end());
+                dfatrans.push_back({-1, -1});
+                q.push(nb);
+            }
+            dfatrans[ui][c] = id[nb];
+        }
+    }
+
+    int M = states.size();
+
+    // Build transition matrix
+    Mat A(M, vector<long long>(M,0));
+    for (int i = 0; i < M; i++) {
+        A[i][dfatrans[i][0]] = (A[i][dfatrans[i][0]] + 1) % MOD;
+        A[i][dfatrans[i][1]] = (A[i][dfatrans[i][1]] + 1) % MOD;
+    }
+
+    if (L == 0) return accept[0];
+
+    Mat AL = matPow(A, L);
 
     long long ans = 0;
-    for (auto &p : dp) {
-        BS S = BS(p.first);
-        if (S[nfa.end]) ans = (ans + p.second) % MOD;
-    }
+    for (int i = 0; i < M; i++)
+        if (accept[i])
+            ans = (ans + AL[0][i]) % MOD;
+
     return ans;
 }
 
