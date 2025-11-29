@@ -5,6 +5,7 @@
 #include <sstream>    // for split
 #include <compare>    // for spaceship operator (C++20)
 #include <iomanip> 
+#include <queue>
 using namespace std;
 
 string ltrim(const string &);
@@ -76,7 +77,7 @@ vector<vector<int>> knightlOnAChessboard(int n) {
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
     string n_temp;
     getline(cin, n_temp);
@@ -87,21 +88,21 @@ int main()
 
     for (size_t i = 0; i < result.size(); i++) {
         for (size_t j = 0; j < result[i].size(); j++) {
-            fout << result[i][j];
+            cout << result[i][j];
 
             if (j != result[i].size() - 1) {
-                fout << " ";
+                cout << " ";
             }
         }
 
         if (i != result.size() - 1) {
-            fout << "\n";
+            cout << "\n";
         }
     }
 
-    fout << "\n";
+    cout << "\n";
 
-    fout.close();
+    //fout.close();
 
     return 0;
 }
