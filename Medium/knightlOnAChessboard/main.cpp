@@ -18,36 +18,45 @@ vector<string> split(const string &);
  * The function is expected to return a 2D_INTEGER_ARRAY.
  * The function accepts INTEGER n as parameter.
  */
+
+//Struture that contains cell coordinates and distance from source 
 struct cell{
     int x, y, dis;
     cell(): x(0), y(0), dis(0) {}
     cell(int x, int y, int dis) : x(x), y(y), dis(dis) {}
 };
 
+//Helper function to check if cell is inside board
 bool inBoard(int x, int y, int n){
     return x>=0 && x<n && y>=0 && y<n;
 }
 
-
+//Function to find minimum steps to reach target cell ussing BFS
 int steps(int a, int b, int n){
+    //All possible moves of a knight (in this specific context)
     int dx[8] = { a,  a, -a, -a,  b,  b, -b, -b };
     int dy[8] = { b, -b,  b, -b,  a, -a,  a, -a };
     
+    //Vector to keepp track of visited cells 
     vector<vector<bool>> visited(n+1, vector<bool>(n+1, false));
     visited[0][0] = true;
     
+    //Queue for storing knight states
     queue<cell> q;
     q.push(cell(0, 0, 0));
     
     cell t;
     int x, y;
     
+    //Loop untill q empty
     while (!q.empty()) {
         t = q.front();
         q.pop();
         
+        //If goal reached, return distance (aka number of moves)
         if(t.x == n-1 && t.y == n-1) return t.dis;
         
+        //Else visit all valid reachable states
         for(int i = 0; i<8; i++){
             x = t.x + dx[i];
             y = t.y + dy[i];
@@ -68,6 +77,7 @@ vector<vector<int>> knightlOnAChessboard(int n) {
     
     for(int i = 1; i<n; i++){
         for(int j = 1; j<n; j++){
+            //Get no of steps for each (a,b) pair
             result[i-1][j-1] = steps(i, j, n);
         }
     }
@@ -148,9 +158,18 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. 1 <number of strings to test>
-2. [{(5 5 6 7 6 5)}] <string to test>
+ 1. 5         <size of the chessboard>
 
-Return:
-YES <printed to terminal, NO if is not balanced, ie {[)]}>
+Output:
+ 2. 4 4 2 8   <Number of steps to reach (n-1,n-1) for each (a,b) pair>   
+ 3. 4 2 4 4
+ 4. 2 4 -1 
+ 5. 8 4 -1 1
+
+𝗡𝗼𝘁𝗲𝘀:
+ - Rather than move like a normal knight, this knight moves in a (a, b)
+ - where a and b are <n
+ - You can use the same BFS as with a normal knight problem, just with difirerent limits
+ - https://www.geeksforgeeks.org/dsa/minimum-steps-reach-target-knight/
+
 */
