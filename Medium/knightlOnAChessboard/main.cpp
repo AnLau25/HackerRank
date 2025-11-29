@@ -1,0 +1,155 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>  // for ltrim, rtrim
+#include <sstream>    // for split
+#include <compare>    // for spaceship operator (C++20)
+#include <iomanip> 
+using namespace std;
+
+string ltrim(const string &);
+string rtrim(const string &);
+vector<string> split(const string &);
+
+/*
+ * Complete the 'knightlOnAChessboard' function below.
+ *
+ * The function is expected to return a 2D_INTEGER_ARRAY.
+ * The function accepts INTEGER n as parameter.
+ */
+struct cell{
+    int x, y, dis;
+    cell(): x(0), y(0), dis(0) {}
+    cell(int x, int y, int dis) : x(x), y(y), dis(dis) {}
+};
+
+bool inBoard(int x, int y, int n){
+    return x>=0 && x<n && y>=0 && y<n;
+}
+
+
+int steps(int a, int b, int n){
+    int dx[8] = { a,  a, -a, -a,  b,  b, -b, -b };
+    int dy[8] = { b, -b,  b, -b,  a, -a,  a, -a };
+    
+    vector<vector<bool>> visited(n+1, vector<bool>(n+1, false));
+    visited[0][0] = true;
+    
+    queue<cell> q;
+    q.push(cell(0, 0, 0));
+    
+    cell t;
+    int x, y;
+    
+    while (!q.empty()) {
+        t = q.front();
+        q.pop();
+        
+        if(t.x == n-1 && t.y == n-1) return t.dis;
+        
+        for(int i = 0; i<8; i++){
+            x = t.x + dx[i];
+            y = t.y + dy[i];
+            
+            if(inBoard(x, y, n) && !visited[x][y]){
+                visited[x][y] = true;
+                q.push(cell(x, y, t.dis+1));
+            }
+        }
+    
+    }
+    
+    return -1;
+}
+
+vector<vector<int>> knightlOnAChessboard(int n) {
+    vector<vector<int>> result(n-1, vector<int>(n-1, 0));
+    
+    for(int i = 1; i<n; i++){
+        for(int j = 1; j<n; j++){
+            result[i-1][j-1] = steps(i, j, n);
+        }
+    }
+    
+    return result;
+}
+
+int main()
+{
+    ofstream fout(getenv("OUTPUT_PATH"));
+
+    string n_temp;
+    getline(cin, n_temp);
+
+    int n = stoi(ltrim(rtrim(n_temp)));
+
+    vector<vector<int>> result = knightlOnAChessboard(n);
+
+    for (size_t i = 0; i < result.size(); i++) {
+        for (size_t j = 0; j < result[i].size(); j++) {
+            fout << result[i][j];
+
+            if (j != result[i].size() - 1) {
+                fout << " ";
+            }
+        }
+
+        if (i != result.size() - 1) {
+            fout << "\n";
+        }
+    }
+
+    fout << "\n";
+
+    fout.close();
+
+    return 0;
+}
+
+string ltrim(const string &str) {
+    string s(str);
+
+    s.erase(
+        s.begin(),
+        find_if(s.begin(), s.end(), [](unsigned char ch) { return !isspace(ch); })
+    );
+
+    return s;
+}
+
+string rtrim(const string &str) {
+    string s(str);
+
+    s.erase(
+        find_if(s.rbegin(), s.rend(), [](unsigned char ch) { return !isspace(ch); }).base(),
+        s.end()
+    );
+
+    return s;
+}
+
+vector<string> split(const string &str) {
+    vector<string> tokens;
+
+    string::size_type start = 0;
+    string::size_type end = 0;
+
+    while ((end = str.find(" ", start)) != string::npos) {
+        tokens.push_back(str.substr(start, end - start));
+
+        start = end + 1;
+    }
+
+    tokens.push_back(str.substr(start));
+
+    return tokens;
+}
+
+/* 
+Input format:
+1. 1 <number of strings to test>
+2. [{(5 5 6 7 6 5)}] <string to test>
+
+Return:
+YES <printed to terminal, NO if is not balanced, ie {[)]}>
+*/
