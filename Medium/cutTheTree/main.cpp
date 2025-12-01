@@ -5,6 +5,9 @@
 #include <sstream>    // for split
 #include <compare>    // for spaceship operator (C++20)
 #include <iomanip> 
+#include <numeric>   // for accumulate
+#include <climits>   // for INT_MAX
+#include <map>
 #include <bits/stdc++.h> 
 using namespace std;
 
@@ -56,7 +59,7 @@ int cutTheTree(vector<int> data, vector<vector<int>> edges) {
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
     string n_temp;
     getline(cin, n_temp);
@@ -95,9 +98,9 @@ int main()
 
     int result = cutTheTree(data, edges);
 
-    fout << result << "\n";
+    cout << result << "\n";
 
-    fout.close();
+    //fout.close();
 
     return 0;
 }
