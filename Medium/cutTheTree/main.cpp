@@ -28,10 +28,11 @@ vector<bool> visited(100001);
 vector<int> sum(100001); 
  
 int dfs(int node, vector<int>& data){
-    int ret = data[node-1];
-    visited[node] = true;
+    int ret = data[node-1]; // Start with the node's own value
+    visited[node] = true; // Mark as visited
     
     for(int next : adj[node]){
+        // If not visited, continue DFS
         if(!visited[next]){
             ret += dfs(next, data);
         }
@@ -43,13 +44,16 @@ int cutTheTree(vector<int> data, vector<vector<int>> edges) {
     int mindiff = INT_MAX;
     int total = accumulate(data.begin(), data.end(), 0);
     
+    // Build adjacency list
     for (vector<int> e : edges){
         adj[e[0]].push_back(e[1]);
         adj[e[1]].push_back(e[0]);
     }
     
+    // Perform DFS to calculate subtree sums
     dfs(1, data);
     for(int i = 2; i<=data.size(); i++){
+        // Calculate the difference if we cut the edge leading to subtree rooted at i
         int diff = abs(total - 2*sum[i]); 
         mindiff = min(mindiff, diff);
     }
@@ -148,21 +152,14 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
- 1. 3       <number of test cases>
- 2. 2 3     <rows cols>
- 3. *.M     <matrix ↓ where M is start, * is destination, X is blocked>
- 4. .X.
- 5. 1
- 6. 4 11
- 7. .X.X......X
- 8. .X*.X.XXX.X
- 9. .XX.X.XM...
-10. ......XXXX.
-11. 3
-12. 4 11
-13. .X.X......X
-14. .X*.X.XXX.X
-15. .XX.X.XM...
-16. ......XXXX.
-17. 4
+ 1. 6                           <data[] size n = 6>
+ 2. 100 200 100 500 100 600     <data = [100, 200, 100, 500, 100, 600]>
+ 3. 1 2                         <edges = [[1, 2], [2, 3], [2, 5], [4, 5], [5, 6]]>
+ 4. 2 3
+ 5. 2 5
+ 6. 4 5
+ 7. 5 6
+
+Output:
+ 8. 400                         <minimum difference between two subtrees after cutting one edge>                           
 */
