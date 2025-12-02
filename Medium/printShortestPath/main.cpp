@@ -23,6 +23,7 @@ vector<string> split(const string &);
  *  5. INTEGER j_end
  */
 struct cell{
+    // Support struct to hold cell information
     int x, y;
     string dir;
     cell(): x(0), y(0), dir("") {}
@@ -32,10 +33,11 @@ struct cell{
 void printShortestPath(int n, int i_start, int j_start, int i_end, int j_end) {
     // Print the distance along with the sequence of moves.
     vector<cell> moves = {{-2, -1, "UL"}, {-2,  1, "UR"}, { 0,  2, "R"}, { 2,  1, "LR"}, { 2, -1, "LL"}, { 0, -2, "L"}}; 
+    // Possible moves for the "Red Knight" piece
     int steps = -1;
     
-    queue<cell> q;
-    vector<vector<bool>> visited(n, vector<bool> (n, false));
+    queue<cell> q; // BFS queue
+    vector<vector<bool>> visited(n, vector<bool> (n, false)); // Visited cells tracker
     
     visited[i_start][j_start] = true;
     q.push({i_start, j_start, ""});
@@ -45,14 +47,16 @@ void printShortestPath(int n, int i_start, int j_start, int i_end, int j_end) {
         int s = q.size();
         while (s--) {
             cell curr = q.front();
-            q.pop();
+            q.pop(); // Get the front cell
             
+            // Check if end reached
             if(curr.x == i_end && curr.y == j_end){
                 cout<<steps<<endl;
                 cout<<curr.dir<<endl;
                 return;
             }
             
+            // Explore all possible moves
             for(cell m :  moves){
                 int nx = curr.x + m.x;
                 int ny = curr.y + m.y;
@@ -65,7 +69,8 @@ void printShortestPath(int n, int i_start, int j_start, int i_end, int j_end) {
             }
         }
     }
-    
+
+    // If we exhaust the queue without finding the end position
     cout<< "Impossible" << endl;    
 }
 
@@ -135,9 +140,10 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
- 1. 5 2         <arr[] size n = 5, k =2>
- 2. 1 5 3 4 2   <arr = [1, 5, 3, 4, 2]>
+ 1. 7           <Dimension of the chessboard>
+ 2. 0 3 4 3     <i_start, j_start, i_end, j_end>
 
 Output:
- 3. 3           <no of pairs with a difference of k>
+ 3. 2           <Number of moves>
+ 4. LR LL       <Path taken>
 */
