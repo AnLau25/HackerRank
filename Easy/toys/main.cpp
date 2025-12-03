@@ -108,7 +108,9 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
-1. 1 <no of tests>
-2. n <no de columnas> m <altura de columnas>
-*Separadas por un espacio
+ 1. 8                    <Size of the array>
+ 2. 1 2 3 21 7 12 14 21  <Array of toy weights>
+
+Output:
+ 3. 4                    <Minimum number of containers needed>
 */
