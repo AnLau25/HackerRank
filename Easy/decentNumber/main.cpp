@@ -69,8 +69,23 @@ string rtrim(const string &str) {
 
 /* 
 Input format:
- 1. 20 23 6 <range start, range end, mod>
+ 1. 4       <t = 4>
+ 2. 1       <n = 1 (first test case)>
+ 3. 3       <n = 3 (second test case)>
+ 4. 5
+ 6. 11
 
 Output:
- 2. 2 <no of beutiful days>
+ 7. -1
+ 8. 555
+ 9. 33333
+10. 55555533333
+
+Explanation:
+ For each test case, the function finds the largest decent number with n digits.
+ A decent number has:
+  - Digits only 3's and 5's
+  - Number of 3's is divisible by 5
+  - Number of 5's is divisible by 3
+ If no such number exists, it prints -1.
 */
