@@ -35,7 +35,7 @@ string gamingArray(vector<int> arr) {
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
     string g_temp;
     getline(cin, g_temp);
@@ -63,10 +63,10 @@ int main()
 
         string result = gamingArray(arr);
 
-        fout << result << "\n";
+        cout << result << "\n";
     }
 
-    fout.close();
+    //fout.close();
 
     return 0;
 }
