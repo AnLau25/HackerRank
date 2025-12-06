@@ -126,8 +126,9 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
- 1. 0 3 4 2 <x1 v1 x2 v2>
+ 1. 5 1         <n = 5, k = 1>
+ 2. 4 2 3 5 1   <arr = [4, 2, 3, 5, 1]>
 
 Output:
- 2. YES <if they meet, "NO" otherwise>
+ 3. 5 2 3 4 1   <greatest permutation possible with k swap>
 */
