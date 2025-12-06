@@ -5,6 +5,7 @@
 #include <sstream>    // for split
 #include <compare>    // for spaceship operator (C++20)
 #include <iomanip> 
+#include <map>
 using namespace std;
 
 string ltrim(const string &);
@@ -24,18 +25,18 @@ vector<int> largestPermutation(int k, vector<int> arr) {
     map<int, int> idxs;
     for(int i = 0; i < arr.size(); i++) idxs[arr[i]] = i;
     
-    int max = arr.size(), position = 0;
+    int max = arr.size(), pos = 0;
 
-    while(k && position < arr.size()){
-        if(arr[position] != max){
-            int temps = arr[position];
-            arr[position] = max;
+    while(k && pos < arr.size()){
+        if(arr[pos] != max){
+            int temps = arr[pos];
+            arr[pos] = max;
             arr[idxs[max]] = temps;
             k--;
             idxs[temps] = idxs[max];
         }
         max--;
-        position++;
+        pos++;
     }
     
     return arr;
@@ -43,7 +44,7 @@ vector<int> largestPermutation(int k, vector<int> arr) {
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
     string first_multiple_input_temp;
     getline(cin, first_multiple_input_temp);
@@ -70,16 +71,16 @@ int main()
     vector<int> result = largestPermutation(k, arr);
 
     for (size_t i = 0; i < result.size(); i++) {
-        fout << result[i];
+        cout << result[i];
 
         if (i != result.size() - 1) {
-            fout << " ";
+            cout << " ";
         }
     }
 
-    fout << "\n";
+    cout << "\n";
 
-    fout.close();
+    //fout.close();
 
     return 0;
 }
