@@ -110,12 +110,9 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
- 1. 5         <length of array>
- 2. 1 1 1 3 3 <space separated array>
- 3. 3
- 4. 1 2 3
+ 1. 7 50                     <number of toys, budget>   
+ 2. 1 12 5 111 200 1000 10   <prices of toys>
  
 Output:
- 5. 1 3 3     <perimeter of the biggest possible non-degenerate triangle>
- 6. -1        <if no non-degenerate triangle is possible>
+ 3. 4                        <maximum number of toys>
  */
