@@ -5,6 +5,8 @@
 #include <sstream>    // for split
 #include <compare>    // for spaceship operator (C++20)
 #include <iomanip> 
+#include <queue>
+#include <map>
 using namespace std;
 
 string ltrim(const string &);
@@ -57,7 +59,7 @@ vector<int> bfs(int n, int m, vector<vector<int>> edges, int s) {
 
 int main()
 {
-    ofstream fout(getenv("OUTPUT_PATH"));
+    //ofstream fout(getenv("OUTPUT_PATH"));
 
     string q_temp;
     getline(cin, q_temp);
@@ -99,19 +101,41 @@ int main()
         vector<int> result = bfs(n, m, edges, s);
 
         for (size_t i = 0; i < result.size(); i++) {
-            fout << result[i];
+            cout << result[i];
 
             if (i != result.size() - 1) {
-                fout << " ";
+                cout << " ";
             }
         }
 
-        fout << "\n";
+        cout << "\n";
     }
 
-    fout.close();
+    //fout.close();
 
     return 0;
+}
+
+string ltrim(const string &str) {
+    string s(str);
+
+    s.erase(
+        s.begin(),
+        find_if(s.begin(), s.end(), [](unsigned char ch) { return !isspace(ch); })
+    );
+
+    return s;
+}
+
+string rtrim(const string &str) {
+    string s(str);
+
+    s.erase(
+        find_if(s.rbegin(), s.rend(), [](unsigned char ch) { return !isspace(ch); }).base(),
+        s.end()
+    );
+
+    return s;
 }
 
 vector<string> split(const string &str) {
