@@ -122,9 +122,13 @@ vector<string> split(const string &str) {
 
 /* 
 Input format:
- 1. 5 1         <n = 5, k = 1>
- 2. 4 2 3 5 1   <arr = [4, 2, 3, 5, 1]>
+ 1. 5           <number of orders>
+ 2. 8 1         <orders ↓>
+ 3. 4 2
+ 4. 5 6
+ 5. 3 1
+ 6. 4 3
 
 Output:
- 3. 5 2 3 4 1   <greatest permutation possible with k swap>
+ 3. 4 2 5 1 3   <orders sorted by delivery time>
 */
