@@ -58,4 +58,6 @@ Output:
 
 Note:
  The actual goal is more to 𝘬𝘦𝘦𝘱 𝘵𝘩𝘦 𝘮𝘢𝘹 𝘢𝘵 𝘵𝘩𝘦 𝘧𝘳𝘰𝘯𝘵 rather than finding the max
+ We use a deque to maintain the indices of the elements in the current window
+ Basicaly a sliding window maximum problem
 */
