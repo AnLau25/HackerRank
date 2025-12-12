@@ -30,6 +30,7 @@ vector<int> jimOrders(vector<vector<int>> orders) {
     }
     
     sort(sorting.begin(), sorting.end());
+    //Transform ussing lambda
     transform(sorting.begin(), sorting.end(), back_inserter(delivery),
         [](const pair<int, int>& order) {
             return order.second;
