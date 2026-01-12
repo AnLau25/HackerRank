@@ -22,7 +22,7 @@ vector<string> split(const string &);
  */
 
  //... This shoulve been a runtime err... pero bueh.
-string twoArrays(int k, vector<int> A, vector<int> B) {
+/*string twoArrays(int k, vector<int> A, vector<int> B) {
     int b = B.size()-1;
     std::sort(A.begin(),A.end());
     std::sort(B.begin(),B.end());
@@ -51,7 +51,7 @@ string twoArrays(int k, vector<int> A, vector<int> B) {
     }
     
     return "YES";
-}
+}*/
 
 //So... I had solved this one before
 string twoArrays(int k, vector<int> A, vector<int> B) {
