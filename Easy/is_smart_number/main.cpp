@@ -10,7 +10,7 @@ using namespace std;
 
 bool is_smart_number(int num) {
     int val = (int) sqrt(num);
-    if(num == val * val)
+    if(num == val * val) //Because it's cpp num/val==val causes an imprecision error
         return true;
     return false;
 }
@@ -33,8 +33,15 @@ int main() {
 
 /* 
 Input format:
- 1. 20 3 6 85 <p=20, d=3, m=6, s=85>
+ 1. 4     <Number of test cases>
+ 2. 1     <Test cases ↓>
+ 3. 2
+ 4. 7
+ 5. 169
 
 Output:
- 2. 6 <no of games you can buy>
+ 6. YES   <Is the number a perfect square?>
+ 7. NO
+ 8. NO
+ 9. YES
 */
